@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package MC.Login;
+
+service MCLogin{
+    rpc Login(MCLoginRequest) returns (MCLoginResponse);
+    rpc GetUserInfo(MCGetUserInfoRequest) returns (MCGetUserInfoResponse);
+}
+
+enum UserStatType{
+    ONLINE = 0;
+    OFFLINE = 1;
+}
+
+message MCLoginRequest{
+    string username = 1;
+    string password = 2;
+    UserStatType online_status = 3;
+    string client_version = 4;
+}
+
+//返回状态枚举类
+enum MCResponseStatusCode {
+    OK = 0;
+    FAILED = 1;
+    ERROR = 2;
+}
+
+// 返回格式
+message MCLoginResponse{
+    MCResponseStatusCode code = 1;
+    string err_msg = 2;
+    uint32 user_id = 3;
+    uint32 server_time = 4;
+}
+
+message MCGetUserInfoResponse{
+    uint32 user_id = 1;
+    uint32 user_gender = 2;
+    string user_nick_name = 3;
+    string avatar_url = 4;
+}
+
+message MCGetUserInfoRequest{
+    uint32 user_id = 1;
+}
