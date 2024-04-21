@@ -21,7 +21,7 @@ void LoginServer::Run(uint16_t port) {
     server_ = builder.BuildAndStart();
 
     debug(), "Server listening on ", server_address;
-    LOG_INFO("Server listening on ", server_address);
+    LOG_INFO("Server listening on " + server_address);
 
     // 处理rpc
     HandleRpcs();

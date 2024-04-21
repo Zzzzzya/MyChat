@@ -49,23 +49,15 @@ private:
         void Proceed();
 
     protected:
-        virtual void creating() {
-            debug(), "virtual creating";
-        };
-        virtual void processing() {
-            debug(), "virtual processing";
-        };
-        virtual void finishing() {
-            debug(), "virtual finishing";
-        };
+        virtual void creating() { debug(), "virtual creating"; };
+        virtual void processing() { debug(), "virtual processing"; };
+        virtual void finishing() { debug(), "virtual finishing"; };
 
         MCLogin::AsyncService* service_;
         ServerCompletionQueue* cq_;
         ServerContext ctx_;
 
-        enum CallStatus { CREATE,
-                          PROCESS,
-                          FINISH };
+        enum CallStatus { CREATE, PROCESS, FINISH };
 
         CallStatus status_;
     };
@@ -79,7 +71,8 @@ private:
         void creating() override {
             debug(), "LoginCallData creating";
             status_ = PROCESS;
-            service_->RequestLogin(&ctx_, &request_, &responder_, cq_, cq_, this);
+            service_->RequestLogin(&ctx_, &request_, &responder_, cq_, cq_,
+                                   this);
         }
 
         void processing() override {
@@ -90,16 +83,23 @@ private:
             auto online = request_.online_status();
             auto client_version = request_.client_version();
 
-            debug(), "Login request: ", username, " ", password, " ", online, " ", client_version;
+            debug(), "Login request: ", username, " ", password, " ", online,
+                " ", client_version;
 
             auto RetStatus = Status::OK;
 
             if (username == password) {
                 response_.set_code(MCResponseStatusCode::OK);
+                response_.set_err_msg("login success");
+                response_.set_user_id(usrid_++);
+                response_.set_server_time(time(nullptr));
                 RetStatus = Status::OK;
             } else {
                 response_.set_code(MCResponseStatusCode::FAILED);
-                RetStatus = Status::CANCELLED;
+                response_.set_err_msg("username != password");
+                response_.set_server_time(-1);
+                response_.set_user_id(-1);
+                RetStatus = Status::OK;
             }
 
             responder_.Finish(response_, RetStatus, this);
@@ -115,6 +115,7 @@ private:
         MCLoginRequest request_;
         MCLoginResponse response_;
         ServerAsyncResponseWriter<MCLoginResponse> responder_;
+        int usrid_ = 0;
     };
 
     void HandleRpcs();
