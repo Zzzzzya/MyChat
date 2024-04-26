@@ -7,6 +7,13 @@ service MCLogin{
     rpc GetUserInfo(MCGetUserInfoRequest) returns (MCGetUserInfoResponse);
 }
 
+//返回状态枚举类
+enum MCResponseStatusCode {
+    OK = 0;
+    FAILED = 1;
+    ERROR = 2;
+}
+
 enum UserStatType{
     ONLINE = 0;
     OFFLINE = 1;
@@ -19,12 +26,7 @@ message MCLoginRequest{
     string client_version = 4;
 }
 
-//返回状态枚举类
-enum MCResponseStatusCode {
-    OK = 0;
-    FAILED = 1;
-    ERROR = 2;
-}
+
 
 // 返回格式
 message MCLoginResponse{

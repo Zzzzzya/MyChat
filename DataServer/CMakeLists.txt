@@ -19,7 +19,7 @@
 
 cmake_minimum_required(VERSION 3.20)
 
-project(MyChatServer C CXX)
+project(DataServer C CXX)
 
 # 找到spdlog库
 find_package(spdlog REQUIRED)
@@ -28,29 +28,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(../cmake/common.cmake)
-
-# -------------------------------------Login Proto file------------------------------------- #
-# Login Proto file
-get_filename_component(mc_proto "../protos/Login/MC.Login.proto" ABSOLUTE)
-get_filename_component(mc_proto_path "${mc_proto}" PATH)
-
-# Generated sources for MC.Login.proto
-set(mc_proto_srcs "${CMAKE_CURRENT_BINARY_DIR}/MC.Login.pb.cc")
-set(mc_proto_hdrs "${CMAKE_CURRENT_BINARY_DIR}/MC.Login.pb.h")
-set(mc_grpc_srcs "${CMAKE_CURRENT_BINARY_DIR}/MC.Login.grpc.pb.cc")
-set(mc_grpc_hdrs "${CMAKE_CURRENT_BINARY_DIR}/MC.Login.grpc.pb.h")
-
-# Custom command for MC.Login.proto
-add_custom_command(
-    OUTPUT "${mc_proto_srcs}" "${mc_proto_hdrs}" "${mc_grpc_srcs}" "${mc_grpc_hdrs}"
-    COMMAND ${_PROTOBUF_PROTOC}
-    ARGS --grpc_out "${CMAKE_CURRENT_BINARY_DIR}"
-    --cpp_out "${CMAKE_CURRENT_BINARY_DIR}"
-    -I "${mc_proto_path}"
-    --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
-    "${mc_proto}"
-    DEPENDS "${mc_proto}"
-)
 
 # -------------------------------------Data Proto file------------------------------------- #
 # Data Proto file
@@ -81,10 +58,6 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # mc_grpc_proto
 add_library(mc_grpc_proto
-    ${mc_grpc_srcs}
-    ${mc_grpc_hdrs}
-    ${mc_proto_srcs}
-    ${mc_proto_hdrs}
     ${mc_grpc_data_srcs}
     ${mc_grpc_data_hdrs}
     ${mc_proto_data_srcs}
@@ -102,9 +75,9 @@ target_link_libraries(mc_grpc_proto
     ${_PROTOBUF_LIBPROTOBUF})
 
 # Targets greeter_[async_](client|server)
-foreach(_target LoginServer LoginClient)
+foreach(_target DataServerMain)
     add_executable(${_target} "main/${_target}.cpp"
-        "src/server.cc"
+        "src/DataServer.cc"
         "src/log.cc")
     target_link_libraries(${_target}
         mc_grpc_proto

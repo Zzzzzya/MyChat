@@ -1,3 +1,5 @@
 /LoginServer/build/
 /LoginServer/log/
+/DataServer/build/
+/DataServer/log/
 /.tours/

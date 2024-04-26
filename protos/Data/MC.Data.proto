@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package MC.Data;
+
+service MCData{
+    rpc GetUserPassword(MCDataUserRequest) returns (MCDataUserResponse) {}
+}
+
+enum MCResponseStatusCode {
+    OK = 0;
+    FAILED = 1;
+    ERROR = 2;
+}
+
+message MCDataUserRequest{
+    string username = 1;
+}
+
+message MCDataUserResponse{
+    MCResponseStatusCode code = 1;
+    string md5_password = 2;
+    string md5_hxm = 3;
+}
