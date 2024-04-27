@@ -21,8 +21,9 @@ cmake_minimum_required(VERSION 3.20)
 
 project(DataServer C CXX)
 
-# 找到spdlog库
+# 找到spdlog库 openssl库
 find_package(spdlog REQUIRED)
+find_package(OpenSSL REQUIRED)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -78,7 +79,8 @@ target_link_libraries(mc_grpc_proto
 foreach(_target DataServerMain)
     add_executable(${_target} "main/${_target}.cpp"
         "src/DataServer.cc"
-        "src/log.cc")
+        "src/log.cc"
+        "src/mysqlpool.cc")
     target_link_libraries(${_target}
         mc_grpc_proto
         absl::check
@@ -86,6 +88,9 @@ foreach(_target DataServerMain)
         absl::flags_parse
         absl::log
         spdlog::spdlog
+        OpenSSL::SSL
+        OpenSSL::Crypto
+        mysqlcppconn
         ${_REFLECTION}
         ${_GRPC_GRPCPP}
         ${_PROTOBUF_LIBPROTOBUF})

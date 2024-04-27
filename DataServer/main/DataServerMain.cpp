@@ -1,7 +1,9 @@
 #include "debug.h"
+#include "log.h"
 
 // grpc DataServer
 #include "DataServer.h"
+#include "mysqlpool.h"
 
 ABSL_FLAG(uint16_t, port, 50061, "Server port for the service");
 

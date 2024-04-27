@@ -85,7 +85,8 @@ private:
         void Proceed() override {
             debug(), "MCLogin proceed";
             auto code = response.code();
-            if (code == MCResponseStatusCode::FAILED) {
+            if (code == MCResponseStatusCode::FAILED ||
+                code == MCResponseStatusCode::ERROR) {
                 debug(), "Login Failed";
                 debug(), "err_message: ", response.err_msg();
                 return;

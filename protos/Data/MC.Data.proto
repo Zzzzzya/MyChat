@@ -6,10 +6,11 @@ service MCData{
     rpc GetUserPassword(MCDataUserRequest) returns (MCDataUserResponse) {}
 }
 
-enum MCResponseStatusCode {
+enum MCDataResponseStatusCode {
     OK = 0;
     FAILED = 1;
     ERROR = 2;
+    DATABASE_ERROR = 3;
 }
 
 message MCDataUserRequest{
@@ -17,7 +18,8 @@ message MCDataUserRequest{
 }
 
 message MCDataUserResponse{
-    MCResponseStatusCode code = 1;
-    string md5_password = 2;
-    string md5_hxm = 3;
+    MCDataResponseStatusCode code = 1;
+    string password = 2;
+    string hxm = 3;
+    string errmsg = 4;
 }

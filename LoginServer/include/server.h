@@ -17,6 +17,9 @@
 #include "MC.Login.grpc.pb.h"
 #include "MC.Login.pb.h"
 
+// client
+#include "DataClient.h"
+
 // namespace
 //  grpc
 using grpc::Server;
@@ -89,17 +92,27 @@ private:
 
             auto RetStatus = Status::OK;
 
-            if (username == password) {
-                response_.set_code(MCResponseStatusCode::OK);
-                response_.set_err_msg("login success");
-                response_.set_user_id(usrid_++);
-                response_.set_server_time(time(nullptr));
+            // 1. Get password
+            auto password_ret =
+                DataLoginClient::GetInstance().GetUserPassword(username);
+            debug(), "password_Ret= ", password_ret;
+
+            // 2. Check password
+            if (password_ret == "Error") {
+                response_.set_code(MCResponseStatusCode::ERROR);
+                response_.set_err_msg("User not found");
+                RetStatus = Status::OK;
+            } else if (password_ret == "RPC failed") {
+                response_.set_code(MCResponseStatusCode::ERROR);
+                response_.set_err_msg("RPC failed");
+                RetStatus = Status::OK;
+            } else if (password_ret != password) {
+                response_.set_code(MCResponseStatusCode::ERROR);
+                response_.set_err_msg("Password not match");
                 RetStatus = Status::OK;
             } else {
-                response_.set_code(MCResponseStatusCode::FAILED);
-                response_.set_err_msg("username != password");
-                response_.set_server_time(-1);
-                response_.set_user_id(-1);
+                response_.set_code(MCResponseStatusCode::OK);
+                response_.set_err_msg("OK");
                 RetStatus = Status::OK;
             }
 
