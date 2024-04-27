@@ -34,6 +34,8 @@ using MC::Login::MCLogin;
 using MC::Login::MCLoginRequest;
 using MC::Login::MCLoginResponse;
 using MC::Login::MCResponseStatusCode;
+using MC::Login::MCRegistRequest;
+using MC::Login::MCRegistResponse;
 
 // 异步注册服务端构建
 class LoginServer final {
@@ -66,6 +68,7 @@ private:
         CallStatus status_;
     };
 
+    // 登录业务
     struct LoginCallData : public CallData {
         LoginCallData(MCLogin::AsyncService* service, ServerCompletionQueue* cq)
             : CallData(service, cq), responder_(&ctx_) {
@@ -130,6 +133,67 @@ private:
         MCLoginResponse response_;
         ServerAsyncResponseWriter<MCLoginResponse> responder_;
         int usrid_ = 0;
+    };
+
+    // 注册业务
+    struct RegisterCallData : public CallData {
+        RegisterCallData(MCLogin::AsyncService* service,
+                         ServerCompletionQueue* cq)
+            : CallData(service, cq), responder_(&ctx_) {
+            Proceed();
+        }
+
+        void creating() override {
+            debug(), "Register CallData creating";
+            status_ = PROCESS;
+            service_->RequestRegist(&ctx_, &request_, &responder_, cq_, cq_,
+                                    this);
+        }
+
+        void processing() override {
+            new RegisterCallData(service_, cq_);
+
+            auto username = request_.username();
+            auto password = request_.password();
+            auto nickname = request_.nickname();
+            auto email = request_.email();
+
+            debug(), "Regist request: ", username, " ", password, " ", nickname;
+
+            auto RetStatus = Status::OK;
+
+            auto ret = DataLoginClient::GetInstance().TryRegist(
+                username, password, nickname, email);
+
+            // 2. Check password
+            if (ret == "OK") {
+                response_.set_code(MCResponseStatusCode::OK);
+                response_.set_err_msg("OK");
+                RetStatus = Status::OK;
+
+            } else if (ret == "RPC failed") {
+                response_.set_code(MCResponseStatusCode::ERROR);
+                response_.set_err_msg("RPC failed");
+                RetStatus = Status::OK;
+            } else {
+                response_.set_code(MCResponseStatusCode::ERROR);
+                response_.set_err_msg("User not found");
+                RetStatus = Status::OK;
+            }
+
+            responder_.Finish(response_, RetStatus, this);
+            status_ = FINISH;
+        }
+
+        void finishing() override {
+            CHECK_EQ(status_, FINISH);
+            delete this;
+        }
+
+    private:
+        MCRegistRequest request_;
+        MCRegistResponse response_;
+        ServerAsyncResponseWriter<MCRegistResponse> responder_;
     };
 
     void HandleRpcs();

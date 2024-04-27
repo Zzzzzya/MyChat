@@ -4,6 +4,7 @@ package MC.Data;
 
 service MCData{
     rpc GetUserPassword(MCDataUserRequest) returns (MCDataUserResponse) {}
+    rpc TryRegist(MCDataRegistRequest) returns(MCDataRegistResponse) {}
 }
 
 enum MCDataResponseStatusCode {
@@ -22,4 +23,16 @@ message MCDataUserResponse{
     string password = 2;
     string hxm = 3;
     string errmsg = 4;
+}
+
+message MCDataRegistRequest{
+    string username = 1;
+    string password = 2;
+    string nickname = 3;
+    string email = 4;
+}
+
+message MCDataRegistResponse{
+    MCDataResponseStatusCode code = 1;
+    string errmsg = 2;
 }

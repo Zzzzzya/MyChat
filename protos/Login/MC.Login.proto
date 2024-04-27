@@ -4,7 +4,7 @@ package MC.Login;
 
 service MCLogin{
     rpc Login(MCLoginRequest) returns (MCLoginResponse);
-    rpc GetUserInfo(MCGetUserInfoRequest) returns (MCGetUserInfoResponse);
+    rpc Regist(MCRegistRequest) returns (MCRegistResponse);
 }
 
 //返回状态枚举类
@@ -26,8 +26,6 @@ message MCLoginRequest{
     string client_version = 4;
 }
 
-
-
 // 返回格式
 message MCLoginResponse{
     MCResponseStatusCode code = 1;
@@ -36,13 +34,15 @@ message MCLoginResponse{
     uint32 server_time = 4;
 }
 
-message MCGetUserInfoResponse{
-    uint32 user_id = 1;
-    uint32 user_gender = 2;
-    string user_nick_name = 3;
-    string avatar_url = 4;
+message MCRegistRequest{
+    string username = 1;
+    string password = 2;
+    string nickname = 3;
+    string email = 4;
 }
 
-message MCGetUserInfoRequest{
-    uint32 user_id = 1;
+// 返回格式
+message MCRegistResponse{
+    MCResponseStatusCode code = 1;
+    string err_msg = 2;
 }

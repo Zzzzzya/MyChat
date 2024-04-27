@@ -47,6 +47,15 @@ struct MysqlConn {
             return nullptr;
         }
     }
+
+    int ExecuteUpdate(const std::string& sql) {
+        try {
+            return stmt->executeUpdate(sql);
+        } catch (sql::SQLException& e) {
+            debug(), "SQLException: ", e.what();
+            return -1;
+        }
+    }
 };
 
 // Mysql连接池

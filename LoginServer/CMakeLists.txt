@@ -102,7 +102,7 @@ target_link_libraries(mc_grpc_proto
     ${_PROTOBUF_LIBPROTOBUF})
 
 # Targets greeter_[async_](client|server)
-foreach(_target LoginServer LoginClient)
+foreach(_target LoginServer LoginClient RegisterClient)
     add_executable(${_target} "main/${_target}.cpp"
         "src/server.cc"
         "src/log.cc")

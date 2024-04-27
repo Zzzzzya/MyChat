@@ -30,6 +30,8 @@ void LoginServer::Run(uint16_t port) {
 void LoginServer::HandleRpcs() {
     // Spawn a new CallData instance to serve new clients.
     new LoginCallData(&service_, cq_.get());
+    new RegisterCallData(&service_, cq_.get());
+
     void* tag;  // uniquely identifies a request.
     bool ok;
     while (true) {
