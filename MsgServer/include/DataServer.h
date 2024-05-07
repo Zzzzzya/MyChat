@@ -115,14 +115,6 @@ private:
             int currenti = 0;
             while (res->next()) {
                 response_.set_password(res->getString("md5password"));
-                response_.set_nickname(res->getString("nickname"));
-                response_.set_email(res->getString("email"));
-                response_.set_gender(res->getBoolean("gender"));
-                response_.set_signature(res->getString("signature"));
-                response_.set_phone(res->getString("phone"));
-                response_.set_birthday(res->getString("birthday"));
-
-                debug(), "email: ", res->getString("email");
 
                 debug(), "i:", currenti++,
                     " password:", res->getString("md5password");

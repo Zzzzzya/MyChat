@@ -32,6 +32,14 @@ message MCLoginResponse{
     string err_msg = 2;
     uint32 user_id = 3;
     uint32 server_time = 4;
+
+    // 用户信息
+    string nickname = 5;
+    string gender = 6; // TRUE for girl && FALSE for boy
+    string signature = 7;
+    string email = 8;
+    string phone = 9;
+    string birthday = 10;
 }
 
 message MCRegistRequest{

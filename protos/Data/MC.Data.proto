@@ -23,6 +23,14 @@ message MCDataUserResponse{
     string password = 2;
     string hxm = 3;
     string errmsg = 4;
+
+     // 用户信息
+     string nickname = 5;
+     bool gender = 6; // TRUE for girl && FALSE for boy
+     string signature = 7;
+     string email = 8;
+     string phone = 9;
+     string birthday = 10;
 }
 
 message MCDataRegistRequest{

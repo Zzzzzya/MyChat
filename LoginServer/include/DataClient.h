@@ -5,6 +5,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 
 #include "MC.Data.grpc.pb.h"
 #include "MC.Data.pb.h"
@@ -34,7 +35,8 @@ public:
     DataLoginClient(std::shared_ptr<Channel> channel)
         : stub_(MCData::NewStub(channel)) {}
 
-    std::string GetUserPassword(const std::string& user) {
+    void GetUserPassword(const std::string& user,
+                         std::vector<std::string>& res) {
         // Data we are sending to the server.
         MCDataUserRequest request;
         request.set_username(user);
@@ -54,13 +56,26 @@ public:
             auto code = reply.code();
             if (code != MCDataResponseStatusCode::OK) {
                 std::cout << "Error: " << reply.errmsg() << std::endl;
-                return "Error";
+                res.push_back("Error");
+                return;
             }
-            return reply.password();
+
+            res.push_back(reply.password());
+            res.push_back(reply.nickname());
+            res.push_back(reply.email());
+            res.push_back(reply.gender() ? "G" : "B");
+            res.push_back(reply.signature());
+            res.push_back(reply.phone());
+            res.push_back(reply.birthday());
+
+            debug(), "DataClient: email :", reply.email();
+
+            return;
         } else {
             std::cout << status.error_code() << ": " << status.error_message()
                       << std::endl;
-            return "RPC failed";
+            res.push_back("RPC failed");
+            return;
         }
     }
 

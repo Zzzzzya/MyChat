@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package MC.Msg;
+
+//返回状态枚举类
+enum MCResponseStatusCode {
+    OK = 0;
+    FAILED = 1;
+    ERROR = 2;
+}
+
+service MSG{
+    /*UPLOAD*/
+    rpc UpdateUserInfo (UpdateUserInfoReq) returns (UpdateUserInfoRes);
+    rpc UpdateUserHead (UpdateUserHeadReq) returns (UpdateUserHeadRes);
+    
+    /*SEND*/
+    rpc SendMessageToServer (SendMessageReq) returns (SendMessageRes);
+
+    /*GET*/
+    rpc GetUserInfo (GetUserInfoReq) returns (GetUserInfoRes);
+}
+
+service Client{
+    rpc SendMessageToClient (SendMessageReq) returns (SendMessageRes);
+}
+
+message SendMessageRes{
+    MCResponseStatusCode code = 1;
+    
+}
+
+message SendMessageReq{
+    uint32 sender = 1;
+    uint32 reciever = 2;
+    string msg = 3;
+}
+
+message UpdateUserInfoReq{
+    uint32 userid = 1;
+    string field = 2;
+    string value = 3;
+}
+
+message UpdateUserInfoRes{
+    MCResponseStatusCode code = 1;
+    string err_msg = 2;
+    string new_value = 3;
+}
+
+message UpdateUserHeadReq{
+    uint32 userid = 1;
+    string pic = 2;
+}
+
+message UpdateUserHeadRes{
+    MCResponseStatusCode code = 1;
+    string err_msg = 2;
+    string url = 3;
+}
+
+message GetUserInfoReq{
+    uint32 userid = 1;
+}
+
+message GetUserInfoRes{
+    MCResponseStatusCode code = 1;
+    string err_msg = 2;
+    string name = 3;
+    string pic = 4;
+    string sign = 5;
+    repeated uint32 friends = 6;
+}   

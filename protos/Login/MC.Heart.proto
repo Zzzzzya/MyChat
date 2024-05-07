@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package MC.Heart.proto;
+
+service Heart{
+    rpc SendHeartPack(HeartPack) returns (HeartPack);
+}
+
+message HeartPack{
+    string ServerIdx = 1;
+    uint32 NumClients = 2;
+}

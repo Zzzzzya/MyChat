@@ -33,9 +33,9 @@ using grpc::Status;
 using MC::Login::MCLogin;
 using MC::Login::MCLoginRequest;
 using MC::Login::MCLoginResponse;
-using MC::Login::MCResponseStatusCode;
 using MC::Login::MCRegistRequest;
 using MC::Login::MCRegistResponse;
+using MC::Login::MCResponseStatusCode;
 
 // 异步注册服务端构建
 class LoginServer final {
@@ -94,10 +94,11 @@ private:
                 " ", client_version;
 
             auto RetStatus = Status::OK;
-
+            std::vector<std::string> res;
             // 1. Get password
-            auto password_ret =
-                DataLoginClient::GetInstance().GetUserPassword(username);
+
+            DataLoginClient::GetInstance().GetUserPassword(username, res);
+            auto password_ret = res[0];
             debug(), "password_Ret= ", password_ret;
 
             // 2. Check password
@@ -116,6 +117,16 @@ private:
             } else {
                 response_.set_code(MCResponseStatusCode::OK);
                 response_.set_err_msg("OK");
+
+                response_.set_nickname(res[1]);
+                response_.set_email(res[2]);
+                response_.set_gender(res[3]);
+                response_.set_signature(res[4]);
+                response_.set_phone(res[5]);
+                response_.set_birthday(res[6]);
+
+                debug(), "res[3] = ", res[3];
+
                 RetStatus = Status::OK;
             }
 
