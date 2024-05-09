@@ -34,6 +34,10 @@ using MC::Data::MCDataResponseStatusCode;
 using MC::Data::MCDataUserRequest;
 using MC::Data::MCDataUserResponse;
 
+using MC::Data::Friend;
+using MC::Data::MCDataUserFriendsResponse;
+using MC::Data::MCDataUserIDRequest;
+
 // 异步数据库处理服务端构建
 class DataServer final {
 public:
@@ -121,6 +125,7 @@ private:
                 response_.set_signature(res->getString("signature"));
                 response_.set_phone(res->getString("phone"));
                 response_.set_birthday(res->getString("birthday"));
+                response_.set_userid(res->getInt("id"));
 
                 debug(), "email: ", res->getString("email");
 
@@ -232,6 +237,93 @@ private:
         int usrid_ = 0;
     };
 
+    // Msg业务1 获取好友列表
+    struct GetFriendsCallData : public CallData {
+        GetFriendsCallData(MCData::AsyncService* service,
+                           ServerCompletionQueue* cq, MysqlPool* pool)
+            : CallData(service, cq, pool), responder_(&ctx_) {
+            Proceed();
+        }
+
+        void creating() override {
+            debug(), "GetFriendsCallData creating";
+            status_ = PROCESS;
+            service_->RequestGetUserFriends(&ctx_, &request_, &responder_, cq_,
+                                            cq_, this);
+            debug(), "Creating down";
+        }
+
+        void processing() override {
+            new GetFriendsCallData(service_, cq_, pool_);
+
+            debug(), "Processing!";
+
+            auto userid = request_.userid();
+
+            // 请求一个数据库连接
+            auto conn = pool_->GetConnection(0);
+
+            if (conn == nullptr) {
+                debug(), "!conn";
+                response_.set_code(MCDataResponseStatusCode::DATABASE_ERROR);
+                response_.set_errmsg("数据库连接失败");
+                responder_.Finish(response_, Status::OK, this);
+                status_ = FINISH;
+                return;
+            }
+
+            // 查询数据库
+            auto sql = absl::StrFormat(
+                "SELECT * FROM Friends WHERE UserID1 = %d;", userid);
+
+            debug(), "sql = ", sql;
+
+            auto res = conn->ExecuteQuery(sql);
+
+            while (res->next()) {
+                auto friendid = res->getInt("UserID2");
+                auto friendname = res->getString("friendName");
+                auto friendSign = res->getString("friendSign");
+                auto lastContactTime = res->getString("lastContactTime");
+
+                // 创建一个新的Friend对象
+                Friend* new_friend = response_.add_friends();
+
+                // 设置Friend对象的字段
+                new_friend->set_friendid(friendid);
+                new_friend->set_friendname(friendname);
+                new_friend->set_friendsign(friendSign);
+                new_friend->set_lastcontacttime(lastContactTime);
+
+                debug(), "friendsid: ", res->getString("UserID2");
+
+                debug(), " friendsname:", res->getString("friendName");
+            }
+
+            // 归还一个链接
+            pool_->ReleaseConnection(conn);
+
+            response_.set_code(MCDataResponseStatusCode::OK);
+            response_.set_errmsg("获取好友列表成功");
+
+            auto RetStatus = Status::OK;
+
+            responder_.Finish(response_, RetStatus, this);
+            status_ = FINISH;
+        }
+
+        void finishing() override {
+            CHECK_EQ(status_, FINISH);
+            debug(), "finishing";
+            delete this;
+        }
+
+    private:
+        MCDataUserIDRequest request_;
+        MCDataUserFriendsResponse response_;
+        ServerAsyncResponseWriter<MCDataUserFriendsResponse> responder_;
+        int usrid_ = 0;
+    };
     void HandleRpcs();
 
     std::unique_ptr<ServerCompletionQueue> cq_;

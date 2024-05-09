@@ -37,6 +37,7 @@ void DataServer::HandleRpcs() {
     // Spawn a new CallData instance to serve new clients.
     new GetUserPasswordCallData(&service_, cq_.get(), pool_);
     new TryRegistCallData(&service_, cq_.get(), pool_);
+    new GetFriendsCallData(&service_, cq_.get(), pool_);
     void* tag;  // uniquely identifies a request.
     bool ok;
     while (true) {

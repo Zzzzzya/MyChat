@@ -67,6 +67,8 @@ public:
             res.push_back(reply.signature());
             res.push_back(reply.phone());
             res.push_back(reply.birthday());
+            int userid = reply.userid();
+            res.push_back(std::to_string(userid));
 
             debug(), "DataClient: email :", reply.email();
 

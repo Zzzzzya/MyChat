@@ -1,0 +1,4 @@
+/home/zya/projects/MyChat/MsgServer/build/CMakeFiles/mc_grpc_proto.dir
+/home/zya/projects/MyChat/MsgServer/build/CMakeFiles/MsgServer.dir
+/home/zya/projects/MyChat/MsgServer/build/CMakeFiles/edit_cache.dir
+/home/zya/projects/MyChat/MsgServer/build/CMakeFiles/rebuild_cache.dir

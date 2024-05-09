@@ -15,20 +15,42 @@
 # cmake build file for C++ helloworld example.
 # Assumes protobuf and gRPC have been installed using cmake.
 # See cmake_externalproject/CMakeLists.txt for all-in-one cmake build
-# that automatically builds all the dependencies before building IM.Login.
+# that automatically builds all the dependencies before building IM.Msg.
 
 cmake_minimum_required(VERSION 3.20)
 
-project(DataServer C CXX)
+project(MyChatServer C CXX)
 
-# 找到spdlog库 openssl库
+# 找到spdlog库
 find_package(spdlog REQUIRED)
-find_package(OpenSSL REQUIRED)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(../cmake/common.cmake)
+
+# -------------------------------------Msg Proto file------------------------------------- #
+# Msg Proto file
+get_filename_component(mc_proto "../protos/Msg/MC.Msg.proto" ABSOLUTE)
+get_filename_component(mc_proto_path "${mc_proto}" PATH)
+
+# Generated sources for MC.Msg.proto
+set(mc_proto_srcs "${CMAKE_CURRENT_BINARY_DIR}/MC.Msg.pb.cc")
+set(mc_proto_hdrs "${CMAKE_CURRENT_BINARY_DIR}/MC.Msg.pb.h")
+set(mc_grpc_srcs "${CMAKE_CURRENT_BINARY_DIR}/MC.Msg.grpc.pb.cc")
+set(mc_grpc_hdrs "${CMAKE_CURRENT_BINARY_DIR}/MC.Msg.grpc.pb.h")
+
+# Custom command for MC.Msg.proto
+add_custom_command(
+    OUTPUT "${mc_proto_srcs}" "${mc_proto_hdrs}" "${mc_grpc_srcs}" "${mc_grpc_hdrs}"
+    COMMAND ${_PROTOBUF_PROTOC}
+    ARGS --grpc_out "${CMAKE_CURRENT_BINARY_DIR}"
+    --cpp_out "${CMAKE_CURRENT_BINARY_DIR}"
+    -I "${mc_proto_path}"
+    --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
+    "${mc_proto}"
+    DEPENDS "${mc_proto}"
+)
 
 # -------------------------------------Data Proto file------------------------------------- #
 # Data Proto file
@@ -59,6 +81,10 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # mc_grpc_proto
 add_library(mc_grpc_proto
+    ${mc_grpc_srcs}
+    ${mc_grpc_hdrs}
+    ${mc_proto_srcs}
+    ${mc_proto_hdrs}
     ${mc_grpc_data_srcs}
     ${mc_grpc_data_hdrs}
     ${mc_proto_data_srcs}
@@ -76,11 +102,10 @@ target_link_libraries(mc_grpc_proto
     ${_PROTOBUF_LIBPROTOBUF})
 
 # Targets greeter_[async_](client|server)
-foreach(_target DataServerMain)
+foreach(_target MsgServer)
     add_executable(${_target} "main/${_target}.cpp"
-        "src/DataServer.cc"
-        "src/log.cc"
-        "src/mysqlpool.cc")
+        "src/server.cc"
+        "src/log.cc")
     target_link_libraries(${_target}
         mc_grpc_proto
         absl::check
@@ -88,9 +113,6 @@ foreach(_target DataServerMain)
         absl::flags_parse
         absl::log
         spdlog::spdlog
-        OpenSSL::SSL
-        OpenSSL::Crypto
-        mysqlcppconn
         ${_REFLECTION}
         ${_GRPC_GRPCPP}
         ${_PROTOBUF_LIBPROTOBUF})

@@ -5,6 +5,7 @@ package MC.Data;
 service MCData{
     rpc GetUserPassword(MCDataUserRequest) returns (MCDataUserResponse) {}
     rpc TryRegist(MCDataRegistRequest) returns(MCDataRegistResponse) {}
+    rpc GetUserFriends(MCDataUserIDRequest) returns(MCDataUserFriendsResponse) {}
 }
 
 enum MCDataResponseStatusCode {
@@ -12,6 +13,24 @@ enum MCDataResponseStatusCode {
     FAILED = 1;
     ERROR = 2;
     DATABASE_ERROR = 3;
+}
+
+message MCDataUserIDRequest{
+    int32 userid = 1;
+}
+
+message Friend{
+    uint32 friendid = 1;
+    string friendname = 2;
+    string friendsign = 3;
+    string lastcontacttime = 4;
+
+}
+
+message MCDataUserFriendsResponse{
+    MCDataResponseStatusCode code = 1;
+    string errmsg = 2;
+    repeated Friend friends = 3;
 }
 
 message MCDataUserRequest{
@@ -31,6 +50,7 @@ message MCDataUserResponse{
      string email = 8;
      string phone = 9;
      string birthday = 10;
+     int32 userid = 11;
 }
 
 message MCDataRegistRequest{

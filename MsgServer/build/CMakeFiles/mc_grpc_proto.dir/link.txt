@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmc_grpc_proto.a CMakeFiles/mc_grpc_proto.dir/MC.Msg.grpc.pb.cc.o CMakeFiles/mc_grpc_proto.dir/MC.Msg.pb.cc.o CMakeFiles/mc_grpc_proto.dir/MC.Data.grpc.pb.cc.o CMakeFiles/mc_grpc_proto.dir/MC.Data.pb.cc.o
+/usr/bin/ranlib libmc_grpc_proto.a

@@ -19,10 +19,28 @@ service MSG{
 
     /*GET*/
     rpc GetUserInfo (GetUserInfoReq) returns (GetUserInfoRes);
+    rpc GetFriends (UserID) returns (UserIDList);
 }
 
 service Client{
     rpc SendMessageToClient (SendMessageReq) returns (SendMessageRes);
+}
+
+message UserID {
+    uint32 userid = 1;
+}
+
+message MsgFriend{
+    uint32 friendid = 1;
+    string friendname = 2;
+    string friendsign = 3;
+    string lastcontacttime = 4;
+}
+
+message UserIDList {
+    MCResponseStatusCode code = 1;
+    string errmsg = 2;
+    repeated MsgFriend friends = 3;
 }
 
 message SendMessageRes{

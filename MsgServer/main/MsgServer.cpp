@@ -1,27 +1,25 @@
 #include "debug.h"
-#include "log.h"
 
-// grpc DataServer
-#include "DataServer.h"
-#include "mysqlpool.h"
+// grpc server
+#include "server.h"
 
-ABSL_FLAG(uint16_t, port, 50061, "Server port for the service");
+ABSL_FLAG(uint16_t, port, 50088, "Server port for the service");
 
 int main() {
     // 程序启动
-    debug(), "DataServer start...";
+    debug(), "MsgServer start...";
 
     // 初始化日志
     LogConfig conf2 = {
         .level = "trace",
-        .path = "../log/Data.log",
+        .path = "../log/Login.log",
         .size = 5 * 1024 * 1024,
         .count = 10,
     };
     INITLOG(conf2);
 
     // 启动服务
-    DataServer server;
+    MsgServer server;
     server.Run(absl::GetFlag(FLAGS_port));
 
     return 0;

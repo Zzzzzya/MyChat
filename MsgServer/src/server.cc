@@ -1,18 +1,12 @@
-#include "DataServer.h"
+#include "server.h"
 
-DataServer::~DataServer() {
+MsgServer::~MsgServer() {
     server_->Shutdown();
     // Always shutdown the completion queue after the server.
     cq_->Shutdown();
-    if (pool_) delete pool_;
 }
 
-void DataServer::Run(uint16_t port) {
-    // MysqlPool的初始化
-    // 初始化mysql连接池
-    pool_ =
-        new MysqlPool("127.0.0.1", "3306", "r-zya", "zya20040429", "MyChat");
-
+void MsgServer::Run(uint16_t port) {
     //
     std::string server_address = absl::StrFormat("0.0.0.0:%d", port);
 
@@ -33,10 +27,10 @@ void DataServer::Run(uint16_t port) {
     HandleRpcs();
 }
 
-void DataServer::HandleRpcs() {
+void MsgServer::HandleRpcs() {
     // Spawn a new CallData instance to serve new clients.
-    new GetUserPasswordCallData(&service_, cq_.get(), pool_);
-    new TryRegistCallData(&service_, cq_.get(), pool_);
+    new GetFriendsCallData(&service_, cq_.get());
+
     void* tag;  // uniquely identifies a request.
     bool ok;
     while (true) {
@@ -48,12 +42,11 @@ void DataServer::HandleRpcs() {
         // has been shut down.
         CHECK(cq_->Next(&tag, &ok));
         CHECK(ok);
-        debug(), "Get one!";
         static_cast<CallData*>(tag)->Proceed();
     }
 }
 
-void DataServer::CallData::Proceed() {
+void MsgServer::CallData::Proceed() {
     if (status_ == CREATE) {
         this->creating();
     } else if (status_ == PROCESS) {

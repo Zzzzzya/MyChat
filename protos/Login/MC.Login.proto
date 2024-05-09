@@ -40,6 +40,9 @@ message MCLoginResponse{
     string email = 8;
     string phone = 9;
     string birthday = 10;
+
+    //MSG server 的地址
+    string msg_server_ip = 11;
 }
 
 message MCRegistRequest{

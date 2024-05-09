@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+62cab4b5bfaa2d92c395edb922c43353 MC.Data.pb.cc
+39838c988a9a19c18b841a6a909afaec MC.Msg.pb.cc
