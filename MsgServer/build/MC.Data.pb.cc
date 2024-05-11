@@ -90,6 +90,56 @@ struct MCDataUserRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataUserRequestDefaultTypeInternal _MCDataUserRequest_default_instance_;
 
+inline constexpr MCDataUserInfoRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : err_msg_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        new_value_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        code_{static_cast< ::MC::Data::MCDataResponseStatusCode >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MCDataUserInfoRes::MCDataUserInfoRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MCDataUserInfoResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MCDataUserInfoResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MCDataUserInfoResDefaultTypeInternal() {}
+  union {
+    MCDataUserInfoRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataUserInfoResDefaultTypeInternal _MCDataUserInfoRes_default_instance_;
+
+inline constexpr MCDataUserInfoReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : field_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        value_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        userid_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MCDataUserInfoReq::MCDataUserInfoReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MCDataUserInfoReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MCDataUserInfoReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MCDataUserInfoReqDefaultTypeInternal() {}
+  union {
+    MCDataUserInfoReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataUserInfoReqDefaultTypeInternal _MCDataUserInfoReq_default_instance_;
+
 inline constexpr MCDataUserIDRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : userid_{0},
@@ -108,6 +158,50 @@ struct MCDataUserIDRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataUserIDRequestDefaultTypeInternal _MCDataUserIDRequest_default_instance_;
+
+inline constexpr MCDataUserHeadRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : err_msg_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        code_{static_cast< ::MC::Data::MCDataResponseStatusCode >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MCDataUserHeadRes::MCDataUserHeadRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MCDataUserHeadResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MCDataUserHeadResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MCDataUserHeadResDefaultTypeInternal() {}
+  union {
+    MCDataUserHeadRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataUserHeadResDefaultTypeInternal _MCDataUserHeadRes_default_instance_;
+
+inline constexpr MCDataUserHeadReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : image_data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        userid_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MCDataUserHeadReq::MCDataUserHeadReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MCDataUserHeadReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MCDataUserHeadReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MCDataUserHeadReqDefaultTypeInternal() {}
+  union {
+    MCDataUserHeadReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataUserHeadReqDefaultTypeInternal _MCDataUserHeadReq_default_instance_;
 
 inline constexpr MCDataRegistResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -213,7 +307,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataUserFriendsResponseDefaultTypeInternal _MCDataUserFriendsResponse_default_instance_;
 }  // namespace Data
 }  // namespace MC
-static ::_pb::Metadata file_level_metadata_MC_2eData_2eproto[7];
+static ::_pb::Metadata file_level_metadata_MC_2eData_2eproto[11];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_MC_2eData_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_MC_2eData_2eproto = nullptr;
@@ -302,6 +396,48 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataRegistResponse, _impl_.code_),
         PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataRegistResponse, _impl_.errmsg_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserInfoReq, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserInfoReq, _impl_.userid_),
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserInfoReq, _impl_.field_),
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserInfoReq, _impl_.value_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserInfoRes, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserInfoRes, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserInfoRes, _impl_.err_msg_),
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserInfoRes, _impl_.new_value_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserHeadReq, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserHeadReq, _impl_.userid_),
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserHeadReq, _impl_.image_data_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserHeadRes, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserHeadRes, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserHeadRes, _impl_.err_msg_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -313,6 +449,10 @@ static const ::_pbi::MigrationSchema
         {41, -1, -1, sizeof(::MC::Data::MCDataUserResponse)},
         {60, -1, -1, sizeof(::MC::Data::MCDataRegistRequest)},
         {72, -1, -1, sizeof(::MC::Data::MCDataRegistResponse)},
+        {82, -1, -1, sizeof(::MC::Data::MCDataUserInfoReq)},
+        {93, -1, -1, sizeof(::MC::Data::MCDataUserInfoRes)},
+        {104, -1, -1, sizeof(::MC::Data::MCDataUserHeadReq)},
+        {114, -1, -1, sizeof(::MC::Data::MCDataUserHeadRes)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::MC::Data::_MCDataUserIDRequest_default_instance_._instance,
@@ -322,6 +462,10 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::MC::Data::_MCDataUserResponse_default_instance_._instance,
     &::MC::Data::_MCDataRegistRequest_default_instance_._instance,
     &::MC::Data::_MCDataRegistResponse_default_instance_._instance,
+    &::MC::Data::_MCDataUserInfoReq_default_instance_._instance,
+    &::MC::Data::_MCDataUserInfoRes_default_instance_._instance,
+    &::MC::Data::_MCDataUserHeadReq_default_instance_._instance,
+    &::MC::Data::_MCDataUserHeadRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_MC_2eData_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -343,27 +487,39 @@ const char descriptor_table_protodef_MC_2eData_2eproto[] ABSL_ATTRIBUTE_SECTION_
     "\022\020\n\010password\030\002 \001(\t\022\020\n\010nickname\030\003 \001(\t\022\r\n\005"
     "email\030\004 \001(\t\"W\n\024MCDataRegistResponse\022/\n\004c"
     "ode\030\001 \001(\0162!.MC.Data.MCDataResponseStatus"
-    "Code\022\016\n\006errmsg\030\002 \001(\t*M\n\030MCDataResponseSt"
-    "atusCode\022\006\n\002OK\020\000\022\n\n\006FAILED\020\001\022\t\n\005ERROR\020\002\022"
-    "\022\n\016DATABASE_ERROR\020\0032\370\001\n\006MCData\022L\n\017GetUse"
-    "rPassword\022\032.MC.Data.MCDataUserRequest\032\033."
-    "MC.Data.MCDataUserResponse\"\000\022J\n\tTryRegis"
-    "t\022\034.MC.Data.MCDataRegistRequest\032\035.MC.Dat"
-    "a.MCDataRegistResponse\"\000\022T\n\016GetUserFrien"
-    "ds\022\034.MC.Data.MCDataUserIDRequest\032\".MC.Da"
-    "ta.MCDataUserFriendsResponse\"\000b\006proto3"
+    "Code\022\016\n\006errmsg\030\002 \001(\t\"A\n\021MCDataUserInfoRe"
+    "q\022\016\n\006userid\030\001 \001(\r\022\r\n\005field\030\002 \001(\t\022\r\n\005valu"
+    "e\030\003 \001(\t\"h\n\021MCDataUserInfoRes\022/\n\004code\030\001 \001"
+    "(\0162!.MC.Data.MCDataResponseStatusCode\022\017\n"
+    "\007err_msg\030\002 \001(\t\022\021\n\tnew_value\030\003 \001(\t\"7\n\021MCD"
+    "ataUserHeadReq\022\016\n\006userid\030\001 \001(\r\022\022\n\nimage_"
+    "data\030\002 \001(\t\"U\n\021MCDataUserHeadRes\022/\n\004code\030"
+    "\001 \001(\0162!.MC.Data.MCDataResponseStatusCode"
+    "\022\017\n\007err_msg\030\002 \001(\t*M\n\030MCDataResponseStatu"
+    "sCode\022\006\n\002OK\020\000\022\n\n\006FAILED\020\001\022\t\n\005ERROR\020\002\022\022\n\016"
+    "DATABASE_ERROR\020\0032\220\003\n\006MCData\022L\n\017GetUserPa"
+    "ssword\022\032.MC.Data.MCDataUserRequest\032\033.MC."
+    "Data.MCDataUserResponse\"\000\022J\n\tTryRegist\022\034"
+    ".MC.Data.MCDataRegistRequest\032\035.MC.Data.M"
+    "CDataRegistResponse\"\000\022T\n\016GetUserFriends\022"
+    "\034.MC.Data.MCDataUserIDRequest\032\".MC.Data."
+    "MCDataUserFriendsResponse\"\000\022J\n\016UpdateUse"
+    "rInfo\022\032.MC.Data.MCDataUserInfoReq\032\032.MC.D"
+    "ata.MCDataUserInfoRes\"\000\022J\n\016UpdateUserHea"
+    "d\022\032.MC.Data.MCDataUserHeadReq\032\032.MC.Data."
+    "MCDataUserHeadRes\"\000b\006proto3"
 };
 static ::absl::once_flag descriptor_table_MC_2eData_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_MC_2eData_2eproto = {
     false,
     false,
-    1078,
+    1547,
     descriptor_table_protodef_MC_2eData_2eproto,
     "MC.Data.proto",
     &descriptor_table_MC_2eData_2eproto_once,
     nullptr,
     0,
-    7,
+    11,
     schemas,
     file_default_instances,
     TableStruct_MC_2eData_2eproto::offsets,
@@ -2302,6 +2458,958 @@ void MCDataRegistResponse::InternalSwap(MCDataRegistResponse* PROTOBUF_RESTRICT 
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
                                    file_level_metadata_MC_2eData_2eproto[6]);
+}
+// ===================================================================
+
+class MCDataUserInfoReq::_Internal {
+ public:
+};
+
+MCDataUserInfoReq::MCDataUserInfoReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:MC.Data.MCDataUserInfoReq)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataUserInfoReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : field_(arena, from.field_),
+        value_(arena, from.value_),
+        _cached_size_{0} {}
+
+MCDataUserInfoReq::MCDataUserInfoReq(
+    ::google::protobuf::Arena* arena,
+    const MCDataUserInfoReq& from)
+    : ::google::protobuf::Message(arena) {
+  MCDataUserInfoReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.userid_ = from._impl_.userid_;
+
+  // @@protoc_insertion_point(copy_constructor:MC.Data.MCDataUserInfoReq)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataUserInfoReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : field_(arena),
+        value_(arena),
+        _cached_size_{0} {}
+
+inline void MCDataUserInfoReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.userid_ = {};
+}
+MCDataUserInfoReq::~MCDataUserInfoReq() {
+  // @@protoc_insertion_point(destructor:MC.Data.MCDataUserInfoReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MCDataUserInfoReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.field_.Destroy();
+  _impl_.value_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+MCDataUserInfoReq::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(MCDataUserInfoReq, _impl_._cached_size_),
+              false,
+          },
+          &MCDataUserInfoReq::MergeImpl,
+          &MCDataUserInfoReq::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void MCDataUserInfoReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:MC.Data.MCDataUserInfoReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.field_.ClearToEmpty();
+  _impl_.value_.ClearToEmpty();
+  _impl_.userid_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MCDataUserInfoReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 44, 2> MCDataUserInfoReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MCDataUserInfoReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::MC::Data::MCDataUserInfoReq>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 userid = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MCDataUserInfoReq, _impl_.userid_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserInfoReq, _impl_.userid_)}},
+    // string field = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserInfoReq, _impl_.field_)}},
+    // string value = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserInfoReq, _impl_.value_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 userid = 1;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserInfoReq, _impl_.userid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string field = 2;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserInfoReq, _impl_.field_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string value = 3;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserInfoReq, _impl_.value_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\31\0\5\5\0\0\0\0"
+    "MC.Data.MCDataUserInfoReq"
+    "field"
+    "value"
+  }},
+};
+
+::uint8_t* MCDataUserInfoReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MC.Data.MCDataUserInfoReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 userid = 1;
+  if (this->_internal_userid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_userid(), target);
+  }
+
+  // string field = 2;
+  if (!this->_internal_field().empty()) {
+    const std::string& _s = this->_internal_field();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Data.MCDataUserInfoReq.field");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // string value = 3;
+  if (!this->_internal_value().empty()) {
+    const std::string& _s = this->_internal_value();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Data.MCDataUserInfoReq.value");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MC.Data.MCDataUserInfoReq)
+  return target;
+}
+
+::size_t MCDataUserInfoReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MC.Data.MCDataUserInfoReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string field = 2;
+  if (!this->_internal_field().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_field());
+  }
+
+  // string value = 3;
+  if (!this->_internal_value().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_value());
+  }
+
+  // uint32 userid = 1;
+  if (this->_internal_userid() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_userid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void MCDataUserInfoReq::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MCDataUserInfoReq*>(&to_msg);
+  auto& from = static_cast<const MCDataUserInfoReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:MC.Data.MCDataUserInfoReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_field().empty()) {
+    _this->_internal_set_field(from._internal_field());
+  }
+  if (!from._internal_value().empty()) {
+    _this->_internal_set_value(from._internal_value());
+  }
+  if (from._internal_userid() != 0) {
+    _this->_impl_.userid_ = from._impl_.userid_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MCDataUserInfoReq::CopyFrom(const MCDataUserInfoReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MC.Data.MCDataUserInfoReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MCDataUserInfoReq::IsInitialized() const {
+  return true;
+}
+
+void MCDataUserInfoReq::InternalSwap(MCDataUserInfoReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.field_, &other->_impl_.field_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.value_, &other->_impl_.value_, arena);
+        swap(_impl_.userid_, other->_impl_.userid_);
+}
+
+::google::protobuf::Metadata MCDataUserInfoReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
+                                   &descriptor_table_MC_2eData_2eproto_once,
+                                   file_level_metadata_MC_2eData_2eproto[7]);
+}
+// ===================================================================
+
+class MCDataUserInfoRes::_Internal {
+ public:
+};
+
+MCDataUserInfoRes::MCDataUserInfoRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:MC.Data.MCDataUserInfoRes)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataUserInfoRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : err_msg_(arena, from.err_msg_),
+        new_value_(arena, from.new_value_),
+        _cached_size_{0} {}
+
+MCDataUserInfoRes::MCDataUserInfoRes(
+    ::google::protobuf::Arena* arena,
+    const MCDataUserInfoRes& from)
+    : ::google::protobuf::Message(arena) {
+  MCDataUserInfoRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.code_ = from._impl_.code_;
+
+  // @@protoc_insertion_point(copy_constructor:MC.Data.MCDataUserInfoRes)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataUserInfoRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : err_msg_(arena),
+        new_value_(arena),
+        _cached_size_{0} {}
+
+inline void MCDataUserInfoRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.code_ = {};
+}
+MCDataUserInfoRes::~MCDataUserInfoRes() {
+  // @@protoc_insertion_point(destructor:MC.Data.MCDataUserInfoRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MCDataUserInfoRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.err_msg_.Destroy();
+  _impl_.new_value_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+MCDataUserInfoRes::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(MCDataUserInfoRes, _impl_._cached_size_),
+              false,
+          },
+          &MCDataUserInfoRes::MergeImpl,
+          &MCDataUserInfoRes::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void MCDataUserInfoRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:MC.Data.MCDataUserInfoRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.err_msg_.ClearToEmpty();
+  _impl_.new_value_.ClearToEmpty();
+  _impl_.code_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MCDataUserInfoRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 50, 2> MCDataUserInfoRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MCDataUserInfoRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::MC::Data::MCDataUserInfoRes>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .MC.Data.MCDataResponseStatusCode code = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MCDataUserInfoRes, _impl_.code_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserInfoRes, _impl_.code_)}},
+    // string err_msg = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserInfoRes, _impl_.err_msg_)}},
+    // string new_value = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserInfoRes, _impl_.new_value_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .MC.Data.MCDataResponseStatusCode code = 1;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserInfoRes, _impl_.code_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string err_msg = 2;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserInfoRes, _impl_.err_msg_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string new_value = 3;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserInfoRes, _impl_.new_value_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\31\0\7\11\0\0\0\0"
+    "MC.Data.MCDataUserInfoRes"
+    "err_msg"
+    "new_value"
+  }},
+};
+
+::uint8_t* MCDataUserInfoRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MC.Data.MCDataUserInfoRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .MC.Data.MCDataResponseStatusCode code = 1;
+  if (this->_internal_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_code(), target);
+  }
+
+  // string err_msg = 2;
+  if (!this->_internal_err_msg().empty()) {
+    const std::string& _s = this->_internal_err_msg();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Data.MCDataUserInfoRes.err_msg");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // string new_value = 3;
+  if (!this->_internal_new_value().empty()) {
+    const std::string& _s = this->_internal_new_value();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Data.MCDataUserInfoRes.new_value");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MC.Data.MCDataUserInfoRes)
+  return target;
+}
+
+::size_t MCDataUserInfoRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MC.Data.MCDataUserInfoRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string err_msg = 2;
+  if (!this->_internal_err_msg().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_err_msg());
+  }
+
+  // string new_value = 3;
+  if (!this->_internal_new_value().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_new_value());
+  }
+
+  // .MC.Data.MCDataResponseStatusCode code = 1;
+  if (this->_internal_code() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void MCDataUserInfoRes::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MCDataUserInfoRes*>(&to_msg);
+  auto& from = static_cast<const MCDataUserInfoRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:MC.Data.MCDataUserInfoRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_err_msg().empty()) {
+    _this->_internal_set_err_msg(from._internal_err_msg());
+  }
+  if (!from._internal_new_value().empty()) {
+    _this->_internal_set_new_value(from._internal_new_value());
+  }
+  if (from._internal_code() != 0) {
+    _this->_impl_.code_ = from._impl_.code_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MCDataUserInfoRes::CopyFrom(const MCDataUserInfoRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MC.Data.MCDataUserInfoRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MCDataUserInfoRes::IsInitialized() const {
+  return true;
+}
+
+void MCDataUserInfoRes::InternalSwap(MCDataUserInfoRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.err_msg_, &other->_impl_.err_msg_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.new_value_, &other->_impl_.new_value_, arena);
+  swap(_impl_.code_, other->_impl_.code_);
+}
+
+::google::protobuf::Metadata MCDataUserInfoRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
+                                   &descriptor_table_MC_2eData_2eproto_once,
+                                   file_level_metadata_MC_2eData_2eproto[8]);
+}
+// ===================================================================
+
+class MCDataUserHeadReq::_Internal {
+ public:
+};
+
+MCDataUserHeadReq::MCDataUserHeadReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:MC.Data.MCDataUserHeadReq)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataUserHeadReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : image_data_(arena, from.image_data_),
+        _cached_size_{0} {}
+
+MCDataUserHeadReq::MCDataUserHeadReq(
+    ::google::protobuf::Arena* arena,
+    const MCDataUserHeadReq& from)
+    : ::google::protobuf::Message(arena) {
+  MCDataUserHeadReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.userid_ = from._impl_.userid_;
+
+  // @@protoc_insertion_point(copy_constructor:MC.Data.MCDataUserHeadReq)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataUserHeadReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : image_data_(arena),
+        _cached_size_{0} {}
+
+inline void MCDataUserHeadReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.userid_ = {};
+}
+MCDataUserHeadReq::~MCDataUserHeadReq() {
+  // @@protoc_insertion_point(destructor:MC.Data.MCDataUserHeadReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MCDataUserHeadReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.image_data_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+MCDataUserHeadReq::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(MCDataUserHeadReq, _impl_._cached_size_),
+              false,
+          },
+          &MCDataUserHeadReq::MergeImpl,
+          &MCDataUserHeadReq::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void MCDataUserHeadReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:MC.Data.MCDataUserHeadReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.image_data_.ClearToEmpty();
+  _impl_.userid_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MCDataUserHeadReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 44, 2> MCDataUserHeadReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MCDataUserHeadReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::MC::Data::MCDataUserHeadReq>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string image_data = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserHeadReq, _impl_.image_data_)}},
+    // uint32 userid = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MCDataUserHeadReq, _impl_.userid_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserHeadReq, _impl_.userid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 userid = 1;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserHeadReq, _impl_.userid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string image_data = 2;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserHeadReq, _impl_.image_data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\31\0\12\0\0\0\0\0"
+    "MC.Data.MCDataUserHeadReq"
+    "image_data"
+  }},
+};
+
+::uint8_t* MCDataUserHeadReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MC.Data.MCDataUserHeadReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 userid = 1;
+  if (this->_internal_userid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_userid(), target);
+  }
+
+  // string image_data = 2;
+  if (!this->_internal_image_data().empty()) {
+    const std::string& _s = this->_internal_image_data();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Data.MCDataUserHeadReq.image_data");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MC.Data.MCDataUserHeadReq)
+  return target;
+}
+
+::size_t MCDataUserHeadReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MC.Data.MCDataUserHeadReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string image_data = 2;
+  if (!this->_internal_image_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_image_data());
+  }
+
+  // uint32 userid = 1;
+  if (this->_internal_userid() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_userid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void MCDataUserHeadReq::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MCDataUserHeadReq*>(&to_msg);
+  auto& from = static_cast<const MCDataUserHeadReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:MC.Data.MCDataUserHeadReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_image_data().empty()) {
+    _this->_internal_set_image_data(from._internal_image_data());
+  }
+  if (from._internal_userid() != 0) {
+    _this->_impl_.userid_ = from._impl_.userid_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MCDataUserHeadReq::CopyFrom(const MCDataUserHeadReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MC.Data.MCDataUserHeadReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MCDataUserHeadReq::IsInitialized() const {
+  return true;
+}
+
+void MCDataUserHeadReq::InternalSwap(MCDataUserHeadReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.image_data_, &other->_impl_.image_data_, arena);
+        swap(_impl_.userid_, other->_impl_.userid_);
+}
+
+::google::protobuf::Metadata MCDataUserHeadReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
+                                   &descriptor_table_MC_2eData_2eproto_once,
+                                   file_level_metadata_MC_2eData_2eproto[9]);
+}
+// ===================================================================
+
+class MCDataUserHeadRes::_Internal {
+ public:
+};
+
+MCDataUserHeadRes::MCDataUserHeadRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:MC.Data.MCDataUserHeadRes)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataUserHeadRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : err_msg_(arena, from.err_msg_),
+        _cached_size_{0} {}
+
+MCDataUserHeadRes::MCDataUserHeadRes(
+    ::google::protobuf::Arena* arena,
+    const MCDataUserHeadRes& from)
+    : ::google::protobuf::Message(arena) {
+  MCDataUserHeadRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.code_ = from._impl_.code_;
+
+  // @@protoc_insertion_point(copy_constructor:MC.Data.MCDataUserHeadRes)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataUserHeadRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : err_msg_(arena),
+        _cached_size_{0} {}
+
+inline void MCDataUserHeadRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.code_ = {};
+}
+MCDataUserHeadRes::~MCDataUserHeadRes() {
+  // @@protoc_insertion_point(destructor:MC.Data.MCDataUserHeadRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MCDataUserHeadRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.err_msg_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+MCDataUserHeadRes::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(MCDataUserHeadRes, _impl_._cached_size_),
+              false,
+          },
+          &MCDataUserHeadRes::MergeImpl,
+          &MCDataUserHeadRes::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void MCDataUserHeadRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:MC.Data.MCDataUserHeadRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.err_msg_.ClearToEmpty();
+  _impl_.code_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MCDataUserHeadRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 41, 2> MCDataUserHeadRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MCDataUserHeadRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::MC::Data::MCDataUserHeadRes>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string err_msg = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserHeadRes, _impl_.err_msg_)}},
+    // .MC.Data.MCDataResponseStatusCode code = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MCDataUserHeadRes, _impl_.code_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserHeadRes, _impl_.code_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .MC.Data.MCDataResponseStatusCode code = 1;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserHeadRes, _impl_.code_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string err_msg = 2;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserHeadRes, _impl_.err_msg_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\31\0\7\0\0\0\0\0"
+    "MC.Data.MCDataUserHeadRes"
+    "err_msg"
+  }},
+};
+
+::uint8_t* MCDataUserHeadRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MC.Data.MCDataUserHeadRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .MC.Data.MCDataResponseStatusCode code = 1;
+  if (this->_internal_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_code(), target);
+  }
+
+  // string err_msg = 2;
+  if (!this->_internal_err_msg().empty()) {
+    const std::string& _s = this->_internal_err_msg();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Data.MCDataUserHeadRes.err_msg");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MC.Data.MCDataUserHeadRes)
+  return target;
+}
+
+::size_t MCDataUserHeadRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MC.Data.MCDataUserHeadRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string err_msg = 2;
+  if (!this->_internal_err_msg().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_err_msg());
+  }
+
+  // .MC.Data.MCDataResponseStatusCode code = 1;
+  if (this->_internal_code() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void MCDataUserHeadRes::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MCDataUserHeadRes*>(&to_msg);
+  auto& from = static_cast<const MCDataUserHeadRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:MC.Data.MCDataUserHeadRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_err_msg().empty()) {
+    _this->_internal_set_err_msg(from._internal_err_msg());
+  }
+  if (from._internal_code() != 0) {
+    _this->_impl_.code_ = from._impl_.code_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MCDataUserHeadRes::CopyFrom(const MCDataUserHeadRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MC.Data.MCDataUserHeadRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MCDataUserHeadRes::IsInitialized() const {
+  return true;
+}
+
+void MCDataUserHeadRes::InternalSwap(MCDataUserHeadRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.err_msg_, &other->_impl_.err_msg_, arena);
+  swap(_impl_.code_, other->_impl_.code_);
+}
+
+::google::protobuf::Metadata MCDataUserHeadRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
+                                   &descriptor_table_MC_2eData_2eproto_once,
+                                   file_level_metadata_MC_2eData_2eproto[10]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace Data

@@ -38,6 +38,12 @@ using MC::Data::Friend;
 using MC::Data::MCDataUserFriendsResponse;
 using MC::Data::MCDataUserIDRequest;
 
+using MC::Data::MCDataUserInfoReq;
+using MC::Data::MCDataUserInfoRes;
+
+using MC::Data::MCDataUserHeadReq;
+using MC::Data::MCDataUserHeadRes;
+
 // 异步数据库处理服务端构建
 class DataServer final {
 public:
@@ -126,6 +132,7 @@ private:
                 response_.set_phone(res->getString("phone"));
                 response_.set_birthday(res->getString("birthday"));
                 response_.set_userid(res->getInt("id"));
+                response_.set_img(res->getString("profile_image"));
 
                 debug(), "email: ", res->getString("email");
 
@@ -196,9 +203,10 @@ private:
             auto sql = absl::StrFormat(
                 "INSERT INTO User(username, md5password, nickname, email) "
                 "SELECT '%s','%s', '%s','%s' FROM dual WHERE NOT "
-                "EXISTS(SELECT* FROM User WHERE username = '%s');",
+                "EXISTS(SELECT* FROM User WHERE username = '%s' OR nickname = "
+                "'%s');",
                 username_.c_str(), password_.c_str(), nickname_.c_str(),
-                email_.c_str(), username_.c_str());
+                email_.c_str(), username_.c_str(), nickname_.c_str());
 
             debug(), "sql = ", sql;
 
@@ -274,7 +282,8 @@ private:
 
             // 查询数据库
             auto sql = absl::StrFormat(
-                "SELECT * FROM Friends WHERE UserID1 = %d;", userid);
+                "SELECT * FROM Friends WHERE UserID1 = %d and Status = 1;",
+                userid);
 
             debug(), "sql = ", sql;
 
@@ -282,7 +291,6 @@ private:
 
             while (res->next()) {
                 auto friendid = res->getInt("UserID2");
-                auto friendname = res->getString("friendName");
                 auto friendSign = res->getString("friendSign");
                 auto lastContactTime = res->getString("lastContactTime");
 
@@ -291,6 +299,16 @@ private:
 
                 // 设置Friend对象的字段
                 new_friend->set_friendid(friendid);
+
+                // 查询User表获取用户名
+                auto sql_user = absl::StrFormat(
+                    "SELECT nickname FROM User WHERE id = %d;", friendid);
+                auto res_user = conn->ExecuteQuery(sql_user);
+                std::string friendname;
+                if (res_user->next()) {
+                    friendname = res_user->getString("nickname");
+                }
+
                 new_friend->set_friendname(friendname);
                 new_friend->set_friendsign(friendSign);
                 new_friend->set_lastcontacttime(lastContactTime);
@@ -324,6 +342,190 @@ private:
         ServerAsyncResponseWriter<MCDataUserFriendsResponse> responder_;
         int usrid_ = 0;
     };
+
+    // Msg业务2 修改个人信息
+    struct UpdateUserInfoCallData : public CallData {
+        UpdateUserInfoCallData(MCData::AsyncService* service,
+                               ServerCompletionQueue* cq, MysqlPool* pool)
+            : CallData(service, cq, pool), responder_(&ctx_) {
+            Proceed();
+        }
+
+        void creating() override {
+            debug(), "UpdateUserInfoCallData creating";
+            status_ = PROCESS;
+            service_->RequestUpdateUserInfo(&ctx_, &request_, &responder_, cq_,
+                                            cq_, this);
+            debug(), "Creating down";
+        }
+
+        void processing() override {
+            new UpdateUserInfoCallData(service_, cq_, pool_);
+
+            debug(), "Processing!";
+
+            auto userid = request_.userid();
+            auto field = request_.field();
+            auto value = request_.value();
+
+            // 请求一个数据库连接
+            auto conn = pool_->GetConnection(0);
+
+            if (conn == nullptr) {
+                debug(), "!conn";
+                response_.set_code(MCDataResponseStatusCode::DATABASE_ERROR);
+                response_.set_err_msg("数据库连接失败");
+                responder_.Finish(response_, Status::OK, this);
+                status_ = FINISH;
+                return;
+            }
+
+            std::string sql;
+
+            if (field == "nickname") {
+                sql = absl::StrFormat(
+                    "UPDATE User SET nickname = '%s' WHERE id = %d;",
+                    value.c_str(), userid);
+            } else if (field == "email") {
+                sql = absl::StrFormat(
+                    "UPDATE User SET email = '%s' WHERE id = %d;",
+                    value.c_str(), userid);
+            } else if (field == "gender") {
+                sql = absl::StrFormat(
+                    "UPDATE User SET gender = '%s' WHERE id = %d;",
+                    value.c_str(), userid);
+            } else if (field == "signature") {
+                sql = absl::StrFormat(
+                    "UPDATE User SET signature = '%s' WHERE id = %d;",
+                    value.c_str(), userid);
+            } else if (field == "phone") {
+                sql = absl::StrFormat(
+                    "UPDATE User SET phone = '%s' WHERE id = %d;",
+                    value.c_str(), userid);
+            } else if (field == "birthday") {
+                sql = absl::StrFormat(
+                    "UPDATE User SET birthday = STR_TO_DATE('%s', "
+                    "'%%Y-%%m-%%d') WHERE id = %d;",
+                    value.c_str(), userid);
+            } else {
+                response_.set_code(MCDataResponseStatusCode::ERROR);
+                response_.set_err_msg("字段错误");
+                responder_.Finish(response_, Status::OK, this);
+                status_ = FINISH;
+                return;
+            }
+
+            auto res = conn->ExecuteUpdate(sql);
+
+            // 归还一个链接
+            pool_->ReleaseConnection(conn);
+
+            if (res == 0) {
+                response_.set_code(MCDataResponseStatusCode::ERROR);
+                response_.set_err_msg("昵称重复！");
+            } else if (res == 1) {
+                response_.set_code(MCDataResponseStatusCode::OK);
+                response_.set_err_msg("注册成功");
+            } else {
+                response_.set_code(MCDataResponseStatusCode::ERROR);
+                response_.set_err_msg("值重复 请更换并重试！");
+            }
+
+            auto RetStatus = Status::OK;
+
+            responder_.Finish(response_, RetStatus, this);
+            status_ = FINISH;
+        }
+
+        void finishing() override {
+            CHECK_EQ(status_, FINISH);
+            debug(), "finishing";
+            delete this;
+        }
+
+    private:
+        MCDataUserInfoReq request_;
+        MCDataUserInfoRes response_;
+        ServerAsyncResponseWriter<MCDataUserInfoRes> responder_;
+        int usrid_ = 0;
+    };
+
+    // Msg业务3 修改头像
+    struct UpdateUserHeadCallData : public CallData {
+        UpdateUserHeadCallData(MCData::AsyncService* service,
+                               ServerCompletionQueue* cq, MysqlPool* pool)
+            : CallData(service, cq, pool), responder_(&ctx_) {
+            Proceed();
+        }
+
+        void creating() override {
+            debug(), "UpdateUserHeadCallData creating";
+            status_ = PROCESS;
+            service_->RequestUpdateUserHead(&ctx_, &request_, &responder_, cq_,
+                                            cq_, this);
+            debug(), "Creating down";
+        }
+
+        void processing() override {
+            new UpdateUserHeadCallData(service_, cq_, pool_);
+
+            debug(), "Processing!";
+
+            auto userid = request_.userid();
+
+            // 请求一个数据库连接
+            auto conn = pool_->GetConnection(0);
+
+            if (conn == nullptr) {
+                debug(), "!conn";
+                response_.set_code(MCDataResponseStatusCode::DATABASE_ERROR);
+                response_.set_err_msg("数据库连接失败");
+                responder_.Finish(response_, Status::OK, this);
+                status_ = FINISH;
+                return;
+            }
+
+            std::string sql;
+
+            sql = absl::StrFormat(
+                "UPDATE User SET profile_image = '%s' WHERE id = %d;",
+                request_.image_data().c_str(), userid);
+
+            auto res = conn->ExecuteUpdate(sql);
+
+            // 归还一个链接
+            pool_->ReleaseConnection(conn);
+
+            if (res == 0) {
+                response_.set_code(MCDataResponseStatusCode::ERROR);
+                response_.set_err_msg("昵称重复！");
+            } else if (res == 1) {
+                response_.set_code(MCDataResponseStatusCode::OK);
+                response_.set_err_msg("注册成功");
+            } else {
+                response_.set_code(MCDataResponseStatusCode::ERROR);
+                response_.set_err_msg("请重试！");
+            }
+
+            auto RetStatus = Status::OK;
+
+            responder_.Finish(response_, RetStatus, this);
+            status_ = FINISH;
+        }
+
+        void finishing() override {
+            CHECK_EQ(status_, FINISH);
+            debug(), "finishing";
+            delete this;
+        }
+
+    private:
+        MCDataUserHeadReq request_;
+        MCDataUserHeadRes response_;
+        ServerAsyncResponseWriter<MCDataUserHeadRes> responder_;
+        int usrid_ = 0;
+    };
+
     void HandleRpcs();
 
     std::unique_ptr<ServerCompletionQueue> cq_;

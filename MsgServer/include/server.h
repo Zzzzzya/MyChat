@@ -33,8 +33,12 @@ using grpc::Status;
 using MC::Msg::MCResponseStatusCode;
 using MC::Msg::MSG;
 using MC::Msg::MsgFriend;
+using MC::Msg::UpdateUserInfoReq;
+using MC::Msg::UpdateUserInfoRes;
 using MC::Msg::UserID;
 using MC::Msg::UserIDList;
+using MC::Msg::UpdateUserHeadReq;
+using MC::Msg::UpdateUserHeadRes;
 
 class MsgServer final {
 public:
@@ -134,6 +138,123 @@ private:
         UserID request_;
         UserIDList response_;
         ServerAsyncResponseWriter<UserIDList> responder_;
+    };
+
+    // 业务2 : 修改个人信息
+    struct UpdateUserInfoCallData : public CallData {
+        UpdateUserInfoCallData(MSG::AsyncService* service,
+                               ServerCompletionQueue* cq)
+            : CallData(service, cq), responder_(&ctx_) {
+            Proceed();
+        }
+
+        void creating() override {
+            debug(), "UpdateUserInfoCallData creating";
+            status_ = PROCESS;
+            service_->RequestUpdateUserInfo(&ctx_, &request_, &responder_, cq_,
+                                            cq_, this);
+        }
+
+        void processing() override {
+            new UpdateUserInfoCallData(service_, cq_);
+
+            auto userid = request_.userid();
+            auto field = request_.field();
+            auto value = request_.value();
+
+            auto RetStatus = Status::OK;
+
+            auto ret = DataMsgClient::GetInstance().UpdateUserInfo(
+                userid, field, value);
+
+            // 2. Check password
+            if (ret == "OK") {
+                response_.set_code(MCResponseStatusCode::OK);
+                response_.set_err_msg("OK");
+
+                RetStatus = Status::OK;
+
+            } else if (ret == "RPC failed") {
+                response_.set_code(MCResponseStatusCode::ERROR);
+                response_.set_err_msg("RPC failed");
+                RetStatus = Status::OK;
+            } else {
+                response_.set_code(MCResponseStatusCode::ERROR);
+                response_.set_err_msg(ret);
+                RetStatus = Status::OK;
+            }
+
+            responder_.Finish(response_, RetStatus, this);
+            status_ = FINISH;
+        }
+
+        void finishing() override {
+            CHECK_EQ(status_, FINISH);
+            delete this;
+        }
+
+    private:
+        UpdateUserInfoReq request_;
+        UpdateUserInfoRes response_;
+        ServerAsyncResponseWriter<UpdateUserInfoRes> responder_;
+    };
+
+    // 业务3 : 修改头像
+    struct UpdateUserHeadCallData : public CallData {
+        UpdateUserHeadCallData(MSG::AsyncService* service,
+                               ServerCompletionQueue* cq)
+            : CallData(service, cq), responder_(&ctx_) {
+            Proceed();
+        }
+
+        void creating() override {
+            debug(), "UpdateUserHeadCallData creating";
+            status_ = PROCESS;
+            service_->RequestUpdateUserHead(&ctx_, &request_, &responder_, cq_,
+                                            cq_, this);
+        }
+
+        void processing() override {
+            new UpdateUserHeadCallData(service_, cq_);
+
+            auto userid = request_.userid();
+            auto image_data = request_.image_data();
+
+            auto RetStatus = Status::OK;
+
+            auto ret = DataMsgClient::GetInstance().UpdateUserHead(
+                userid, image_data);
+
+            // 2. Check password
+            if (ret == "OK") {
+                response_.set_code(MCResponseStatusCode::OK);
+                response_.set_err_msg("OK");
+
+                RetStatus = Status::OK;
+
+            } else if (ret == "RPC failed") {
+                response_.set_code(MCResponseStatusCode::ERROR);
+                response_.set_err_msg("RPC failed");
+                RetStatus = Status::OK;
+            } else {
+                response_.set_code(MCResponseStatusCode::ERROR);
+                response_.set_err_msg(ret);
+                RetStatus = Status::OK;
+            }
+
+            responder_.Finish(response_, RetStatus, this);
+            status_ = FINISH;
+        }
+
+        void finishing() override {
+            CHECK_EQ(status_, FINISH);
+            delete this;
+        }
+
+    private:
+        UpdateUserHeadReq request_;
+        UpdateUserHeadRes response_;
+        ServerAsyncResponseWriter<UpdateUserHeadRes> responder_;
     };
 
     void HandleRpcs();

@@ -68,13 +68,12 @@ message UpdateUserInfoRes{
 
 message UpdateUserHeadReq{
     uint32 userid = 1;
-    string pic = 2;
+    string image_data = 2;
 }
 
 message UpdateUserHeadRes{
     MCResponseStatusCode code = 1;
     string err_msg = 2;
-    string url = 3;
 }
 
 message GetUserInfoReq{

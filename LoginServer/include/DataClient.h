@@ -67,6 +67,7 @@ public:
             res.push_back(reply.signature());
             res.push_back(reply.phone());
             res.push_back(reply.birthday());
+            res.push_back(reply.img());
             int userid = reply.userid();
             res.push_back(std::to_string(userid));
 

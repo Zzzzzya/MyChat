@@ -64,9 +64,21 @@ extern MCDataRegistResponseDefaultTypeInternal _MCDataRegistResponse_default_ins
 class MCDataUserFriendsResponse;
 struct MCDataUserFriendsResponseDefaultTypeInternal;
 extern MCDataUserFriendsResponseDefaultTypeInternal _MCDataUserFriendsResponse_default_instance_;
+class MCDataUserHeadReq;
+struct MCDataUserHeadReqDefaultTypeInternal;
+extern MCDataUserHeadReqDefaultTypeInternal _MCDataUserHeadReq_default_instance_;
+class MCDataUserHeadRes;
+struct MCDataUserHeadResDefaultTypeInternal;
+extern MCDataUserHeadResDefaultTypeInternal _MCDataUserHeadRes_default_instance_;
 class MCDataUserIDRequest;
 struct MCDataUserIDRequestDefaultTypeInternal;
 extern MCDataUserIDRequestDefaultTypeInternal _MCDataUserIDRequest_default_instance_;
+class MCDataUserInfoReq;
+struct MCDataUserInfoReqDefaultTypeInternal;
+extern MCDataUserInfoReqDefaultTypeInternal _MCDataUserInfoReq_default_instance_;
+class MCDataUserInfoRes;
+struct MCDataUserInfoResDefaultTypeInternal;
+extern MCDataUserInfoResDefaultTypeInternal _MCDataUserInfoRes_default_instance_;
 class MCDataUserRequest;
 struct MCDataUserRequestDefaultTypeInternal;
 extern MCDataUserRequestDefaultTypeInternal _MCDataUserRequest_default_instance_;
@@ -631,6 +643,412 @@ class MCDataUserRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class MCDataUserInfoRes final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:MC.Data.MCDataUserInfoRes) */ {
+ public:
+  inline MCDataUserInfoRes() : MCDataUserInfoRes(nullptr) {}
+  ~MCDataUserInfoRes() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MCDataUserInfoRes(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MCDataUserInfoRes(const MCDataUserInfoRes& from) : MCDataUserInfoRes(nullptr, from) {}
+  inline MCDataUserInfoRes(MCDataUserInfoRes&& from) noexcept
+      : MCDataUserInfoRes(nullptr, std::move(from)) {}
+  inline MCDataUserInfoRes& operator=(const MCDataUserInfoRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MCDataUserInfoRes& operator=(MCDataUserInfoRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MCDataUserInfoRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MCDataUserInfoRes* internal_default_instance() {
+    return reinterpret_cast<const MCDataUserInfoRes*>(
+        &_MCDataUserInfoRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(MCDataUserInfoRes& a, MCDataUserInfoRes& b) { a.Swap(&b); }
+  inline void Swap(MCDataUserInfoRes* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MCDataUserInfoRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MCDataUserInfoRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<MCDataUserInfoRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MCDataUserInfoRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MCDataUserInfoRes& from) { MCDataUserInfoRes::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MCDataUserInfoRes* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "MC.Data.MCDataUserInfoRes"; }
+
+ protected:
+  explicit MCDataUserInfoRes(::google::protobuf::Arena* arena);
+  MCDataUserInfoRes(::google::protobuf::Arena* arena, const MCDataUserInfoRes& from);
+  MCDataUserInfoRes(::google::protobuf::Arena* arena, MCDataUserInfoRes&& from) noexcept
+      : MCDataUserInfoRes(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kErrMsgFieldNumber = 2,
+    kNewValueFieldNumber = 3,
+    kCodeFieldNumber = 1,
+  };
+  // string err_msg = 2;
+  void clear_err_msg() ;
+  const std::string& err_msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_err_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_err_msg();
+  PROTOBUF_NODISCARD std::string* release_err_msg();
+  void set_allocated_err_msg(std::string* value);
+
+  private:
+  const std::string& _internal_err_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_err_msg(
+      const std::string& value);
+  std::string* _internal_mutable_err_msg();
+
+  public:
+  // string new_value = 3;
+  void clear_new_value() ;
+  const std::string& new_value() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_new_value(Arg_&& arg, Args_... args);
+  std::string* mutable_new_value();
+  PROTOBUF_NODISCARD std::string* release_new_value();
+  void set_allocated_new_value(std::string* value);
+
+  private:
+  const std::string& _internal_new_value() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_new_value(
+      const std::string& value);
+  std::string* _internal_mutable_new_value();
+
+  public:
+  // .MC.Data.MCDataResponseStatusCode code = 1;
+  void clear_code() ;
+  ::MC::Data::MCDataResponseStatusCode code() const;
+  void set_code(::MC::Data::MCDataResponseStatusCode value);
+
+  private:
+  ::MC::Data::MCDataResponseStatusCode _internal_code() const;
+  void _internal_set_code(::MC::Data::MCDataResponseStatusCode value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:MC.Data.MCDataUserInfoRes)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      50, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr err_msg_;
+    ::google::protobuf::internal::ArenaStringPtr new_value_;
+    int code_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_MC_2eData_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MCDataUserInfoReq final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:MC.Data.MCDataUserInfoReq) */ {
+ public:
+  inline MCDataUserInfoReq() : MCDataUserInfoReq(nullptr) {}
+  ~MCDataUserInfoReq() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MCDataUserInfoReq(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MCDataUserInfoReq(const MCDataUserInfoReq& from) : MCDataUserInfoReq(nullptr, from) {}
+  inline MCDataUserInfoReq(MCDataUserInfoReq&& from) noexcept
+      : MCDataUserInfoReq(nullptr, std::move(from)) {}
+  inline MCDataUserInfoReq& operator=(const MCDataUserInfoReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MCDataUserInfoReq& operator=(MCDataUserInfoReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MCDataUserInfoReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MCDataUserInfoReq* internal_default_instance() {
+    return reinterpret_cast<const MCDataUserInfoReq*>(
+        &_MCDataUserInfoReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(MCDataUserInfoReq& a, MCDataUserInfoReq& b) { a.Swap(&b); }
+  inline void Swap(MCDataUserInfoReq* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MCDataUserInfoReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MCDataUserInfoReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<MCDataUserInfoReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MCDataUserInfoReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MCDataUserInfoReq& from) { MCDataUserInfoReq::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MCDataUserInfoReq* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "MC.Data.MCDataUserInfoReq"; }
+
+ protected:
+  explicit MCDataUserInfoReq(::google::protobuf::Arena* arena);
+  MCDataUserInfoReq(::google::protobuf::Arena* arena, const MCDataUserInfoReq& from);
+  MCDataUserInfoReq(::google::protobuf::Arena* arena, MCDataUserInfoReq&& from) noexcept
+      : MCDataUserInfoReq(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFieldFieldNumber = 2,
+    kValueFieldNumber = 3,
+    kUseridFieldNumber = 1,
+  };
+  // string field = 2;
+  void clear_field() ;
+  const std::string& field() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_field(Arg_&& arg, Args_... args);
+  std::string* mutable_field();
+  PROTOBUF_NODISCARD std::string* release_field();
+  void set_allocated_field(std::string* value);
+
+  private:
+  const std::string& _internal_field() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_field(
+      const std::string& value);
+  std::string* _internal_mutable_field();
+
+  public:
+  // string value = 3;
+  void clear_value() ;
+  const std::string& value() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_value(Arg_&& arg, Args_... args);
+  std::string* mutable_value();
+  PROTOBUF_NODISCARD std::string* release_value();
+  void set_allocated_value(std::string* value);
+
+  private:
+  const std::string& _internal_value() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_value(
+      const std::string& value);
+  std::string* _internal_mutable_value();
+
+  public:
+  // uint32 userid = 1;
+  void clear_userid() ;
+  ::uint32_t userid() const;
+  void set_userid(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_userid() const;
+  void _internal_set_userid(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:MC.Data.MCDataUserInfoReq)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      44, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr field_;
+    ::google::protobuf::internal::ArenaStringPtr value_;
+    ::uint32_t userid_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_MC_2eData_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MCDataUserIDRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:MC.Data.MCDataUserIDRequest) */ {
  public:
@@ -790,6 +1208,376 @@ class MCDataUserIDRequest final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from);
     ::int32_t userid_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_MC_2eData_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MCDataUserHeadRes final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:MC.Data.MCDataUserHeadRes) */ {
+ public:
+  inline MCDataUserHeadRes() : MCDataUserHeadRes(nullptr) {}
+  ~MCDataUserHeadRes() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MCDataUserHeadRes(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MCDataUserHeadRes(const MCDataUserHeadRes& from) : MCDataUserHeadRes(nullptr, from) {}
+  inline MCDataUserHeadRes(MCDataUserHeadRes&& from) noexcept
+      : MCDataUserHeadRes(nullptr, std::move(from)) {}
+  inline MCDataUserHeadRes& operator=(const MCDataUserHeadRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MCDataUserHeadRes& operator=(MCDataUserHeadRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MCDataUserHeadRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MCDataUserHeadRes* internal_default_instance() {
+    return reinterpret_cast<const MCDataUserHeadRes*>(
+        &_MCDataUserHeadRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 10;
+  friend void swap(MCDataUserHeadRes& a, MCDataUserHeadRes& b) { a.Swap(&b); }
+  inline void Swap(MCDataUserHeadRes* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MCDataUserHeadRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MCDataUserHeadRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<MCDataUserHeadRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MCDataUserHeadRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MCDataUserHeadRes& from) { MCDataUserHeadRes::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MCDataUserHeadRes* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "MC.Data.MCDataUserHeadRes"; }
+
+ protected:
+  explicit MCDataUserHeadRes(::google::protobuf::Arena* arena);
+  MCDataUserHeadRes(::google::protobuf::Arena* arena, const MCDataUserHeadRes& from);
+  MCDataUserHeadRes(::google::protobuf::Arena* arena, MCDataUserHeadRes&& from) noexcept
+      : MCDataUserHeadRes(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kErrMsgFieldNumber = 2,
+    kCodeFieldNumber = 1,
+  };
+  // string err_msg = 2;
+  void clear_err_msg() ;
+  const std::string& err_msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_err_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_err_msg();
+  PROTOBUF_NODISCARD std::string* release_err_msg();
+  void set_allocated_err_msg(std::string* value);
+
+  private:
+  const std::string& _internal_err_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_err_msg(
+      const std::string& value);
+  std::string* _internal_mutable_err_msg();
+
+  public:
+  // .MC.Data.MCDataResponseStatusCode code = 1;
+  void clear_code() ;
+  ::MC::Data::MCDataResponseStatusCode code() const;
+  void set_code(::MC::Data::MCDataResponseStatusCode value);
+
+  private:
+  ::MC::Data::MCDataResponseStatusCode _internal_code() const;
+  void _internal_set_code(::MC::Data::MCDataResponseStatusCode value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:MC.Data.MCDataUserHeadRes)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      41, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr err_msg_;
+    int code_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_MC_2eData_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MCDataUserHeadReq final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:MC.Data.MCDataUserHeadReq) */ {
+ public:
+  inline MCDataUserHeadReq() : MCDataUserHeadReq(nullptr) {}
+  ~MCDataUserHeadReq() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MCDataUserHeadReq(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MCDataUserHeadReq(const MCDataUserHeadReq& from) : MCDataUserHeadReq(nullptr, from) {}
+  inline MCDataUserHeadReq(MCDataUserHeadReq&& from) noexcept
+      : MCDataUserHeadReq(nullptr, std::move(from)) {}
+  inline MCDataUserHeadReq& operator=(const MCDataUserHeadReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MCDataUserHeadReq& operator=(MCDataUserHeadReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MCDataUserHeadReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MCDataUserHeadReq* internal_default_instance() {
+    return reinterpret_cast<const MCDataUserHeadReq*>(
+        &_MCDataUserHeadReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 9;
+  friend void swap(MCDataUserHeadReq& a, MCDataUserHeadReq& b) { a.Swap(&b); }
+  inline void Swap(MCDataUserHeadReq* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MCDataUserHeadReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MCDataUserHeadReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<MCDataUserHeadReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MCDataUserHeadReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MCDataUserHeadReq& from) { MCDataUserHeadReq::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MCDataUserHeadReq* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "MC.Data.MCDataUserHeadReq"; }
+
+ protected:
+  explicit MCDataUserHeadReq(::google::protobuf::Arena* arena);
+  MCDataUserHeadReq(::google::protobuf::Arena* arena, const MCDataUserHeadReq& from);
+  MCDataUserHeadReq(::google::protobuf::Arena* arena, MCDataUserHeadReq&& from) noexcept
+      : MCDataUserHeadReq(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kImageDataFieldNumber = 2,
+    kUseridFieldNumber = 1,
+  };
+  // string image_data = 2;
+  void clear_image_data() ;
+  const std::string& image_data() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_image_data(Arg_&& arg, Args_... args);
+  std::string* mutable_image_data();
+  PROTOBUF_NODISCARD std::string* release_image_data();
+  void set_allocated_image_data(std::string* value);
+
+  private:
+  const std::string& _internal_image_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_image_data(
+      const std::string& value);
+  std::string* _internal_mutable_image_data();
+
+  public:
+  // uint32 userid = 1;
+  void clear_userid() ;
+  ::uint32_t userid() const;
+  void set_userid(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_userid() const;
+  void _internal_set_userid(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:MC.Data.MCDataUserHeadReq)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      44, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr image_data_;
+    ::uint32_t userid_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2775,6 +3563,410 @@ inline void MCDataRegistResponse::set_allocated_errmsg(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataRegistResponse.errmsg)
+}
+
+// -------------------------------------------------------------------
+
+// MCDataUserInfoReq
+
+// uint32 userid = 1;
+inline void MCDataUserInfoReq::clear_userid() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.userid_ = 0u;
+}
+inline ::uint32_t MCDataUserInfoReq::userid() const {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserInfoReq.userid)
+  return _internal_userid();
+}
+inline void MCDataUserInfoReq::set_userid(::uint32_t value) {
+  _internal_set_userid(value);
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserInfoReq.userid)
+}
+inline ::uint32_t MCDataUserInfoReq::_internal_userid() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.userid_;
+}
+inline void MCDataUserInfoReq::_internal_set_userid(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.userid_ = value;
+}
+
+// string field = 2;
+inline void MCDataUserInfoReq::clear_field() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.field_.ClearToEmpty();
+}
+inline const std::string& MCDataUserInfoReq::field() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserInfoReq.field)
+  return _internal_field();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MCDataUserInfoReq::set_field(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.field_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserInfoReq.field)
+}
+inline std::string* MCDataUserInfoReq::mutable_field() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_field();
+  // @@protoc_insertion_point(field_mutable:MC.Data.MCDataUserInfoReq.field)
+  return _s;
+}
+inline const std::string& MCDataUserInfoReq::_internal_field() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.field_.Get();
+}
+inline void MCDataUserInfoReq::_internal_set_field(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.field_.Set(value, GetArena());
+}
+inline std::string* MCDataUserInfoReq::_internal_mutable_field() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.field_.Mutable( GetArena());
+}
+inline std::string* MCDataUserInfoReq::release_field() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Data.MCDataUserInfoReq.field)
+  return _impl_.field_.Release();
+}
+inline void MCDataUserInfoReq::set_allocated_field(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.field_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.field_.IsDefault()) {
+          _impl_.field_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataUserInfoReq.field)
+}
+
+// string value = 3;
+inline void MCDataUserInfoReq::clear_value() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.value_.ClearToEmpty();
+}
+inline const std::string& MCDataUserInfoReq::value() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserInfoReq.value)
+  return _internal_value();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MCDataUserInfoReq::set_value(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.value_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserInfoReq.value)
+}
+inline std::string* MCDataUserInfoReq::mutable_value() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_value();
+  // @@protoc_insertion_point(field_mutable:MC.Data.MCDataUserInfoReq.value)
+  return _s;
+}
+inline const std::string& MCDataUserInfoReq::_internal_value() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.value_.Get();
+}
+inline void MCDataUserInfoReq::_internal_set_value(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.value_.Set(value, GetArena());
+}
+inline std::string* MCDataUserInfoReq::_internal_mutable_value() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.value_.Mutable( GetArena());
+}
+inline std::string* MCDataUserInfoReq::release_value() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Data.MCDataUserInfoReq.value)
+  return _impl_.value_.Release();
+}
+inline void MCDataUserInfoReq::set_allocated_value(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.value_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.value_.IsDefault()) {
+          _impl_.value_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataUserInfoReq.value)
+}
+
+// -------------------------------------------------------------------
+
+// MCDataUserInfoRes
+
+// .MC.Data.MCDataResponseStatusCode code = 1;
+inline void MCDataUserInfoRes::clear_code() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.code_ = 0;
+}
+inline ::MC::Data::MCDataResponseStatusCode MCDataUserInfoRes::code() const {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserInfoRes.code)
+  return _internal_code();
+}
+inline void MCDataUserInfoRes::set_code(::MC::Data::MCDataResponseStatusCode value) {
+  _internal_set_code(value);
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserInfoRes.code)
+}
+inline ::MC::Data::MCDataResponseStatusCode MCDataUserInfoRes::_internal_code() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::MC::Data::MCDataResponseStatusCode>(_impl_.code_);
+}
+inline void MCDataUserInfoRes::_internal_set_code(::MC::Data::MCDataResponseStatusCode value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.code_ = value;
+}
+
+// string err_msg = 2;
+inline void MCDataUserInfoRes::clear_err_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.err_msg_.ClearToEmpty();
+}
+inline const std::string& MCDataUserInfoRes::err_msg() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserInfoRes.err_msg)
+  return _internal_err_msg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MCDataUserInfoRes::set_err_msg(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.err_msg_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserInfoRes.err_msg)
+}
+inline std::string* MCDataUserInfoRes::mutable_err_msg() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_err_msg();
+  // @@protoc_insertion_point(field_mutable:MC.Data.MCDataUserInfoRes.err_msg)
+  return _s;
+}
+inline const std::string& MCDataUserInfoRes::_internal_err_msg() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.err_msg_.Get();
+}
+inline void MCDataUserInfoRes::_internal_set_err_msg(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.err_msg_.Set(value, GetArena());
+}
+inline std::string* MCDataUserInfoRes::_internal_mutable_err_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.err_msg_.Mutable( GetArena());
+}
+inline std::string* MCDataUserInfoRes::release_err_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Data.MCDataUserInfoRes.err_msg)
+  return _impl_.err_msg_.Release();
+}
+inline void MCDataUserInfoRes::set_allocated_err_msg(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.err_msg_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.err_msg_.IsDefault()) {
+          _impl_.err_msg_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataUserInfoRes.err_msg)
+}
+
+// string new_value = 3;
+inline void MCDataUserInfoRes::clear_new_value() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.new_value_.ClearToEmpty();
+}
+inline const std::string& MCDataUserInfoRes::new_value() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserInfoRes.new_value)
+  return _internal_new_value();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MCDataUserInfoRes::set_new_value(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.new_value_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserInfoRes.new_value)
+}
+inline std::string* MCDataUserInfoRes::mutable_new_value() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_new_value();
+  // @@protoc_insertion_point(field_mutable:MC.Data.MCDataUserInfoRes.new_value)
+  return _s;
+}
+inline const std::string& MCDataUserInfoRes::_internal_new_value() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.new_value_.Get();
+}
+inline void MCDataUserInfoRes::_internal_set_new_value(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.new_value_.Set(value, GetArena());
+}
+inline std::string* MCDataUserInfoRes::_internal_mutable_new_value() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.new_value_.Mutable( GetArena());
+}
+inline std::string* MCDataUserInfoRes::release_new_value() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Data.MCDataUserInfoRes.new_value)
+  return _impl_.new_value_.Release();
+}
+inline void MCDataUserInfoRes::set_allocated_new_value(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.new_value_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.new_value_.IsDefault()) {
+          _impl_.new_value_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataUserInfoRes.new_value)
+}
+
+// -------------------------------------------------------------------
+
+// MCDataUserHeadReq
+
+// uint32 userid = 1;
+inline void MCDataUserHeadReq::clear_userid() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.userid_ = 0u;
+}
+inline ::uint32_t MCDataUserHeadReq::userid() const {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserHeadReq.userid)
+  return _internal_userid();
+}
+inline void MCDataUserHeadReq::set_userid(::uint32_t value) {
+  _internal_set_userid(value);
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserHeadReq.userid)
+}
+inline ::uint32_t MCDataUserHeadReq::_internal_userid() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.userid_;
+}
+inline void MCDataUserHeadReq::_internal_set_userid(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.userid_ = value;
+}
+
+// string image_data = 2;
+inline void MCDataUserHeadReq::clear_image_data() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.image_data_.ClearToEmpty();
+}
+inline const std::string& MCDataUserHeadReq::image_data() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserHeadReq.image_data)
+  return _internal_image_data();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MCDataUserHeadReq::set_image_data(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.image_data_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserHeadReq.image_data)
+}
+inline std::string* MCDataUserHeadReq::mutable_image_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_image_data();
+  // @@protoc_insertion_point(field_mutable:MC.Data.MCDataUserHeadReq.image_data)
+  return _s;
+}
+inline const std::string& MCDataUserHeadReq::_internal_image_data() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.image_data_.Get();
+}
+inline void MCDataUserHeadReq::_internal_set_image_data(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.image_data_.Set(value, GetArena());
+}
+inline std::string* MCDataUserHeadReq::_internal_mutable_image_data() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.image_data_.Mutable( GetArena());
+}
+inline std::string* MCDataUserHeadReq::release_image_data() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Data.MCDataUserHeadReq.image_data)
+  return _impl_.image_data_.Release();
+}
+inline void MCDataUserHeadReq::set_allocated_image_data(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.image_data_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.image_data_.IsDefault()) {
+          _impl_.image_data_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataUserHeadReq.image_data)
+}
+
+// -------------------------------------------------------------------
+
+// MCDataUserHeadRes
+
+// .MC.Data.MCDataResponseStatusCode code = 1;
+inline void MCDataUserHeadRes::clear_code() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.code_ = 0;
+}
+inline ::MC::Data::MCDataResponseStatusCode MCDataUserHeadRes::code() const {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserHeadRes.code)
+  return _internal_code();
+}
+inline void MCDataUserHeadRes::set_code(::MC::Data::MCDataResponseStatusCode value) {
+  _internal_set_code(value);
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserHeadRes.code)
+}
+inline ::MC::Data::MCDataResponseStatusCode MCDataUserHeadRes::_internal_code() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::MC::Data::MCDataResponseStatusCode>(_impl_.code_);
+}
+inline void MCDataUserHeadRes::_internal_set_code(::MC::Data::MCDataResponseStatusCode value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.code_ = value;
+}
+
+// string err_msg = 2;
+inline void MCDataUserHeadRes::clear_err_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.err_msg_.ClearToEmpty();
+}
+inline const std::string& MCDataUserHeadRes::err_msg() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserHeadRes.err_msg)
+  return _internal_err_msg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MCDataUserHeadRes::set_err_msg(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.err_msg_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserHeadRes.err_msg)
+}
+inline std::string* MCDataUserHeadRes::mutable_err_msg() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_err_msg();
+  // @@protoc_insertion_point(field_mutable:MC.Data.MCDataUserHeadRes.err_msg)
+  return _s;
+}
+inline const std::string& MCDataUserHeadRes::_internal_err_msg() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.err_msg_.Get();
+}
+inline void MCDataUserHeadRes::_internal_set_err_msg(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.err_msg_.Set(value, GetArena());
+}
+inline std::string* MCDataUserHeadRes::_internal_mutable_err_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.err_msg_.Mutable( GetArena());
+}
+inline std::string* MCDataUserHeadRes::release_err_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Data.MCDataUserHeadRes.err_msg)
+  return _impl_.err_msg_.Release();
+}
+inline void MCDataUserHeadRes::set_allocated_err_msg(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.err_msg_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.err_msg_.IsDefault()) {
+          _impl_.err_msg_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataUserHeadRes.err_msg)
 }
 
 #ifdef __GNUC__

@@ -26,6 +26,8 @@ static const char* MCData_method_names[] = {
   "/MC.Data.MCData/GetUserPassword",
   "/MC.Data.MCData/TryRegist",
   "/MC.Data.MCData/GetUserFriends",
+  "/MC.Data.MCData/UpdateUserInfo",
+  "/MC.Data.MCData/UpdateUserHead",
 };
 
 std::unique_ptr< MCData::Stub> MCData::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -38,6 +40,8 @@ MCData::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, co
   : channel_(channel), rpcmethod_GetUserPassword_(MCData_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_TryRegist_(MCData_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetUserFriends_(MCData_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateUserInfo_(MCData_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateUserHead_(MCData_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MCData::Stub::GetUserPassword(::grpc::ClientContext* context, const ::MC::Data::MCDataUserRequest& request, ::MC::Data::MCDataUserResponse* response) {
@@ -109,6 +113,52 @@ void MCData::Stub::async::GetUserFriends(::grpc::ClientContext* context, const :
   return result;
 }
 
+::grpc::Status MCData::Stub::UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::MC::Data::MCDataUserInfoRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::MC::Data::MCDataUserInfoReq, ::MC::Data::MCDataUserInfoRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateUserInfo_, context, request, response);
+}
+
+void MCData::Stub::async::UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::MC::Data::MCDataUserInfoReq, ::MC::Data::MCDataUserInfoRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateUserInfo_, context, request, response, std::move(f));
+}
+
+void MCData::Stub::async::UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateUserInfo_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserInfoRes>* MCData::Stub::PrepareAsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::MC::Data::MCDataUserInfoRes, ::MC::Data::MCDataUserInfoReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateUserInfo_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserInfoRes>* MCData::Stub::AsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateUserInfoRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MCData::Stub::UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::MC::Data::MCDataUserHeadRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::MC::Data::MCDataUserHeadReq, ::MC::Data::MCDataUserHeadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateUserHead_, context, request, response);
+}
+
+void MCData::Stub::async::UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::MC::Data::MCDataUserHeadReq, ::MC::Data::MCDataUserHeadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateUserHead_, context, request, response, std::move(f));
+}
+
+void MCData::Stub::async::UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateUserHead_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>* MCData::Stub::PrepareAsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::MC::Data::MCDataUserHeadRes, ::MC::Data::MCDataUserHeadReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateUserHead_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>* MCData::Stub::AsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateUserHeadRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MCData::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MCData_method_names[0],
@@ -140,6 +190,26 @@ MCData::Service::Service() {
              ::MC::Data::MCDataUserFriendsResponse* resp) {
                return service->GetUserFriends(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MCData_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MCData::Service, ::MC::Data::MCDataUserInfoReq, ::MC::Data::MCDataUserInfoRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MCData::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::MC::Data::MCDataUserInfoReq* req,
+             ::MC::Data::MCDataUserInfoRes* resp) {
+               return service->UpdateUserInfo(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MCData_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MCData::Service, ::MC::Data::MCDataUserHeadReq, ::MC::Data::MCDataUserHeadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MCData::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::MC::Data::MCDataUserHeadReq* req,
+             ::MC::Data::MCDataUserHeadRes* resp) {
+               return service->UpdateUserHead(ctx, req, resp);
+             }, this)));
 }
 
 MCData::Service::~Service() {
@@ -160,6 +230,20 @@ MCData::Service::~Service() {
 }
 
 ::grpc::Status MCData::Service::GetUserFriends(::grpc::ServerContext* context, const ::MC::Data::MCDataUserIDRequest* request, ::MC::Data::MCDataUserFriendsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MCData::Service::UpdateUserInfo(::grpc::ServerContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MCData::Service::UpdateUserHead(::grpc::ServerContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response) {
   (void) context;
   (void) request;
   (void) response;

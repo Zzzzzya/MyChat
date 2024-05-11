@@ -124,7 +124,8 @@ private:
                 response_.set_signature(res[4]);
                 response_.set_phone(res[5]);
                 response_.set_birthday(res[6]);
-                response_.set_user_id(std::stoi(res[7]));
+                response_.set_user_id(std::stoi(res[8]));
+                response_.set_img(res[7]);
 
                 response_.set_msg_server_ip("192.168.146.131:50088");
 
@@ -191,7 +192,7 @@ private:
                 RetStatus = Status::OK;
             } else {
                 response_.set_code(MCResponseStatusCode::ERROR);
-                response_.set_err_msg("User not found");
+                response_.set_err_msg("User Exits");
                 RetStatus = Status::OK;
             }
 

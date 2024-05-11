@@ -98,9 +98,6 @@ inline constexpr UpdateUserHeadRes::Impl_::Impl_(
       : err_msg_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        url_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         code_{static_cast< ::MC::Msg::MCResponseStatusCode >(0)},
         _cached_size_{0} {}
 
@@ -120,7 +117,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr UpdateUserHeadReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : pic_(
+      : image_data_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         userid_{0u},
@@ -376,7 +373,7 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::MC::Msg::UpdateUserHeadReq, _impl_.userid_),
-        PROTOBUF_FIELD_OFFSET(::MC::Msg::UpdateUserHeadReq, _impl_.pic_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::UpdateUserHeadReq, _impl_.image_data_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::MC::Msg::UpdateUserHeadRes, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -387,7 +384,6 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::MC::Msg::UpdateUserHeadRes, _impl_.code_),
         PROTOBUF_FIELD_OFFSET(::MC::Msg::UpdateUserHeadRes, _impl_.err_msg_),
-        PROTOBUF_FIELD_OFFSET(::MC::Msg::UpdateUserHeadRes, _impl_.url_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::MC::Msg::GetUserInfoReq, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -424,8 +420,8 @@ static const ::_pbi::MigrationSchema
         {63, -1, -1, sizeof(::MC::Msg::UpdateUserInfoRes)},
         {74, -1, -1, sizeof(::MC::Msg::UpdateUserHeadReq)},
         {84, -1, -1, sizeof(::MC::Msg::UpdateUserHeadRes)},
-        {95, -1, -1, sizeof(::MC::Msg::GetUserInfoReq)},
-        {104, -1, -1, sizeof(::MC::Msg::GetUserInfoRes)},
+        {94, -1, -1, sizeof(::MC::Msg::GetUserInfoReq)},
+        {103, -1, -1, sizeof(::MC::Msg::GetUserInfoRes)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::MC::Msg::_UserID_default_instance_._instance,
@@ -455,33 +451,33 @@ const char descriptor_table_protodef_MC_2eMsg_2eproto[] ABSL_ATTRIBUTE_SECTION_V
     "eq\022\016\n\006userid\030\001 \001(\r\022\r\n\005field\030\002 \001(\t\022\r\n\005val"
     "ue\030\003 \001(\t\"c\n\021UpdateUserInfoRes\022*\n\004code\030\001 "
     "\001(\0162\034.MC.Msg.MCResponseStatusCode\022\017\n\007err"
-    "_msg\030\002 \001(\t\022\021\n\tnew_value\030\003 \001(\t\"0\n\021UpdateU"
-    "serHeadReq\022\016\n\006userid\030\001 \001(\r\022\013\n\003pic\030\002 \001(\t\""
-    "]\n\021UpdateUserHeadRes\022*\n\004code\030\001 \001(\0162\034.MC."
-    "Msg.MCResponseStatusCode\022\017\n\007err_msg\030\002 \001("
-    "\t\022\013\n\003url\030\003 \001(\t\" \n\016GetUserInfoReq\022\016\n\006user"
-    "id\030\001 \001(\r\"\207\001\n\016GetUserInfoRes\022*\n\004code\030\001 \001("
+    "_msg\030\002 \001(\t\022\021\n\tnew_value\030\003 \001(\t\"7\n\021UpdateU"
+    "serHeadReq\022\016\n\006userid\030\001 \001(\r\022\022\n\nimage_data"
+    "\030\002 \001(\t\"P\n\021UpdateUserHeadRes\022*\n\004code\030\001 \001("
     "\0162\034.MC.Msg.MCResponseStatusCode\022\017\n\007err_m"
-    "sg\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\013\n\003pic\030\004 \001(\t\022\014\n\004s"
-    "ign\030\005 \001(\t\022\017\n\007friends\030\006 \003(\r*5\n\024MCResponse"
-    "StatusCode\022\006\n\002OK\020\000\022\n\n\006FAILED\020\001\022\t\n\005ERROR\020"
-    "\0022\315\002\n\003MSG\022F\n\016UpdateUserInfo\022\031.MC.Msg.Upd"
-    "ateUserInfoReq\032\031.MC.Msg.UpdateUserInfoRe"
-    "s\022F\n\016UpdateUserHead\022\031.MC.Msg.UpdateUserH"
-    "eadReq\032\031.MC.Msg.UpdateUserHeadRes\022E\n\023Sen"
-    "dMessageToServer\022\026.MC.Msg.SendMessageReq"
-    "\032\026.MC.Msg.SendMessageRes\022=\n\013GetUserInfo\022"
-    "\026.MC.Msg.GetUserInfoReq\032\026.MC.Msg.GetUser"
-    "InfoRes\0220\n\nGetFriends\022\016.MC.Msg.UserID\032\022."
-    "MC.Msg.UserIDList2O\n\006Client\022E\n\023SendMessa"
-    "geToClient\022\026.MC.Msg.SendMessageReq\032\026.MC."
-    "Msg.SendMessageResb\006proto3"
+    "sg\030\002 \001(\t\" \n\016GetUserInfoReq\022\016\n\006userid\030\001 \001"
+    "(\r\"\207\001\n\016GetUserInfoRes\022*\n\004code\030\001 \001(\0162\034.MC"
+    ".Msg.MCResponseStatusCode\022\017\n\007err_msg\030\002 \001"
+    "(\t\022\014\n\004name\030\003 \001(\t\022\013\n\003pic\030\004 \001(\t\022\014\n\004sign\030\005 "
+    "\001(\t\022\017\n\007friends\030\006 \003(\r*5\n\024MCResponseStatus"
+    "Code\022\006\n\002OK\020\000\022\n\n\006FAILED\020\001\022\t\n\005ERROR\020\0022\315\002\n\003"
+    "MSG\022F\n\016UpdateUserInfo\022\031.MC.Msg.UpdateUse"
+    "rInfoReq\032\031.MC.Msg.UpdateUserInfoRes\022F\n\016U"
+    "pdateUserHead\022\031.MC.Msg.UpdateUserHeadReq"
+    "\032\031.MC.Msg.UpdateUserHeadRes\022E\n\023SendMessa"
+    "geToServer\022\026.MC.Msg.SendMessageReq\032\026.MC."
+    "Msg.SendMessageRes\022=\n\013GetUserInfo\022\026.MC.M"
+    "sg.GetUserInfoReq\032\026.MC.Msg.GetUserInfoRe"
+    "s\0220\n\nGetFriends\022\016.MC.Msg.UserID\032\022.MC.Msg"
+    ".UserIDList2O\n\006Client\022E\n\023SendMessageToCl"
+    "ient\022\026.MC.Msg.SendMessageReq\032\026.MC.Msg.Se"
+    "ndMessageResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_MC_2eMsg_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_MC_2eMsg_2eproto = {
     false,
     false,
-    1346,
+    1340,
     descriptor_table_protodef_MC_2eMsg_2eproto,
     "MC.Msg.proto",
     &descriptor_table_MC_2eMsg_2eproto_once,
@@ -2192,7 +2188,7 @@ UpdateUserHeadReq::UpdateUserHeadReq(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE UpdateUserHeadReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : pic_(arena, from.pic_),
+      : image_data_(arena, from.image_data_),
         _cached_size_{0} {}
 
 UpdateUserHeadReq::UpdateUserHeadReq(
@@ -2211,7 +2207,7 @@ UpdateUserHeadReq::UpdateUserHeadReq(
 inline PROTOBUF_NDEBUG_INLINE UpdateUserHeadReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : pic_(arena),
+      : image_data_(arena),
         _cached_size_{0} {}
 
 inline void UpdateUserHeadReq::SharedCtor(::_pb::Arena* arena) {
@@ -2225,7 +2221,7 @@ UpdateUserHeadReq::~UpdateUserHeadReq() {
 }
 inline void UpdateUserHeadReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.pic_.Destroy();
+  _impl_.image_data_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -2250,7 +2246,7 @@ PROTOBUF_NOINLINE void UpdateUserHeadReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.pic_.ClearToEmpty();
+  _impl_.image_data_.ClearToEmpty();
   _impl_.userid_ = 0u;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -2263,7 +2259,7 @@ const char* UpdateUserHeadReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 36, 2> UpdateUserHeadReq::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 43, 2> UpdateUserHeadReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2280,9 +2276,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 36, 2> UpdateUserHeadReq::_table_ = {
     ::_pbi::TcParser::GetTable<::MC::Msg::UpdateUserHeadReq>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string pic = 2;
+    // string image_data = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateUserHeadReq, _impl_.pic_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateUserHeadReq, _impl_.image_data_)}},
     // uint32 userid = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UpdateUserHeadReq, _impl_.userid_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateUserHeadReq, _impl_.userid_)}},
@@ -2292,15 +2288,15 @@ const ::_pbi::TcParseTable<1, 2, 0, 36, 2> UpdateUserHeadReq::_table_ = {
     // uint32 userid = 1;
     {PROTOBUF_FIELD_OFFSET(UpdateUserHeadReq, _impl_.userid_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // string pic = 2;
-    {PROTOBUF_FIELD_OFFSET(UpdateUserHeadReq, _impl_.pic_), 0, 0,
+    // string image_data = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdateUserHeadReq, _impl_.image_data_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\30\0\3\0\0\0\0\0"
+    "\30\0\12\0\0\0\0\0"
     "MC.Msg.UpdateUserHeadReq"
-    "pic"
+    "image_data"
   }},
 };
 
@@ -2318,11 +2314,11 @@ const ::_pbi::TcParseTable<1, 2, 0, 36, 2> UpdateUserHeadReq::_table_ = {
         1, this->_internal_userid(), target);
   }
 
-  // string pic = 2;
-  if (!this->_internal_pic().empty()) {
-    const std::string& _s = this->_internal_pic();
+  // string image_data = 2;
+  if (!this->_internal_image_data().empty()) {
+    const std::string& _s = this->_internal_image_data();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.UpdateUserHeadReq.pic");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.UpdateUserHeadReq.image_data");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -2343,10 +2339,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 36, 2> UpdateUserHeadReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string pic = 2;
-  if (!this->_internal_pic().empty()) {
+  // string image_data = 2;
+  if (!this->_internal_image_data().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_pic());
+                                    this->_internal_image_data());
   }
 
   // uint32 userid = 1;
@@ -2367,8 +2363,8 @@ void UpdateUserHeadReq::MergeImpl(::google::protobuf::MessageLite& to_msg, const
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_pic().empty()) {
-    _this->_internal_set_pic(from._internal_pic());
+  if (!from._internal_image_data().empty()) {
+    _this->_internal_set_image_data(from._internal_image_data());
   }
   if (from._internal_userid() != 0) {
     _this->_impl_.userid_ = from._impl_.userid_;
@@ -2392,7 +2388,7 @@ void UpdateUserHeadReq::InternalSwap(UpdateUserHeadReq* PROTOBUF_RESTRICT other)
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.pic_, &other->_impl_.pic_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.image_data_, &other->_impl_.image_data_, arena);
         swap(_impl_.userid_, other->_impl_.userid_);
 }
 
@@ -2416,7 +2412,6 @@ inline PROTOBUF_NDEBUG_INLINE UpdateUserHeadRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : err_msg_(arena, from.err_msg_),
-        url_(arena, from.url_),
         _cached_size_{0} {}
 
 UpdateUserHeadRes::UpdateUserHeadRes(
@@ -2436,7 +2431,6 @@ inline PROTOBUF_NDEBUG_INLINE UpdateUserHeadRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : err_msg_(arena),
-        url_(arena),
         _cached_size_{0} {}
 
 inline void UpdateUserHeadRes::SharedCtor(::_pb::Arena* arena) {
@@ -2451,7 +2445,6 @@ UpdateUserHeadRes::~UpdateUserHeadRes() {
 inline void UpdateUserHeadRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.err_msg_.Destroy();
-  _impl_.url_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -2477,7 +2470,6 @@ PROTOBUF_NOINLINE void UpdateUserHeadRes::Clear() {
   (void) cached_has_bits;
 
   _impl_.err_msg_.ClearToEmpty();
-  _impl_.url_.ClearToEmpty();
   _impl_.code_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -2490,15 +2482,15 @@ const char* UpdateUserHeadRes::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 43, 2> UpdateUserHeadRes::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 40, 2> UpdateUserHeadRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_UpdateUserHeadRes_default_instance_._instance,
@@ -2507,16 +2499,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> UpdateUserHeadRes::_table_ = {
     ::_pbi::TcParser::GetTable<::MC::Msg::UpdateUserHeadRes>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // .MC.Msg.MCResponseStatusCode code = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UpdateUserHeadRes, _impl_.code_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateUserHeadRes, _impl_.code_)}},
     // string err_msg = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateUserHeadRes, _impl_.err_msg_)}},
-    // string url = 3;
-    {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateUserHeadRes, _impl_.url_)}},
+    // .MC.Msg.MCResponseStatusCode code = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UpdateUserHeadRes, _impl_.code_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateUserHeadRes, _impl_.code_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -2526,16 +2514,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> UpdateUserHeadRes::_table_ = {
     // string err_msg = 2;
     {PROTOBUF_FIELD_OFFSET(UpdateUserHeadRes, _impl_.err_msg_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string url = 3;
-    {PROTOBUF_FIELD_OFFSET(UpdateUserHeadRes, _impl_.url_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\30\0\7\3\0\0\0\0"
+    "\30\0\7\0\0\0\0\0"
     "MC.Msg.UpdateUserHeadRes"
     "err_msg"
-    "url"
   }},
 };
 
@@ -2561,14 +2545,6 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> UpdateUserHeadRes::_table_ = {
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
-  // string url = 3;
-  if (!this->_internal_url().empty()) {
-    const std::string& _s = this->_internal_url();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.UpdateUserHeadRes.url");
-    target = stream->WriteStringMaybeAliased(3, _s, target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -2592,12 +2568,6 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> UpdateUserHeadRes::_table_ = {
                                     this->_internal_err_msg());
   }
 
-  // string url = 3;
-  if (!this->_internal_url().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_url());
-  }
-
   // .MC.Msg.MCResponseStatusCode code = 1;
   if (this->_internal_code() != 0) {
     total_size += 1 +
@@ -2618,9 +2588,6 @@ void UpdateUserHeadRes::MergeImpl(::google::protobuf::MessageLite& to_msg, const
 
   if (!from._internal_err_msg().empty()) {
     _this->_internal_set_err_msg(from._internal_err_msg());
-  }
-  if (!from._internal_url().empty()) {
-    _this->_internal_set_url(from._internal_url());
   }
   if (from._internal_code() != 0) {
     _this->_impl_.code_ = from._impl_.code_;
@@ -2645,7 +2612,6 @@ void UpdateUserHeadRes::InternalSwap(UpdateUserHeadRes* PROTOBUF_RESTRICT other)
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.err_msg_, &other->_impl_.err_msg_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.url_, &other->_impl_.url_, arena);
   swap(_impl_.code_, other->_impl_.code_);
 }
 

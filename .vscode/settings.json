@@ -72,5 +72,6 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "queue": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/zya/projects/MyChat/DataServer"
 }

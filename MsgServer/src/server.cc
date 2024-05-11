@@ -30,6 +30,8 @@ void MsgServer::Run(uint16_t port) {
 void MsgServer::HandleRpcs() {
     // Spawn a new CallData instance to serve new clients.
     new GetFriendsCallData(&service_, cq_.get());
+    new UpdateUserInfoCallData(&service_, cq_.get());
+    new UpdateUserHeadCallData(&service_, cq_.get());
 
     void* tag;  // uniquely identifies a request.
     bool ok;

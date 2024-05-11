@@ -43,6 +43,8 @@ message MCLoginResponse{
 
     //MSG server 的地址
     string msg_server_ip = 11;
+
+    string img = 12;
 }
 
 message MCRegistRequest{

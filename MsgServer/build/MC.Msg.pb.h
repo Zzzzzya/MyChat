@@ -833,7 +833,6 @@ class UpdateUserHeadRes final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kErrMsgFieldNumber = 2,
-    kUrlFieldNumber = 3,
     kCodeFieldNumber = 1,
   };
   // string err_msg = 2;
@@ -852,22 +851,6 @@ class UpdateUserHeadRes final : public ::google::protobuf::Message
   std::string* _internal_mutable_err_msg();
 
   public:
-  // string url = 3;
-  void clear_url() ;
-  const std::string& url() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_url(Arg_&& arg, Args_... args);
-  std::string* mutable_url();
-  PROTOBUF_NODISCARD std::string* release_url();
-  void set_allocated_url(std::string* value);
-
-  private:
-  const std::string& _internal_url() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(
-      const std::string& value);
-  std::string* _internal_mutable_url();
-
-  public:
   // .MC.Msg.MCResponseStatusCode code = 1;
   void clear_code() ;
   ::MC::Msg::MCResponseStatusCode code() const;
@@ -883,8 +866,8 @@ class UpdateUserHeadRes final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
-      43, 2>
+      1, 2, 0,
+      40, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -900,7 +883,6 @@ class UpdateUserHeadRes final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr err_msg_;
-    ::google::protobuf::internal::ArenaStringPtr url_;
     int code_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1035,23 +1017,23 @@ class UpdateUserHeadReq final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kPicFieldNumber = 2,
+    kImageDataFieldNumber = 2,
     kUseridFieldNumber = 1,
   };
-  // string pic = 2;
-  void clear_pic() ;
-  const std::string& pic() const;
+  // string image_data = 2;
+  void clear_image_data() ;
+  const std::string& image_data() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_pic(Arg_&& arg, Args_... args);
-  std::string* mutable_pic();
-  PROTOBUF_NODISCARD std::string* release_pic();
-  void set_allocated_pic(std::string* value);
+  void set_image_data(Arg_&& arg, Args_... args);
+  std::string* mutable_image_data();
+  PROTOBUF_NODISCARD std::string* release_image_data();
+  void set_allocated_image_data(std::string* value);
 
   private:
-  const std::string& _internal_pic() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_pic(
+  const std::string& _internal_image_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_image_data(
       const std::string& value);
-  std::string* _internal_mutable_pic();
+  std::string* _internal_mutable_image_data();
 
   public:
   // uint32 userid = 1;
@@ -1070,7 +1052,7 @@ class UpdateUserHeadReq final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      36, 2>
+      43, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1085,7 +1067,7 @@ class UpdateUserHeadReq final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr pic_;
+    ::google::protobuf::internal::ArenaStringPtr image_data_;
     ::uint32_t userid_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -3051,54 +3033,54 @@ inline void UpdateUserHeadReq::_internal_set_userid(::uint32_t value) {
   _impl_.userid_ = value;
 }
 
-// string pic = 2;
-inline void UpdateUserHeadReq::clear_pic() {
+// string image_data = 2;
+inline void UpdateUserHeadReq::clear_image_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.pic_.ClearToEmpty();
+  _impl_.image_data_.ClearToEmpty();
 }
-inline const std::string& UpdateUserHeadReq::pic() const
+inline const std::string& UpdateUserHeadReq::image_data() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:MC.Msg.UpdateUserHeadReq.pic)
-  return _internal_pic();
+  // @@protoc_insertion_point(field_get:MC.Msg.UpdateUserHeadReq.image_data)
+  return _internal_image_data();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateUserHeadReq::set_pic(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UpdateUserHeadReq::set_image_data(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.pic_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:MC.Msg.UpdateUserHeadReq.pic)
+  _impl_.image_data_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Msg.UpdateUserHeadReq.image_data)
 }
-inline std::string* UpdateUserHeadReq::mutable_pic() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_pic();
-  // @@protoc_insertion_point(field_mutable:MC.Msg.UpdateUserHeadReq.pic)
+inline std::string* UpdateUserHeadReq::mutable_image_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_image_data();
+  // @@protoc_insertion_point(field_mutable:MC.Msg.UpdateUserHeadReq.image_data)
   return _s;
 }
-inline const std::string& UpdateUserHeadReq::_internal_pic() const {
+inline const std::string& UpdateUserHeadReq::_internal_image_data() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.pic_.Get();
+  return _impl_.image_data_.Get();
 }
-inline void UpdateUserHeadReq::_internal_set_pic(const std::string& value) {
+inline void UpdateUserHeadReq::_internal_set_image_data(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.pic_.Set(value, GetArena());
+  _impl_.image_data_.Set(value, GetArena());
 }
-inline std::string* UpdateUserHeadReq::_internal_mutable_pic() {
+inline std::string* UpdateUserHeadReq::_internal_mutable_image_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  return _impl_.pic_.Mutable( GetArena());
+  return _impl_.image_data_.Mutable( GetArena());
 }
-inline std::string* UpdateUserHeadReq::release_pic() {
+inline std::string* UpdateUserHeadReq::release_image_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:MC.Msg.UpdateUserHeadReq.pic)
-  return _impl_.pic_.Release();
+  // @@protoc_insertion_point(field_release:MC.Msg.UpdateUserHeadReq.image_data)
+  return _impl_.image_data_.Release();
 }
-inline void UpdateUserHeadReq::set_allocated_pic(std::string* value) {
+inline void UpdateUserHeadReq::set_allocated_image_data(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.pic_.SetAllocated(value, GetArena());
+  _impl_.image_data_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.pic_.IsDefault()) {
-          _impl_.pic_.Set("", GetArena());
+        if (_impl_.image_data_.IsDefault()) {
+          _impl_.image_data_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:MC.Msg.UpdateUserHeadReq.pic)
+  // @@protoc_insertion_point(field_set_allocated:MC.Msg.UpdateUserHeadReq.image_data)
 }
 
 // -------------------------------------------------------------------
@@ -3175,56 +3157,6 @@ inline void UpdateUserHeadRes::set_allocated_err_msg(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:MC.Msg.UpdateUserHeadRes.err_msg)
-}
-
-// string url = 3;
-inline void UpdateUserHeadRes::clear_url() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.url_.ClearToEmpty();
-}
-inline const std::string& UpdateUserHeadRes::url() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:MC.Msg.UpdateUserHeadRes.url)
-  return _internal_url();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateUserHeadRes::set_url(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:MC.Msg.UpdateUserHeadRes.url)
-}
-inline std::string* UpdateUserHeadRes::mutable_url() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_url();
-  // @@protoc_insertion_point(field_mutable:MC.Msg.UpdateUserHeadRes.url)
-  return _s;
-}
-inline const std::string& UpdateUserHeadRes::_internal_url() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.url_.Get();
-}
-inline void UpdateUserHeadRes::_internal_set_url(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.url_.Set(value, GetArena());
-}
-inline std::string* UpdateUserHeadRes::_internal_mutable_url() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  return _impl_.url_.Mutable( GetArena());
-}
-inline std::string* UpdateUserHeadRes::release_url() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:MC.Msg.UpdateUserHeadRes.url)
-  return _impl_.url_.Release();
-}
-inline void UpdateUserHeadRes::set_allocated_url(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.url_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.url_.IsDefault()) {
-          _impl_.url_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:MC.Msg.UpdateUserHeadRes.url)
 }
 
 // -------------------------------------------------------------------

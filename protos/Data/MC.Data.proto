@@ -6,6 +6,8 @@ service MCData{
     rpc GetUserPassword(MCDataUserRequest) returns (MCDataUserResponse) {}
     rpc TryRegist(MCDataRegistRequest) returns(MCDataRegistResponse) {}
     rpc GetUserFriends(MCDataUserIDRequest) returns(MCDataUserFriendsResponse) {}
+    rpc UpdateUserInfo(MCDataUserInfoReq) returns(MCDataUserInfoRes) {}
+    rpc UpdateUserHead (MCDataUserHeadReq) returns (MCDataUserHeadRes) {}
 }
 
 enum MCDataResponseStatusCode {
@@ -51,6 +53,8 @@ message MCDataUserResponse{
      string phone = 9;
      string birthday = 10;
      int32 userid = 11;
+
+     string img = 12;
 }
 
 message MCDataRegistRequest{
@@ -63,4 +67,26 @@ message MCDataRegistRequest{
 message MCDataRegistResponse{
     MCDataResponseStatusCode code = 1;
     string errmsg = 2;
+}
+
+message MCDataUserInfoReq{
+    uint32 userid = 1;
+    string field = 2;
+    string value = 3;
+}
+
+message MCDataUserInfoRes{
+    MCDataResponseStatusCode code = 1;
+    string err_msg = 2;
+    string new_value = 3;
+}
+
+message MCDataUserHeadReq{
+    uint32 userid = 1;
+    string image_data = 2;
+}
+
+message MCDataUserHeadRes{
+    MCDataResponseStatusCode code = 1;
+    string err_msg = 2;
 }

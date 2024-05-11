@@ -57,6 +57,20 @@ class MCData final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserFriendsResponse>> PrepareAsyncGetUserFriends(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserFriendsResponse>>(PrepareAsyncGetUserFriendsRaw(context, request, cq));
     }
+    virtual ::grpc::Status UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::MC::Data::MCDataUserInfoRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserInfoRes>> AsyncUpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserInfoRes>>(AsyncUpdateUserInfoRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserInfoRes>> PrepareAsyncUpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserInfoRes>>(PrepareAsyncUpdateUserInfoRaw(context, request, cq));
+    }
+    virtual ::grpc::Status UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::MC::Data::MCDataUserHeadRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>> AsyncUpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>>(AsyncUpdateUserHeadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>> PrepareAsyncUpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>>(PrepareAsyncUpdateUserHeadRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -66,6 +80,10 @@ class MCData final {
       virtual void TryRegist(::grpc::ClientContext* context, const ::MC::Data::MCDataRegistRequest* request, ::MC::Data::MCDataRegistResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetUserFriends(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest* request, ::MC::Data::MCDataUserFriendsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetUserFriends(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest* request, ::MC::Data::MCDataUserFriendsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -77,6 +95,10 @@ class MCData final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataRegistResponse>* PrepareAsyncTryRegistRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataRegistRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserFriendsResponse>* AsyncGetUserFriendsRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserFriendsResponse>* PrepareAsyncGetUserFriendsRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserInfoRes>* AsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserInfoRes>* PrepareAsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>* AsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>* PrepareAsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -102,6 +124,20 @@ class MCData final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserFriendsResponse>> PrepareAsyncGetUserFriends(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserFriendsResponse>>(PrepareAsyncGetUserFriendsRaw(context, request, cq));
     }
+    ::grpc::Status UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::MC::Data::MCDataUserInfoRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserInfoRes>> AsyncUpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserInfoRes>>(AsyncUpdateUserInfoRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserInfoRes>> PrepareAsyncUpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserInfoRes>>(PrepareAsyncUpdateUserInfoRaw(context, request, cq));
+    }
+    ::grpc::Status UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::MC::Data::MCDataUserHeadRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>> AsyncUpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>>(AsyncUpdateUserHeadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>> PrepareAsyncUpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>>(PrepareAsyncUpdateUserHeadRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -111,6 +147,10 @@ class MCData final {
       void TryRegist(::grpc::ClientContext* context, const ::MC::Data::MCDataRegistRequest* request, ::MC::Data::MCDataRegistResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetUserFriends(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest* request, ::MC::Data::MCDataUserFriendsResponse* response, std::function<void(::grpc::Status)>) override;
       void GetUserFriends(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest* request, ::MC::Data::MCDataUserFriendsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response, std::function<void(::grpc::Status)>) override;
+      void UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, std::function<void(::grpc::Status)>) override;
+      void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -128,9 +168,15 @@ class MCData final {
     ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataRegistResponse>* PrepareAsyncTryRegistRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataRegistRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserFriendsResponse>* AsyncGetUserFriendsRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserFriendsResponse>* PrepareAsyncGetUserFriendsRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserIDRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserInfoRes>* AsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserInfoRes>* PrepareAsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>* AsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>* PrepareAsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetUserPassword_;
     const ::grpc::internal::RpcMethod rpcmethod_TryRegist_;
     const ::grpc::internal::RpcMethod rpcmethod_GetUserFriends_;
+    const ::grpc::internal::RpcMethod rpcmethod_UpdateUserInfo_;
+    const ::grpc::internal::RpcMethod rpcmethod_UpdateUserHead_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -141,6 +187,8 @@ class MCData final {
     virtual ::grpc::Status GetUserPassword(::grpc::ServerContext* context, const ::MC::Data::MCDataUserRequest* request, ::MC::Data::MCDataUserResponse* response);
     virtual ::grpc::Status TryRegist(::grpc::ServerContext* context, const ::MC::Data::MCDataRegistRequest* request, ::MC::Data::MCDataRegistResponse* response);
     virtual ::grpc::Status GetUserFriends(::grpc::ServerContext* context, const ::MC::Data::MCDataUserIDRequest* request, ::MC::Data::MCDataUserFriendsResponse* response);
+    virtual ::grpc::Status UpdateUserInfo(::grpc::ServerContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response);
+    virtual ::grpc::Status UpdateUserHead(::grpc::ServerContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetUserPassword : public BaseClass {
@@ -202,7 +250,47 @@ class MCData final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetUserPassword<WithAsyncMethod_TryRegist<WithAsyncMethod_GetUserFriends<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_UpdateUserInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_UpdateUserInfo() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_UpdateUserInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserInfo(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserInfoReq* /*request*/, ::MC::Data::MCDataUserInfoRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateUserInfo(::grpc::ServerContext* context, ::MC::Data::MCDataUserInfoReq* request, ::grpc::ServerAsyncResponseWriter< ::MC::Data::MCDataUserInfoRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_UpdateUserHead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_UpdateUserHead() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_UpdateUserHead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserHead(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserHeadReq* /*request*/, ::MC::Data::MCDataUserHeadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateUserHead(::grpc::ServerContext* context, ::MC::Data::MCDataUserHeadReq* request, ::grpc::ServerAsyncResponseWriter< ::MC::Data::MCDataUserHeadRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetUserPassword<WithAsyncMethod_TryRegist<WithAsyncMethod_GetUserFriends<WithAsyncMethod_UpdateUserInfo<WithAsyncMethod_UpdateUserHead<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetUserPassword : public BaseClass {
    private:
@@ -284,7 +372,61 @@ class MCData final {
     virtual ::grpc::ServerUnaryReactor* GetUserFriends(
       ::grpc::CallbackServerContext* /*context*/, const ::MC::Data::MCDataUserIDRequest* /*request*/, ::MC::Data::MCDataUserFriendsResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetUserPassword<WithCallbackMethod_TryRegist<WithCallbackMethod_GetUserFriends<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_UpdateUserInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UpdateUserInfo() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::MC::Data::MCDataUserInfoReq, ::MC::Data::MCDataUserInfoRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response) { return this->UpdateUserInfo(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateUserInfo(
+        ::grpc::MessageAllocator< ::MC::Data::MCDataUserInfoReq, ::MC::Data::MCDataUserInfoRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::MC::Data::MCDataUserInfoReq, ::MC::Data::MCDataUserInfoRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_UpdateUserInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserInfo(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserInfoReq* /*request*/, ::MC::Data::MCDataUserInfoRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateUserInfo(
+      ::grpc::CallbackServerContext* /*context*/, const ::MC::Data::MCDataUserInfoReq* /*request*/, ::MC::Data::MCDataUserInfoRes* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_UpdateUserHead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UpdateUserHead() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::MC::Data::MCDataUserHeadReq, ::MC::Data::MCDataUserHeadRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response) { return this->UpdateUserHead(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateUserHead(
+        ::grpc::MessageAllocator< ::MC::Data::MCDataUserHeadReq, ::MC::Data::MCDataUserHeadRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::MC::Data::MCDataUserHeadReq, ::MC::Data::MCDataUserHeadRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_UpdateUserHead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserHead(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserHeadReq* /*request*/, ::MC::Data::MCDataUserHeadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateUserHead(
+      ::grpc::CallbackServerContext* /*context*/, const ::MC::Data::MCDataUserHeadReq* /*request*/, ::MC::Data::MCDataUserHeadRes* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetUserPassword<WithCallbackMethod_TryRegist<WithCallbackMethod_GetUserFriends<WithCallbackMethod_UpdateUserInfo<WithCallbackMethod_UpdateUserHead<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetUserPassword : public BaseClass {
@@ -333,6 +475,40 @@ class MCData final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetUserFriends(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserIDRequest* /*request*/, ::MC::Data::MCDataUserFriendsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UpdateUserInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UpdateUserInfo() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_UpdateUserInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserInfo(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserInfoReq* /*request*/, ::MC::Data::MCDataUserInfoRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UpdateUserHead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UpdateUserHead() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_UpdateUserHead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserHead(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserHeadReq* /*request*/, ::MC::Data::MCDataUserHeadRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -395,6 +571,46 @@ class MCData final {
     }
     void RequestGetUserFriends(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_UpdateUserInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_UpdateUserInfo() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_UpdateUserInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserInfo(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserInfoReq* /*request*/, ::MC::Data::MCDataUserInfoRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateUserInfo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_UpdateUserHead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_UpdateUserHead() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_UpdateUserHead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserHead(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserHeadReq* /*request*/, ::MC::Data::MCDataUserHeadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateUserHead(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -461,6 +677,50 @@ class MCData final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetUserFriends(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UpdateUserInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UpdateUserInfo() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateUserInfo(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_UpdateUserInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserInfo(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserInfoReq* /*request*/, ::MC::Data::MCDataUserInfoRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateUserInfo(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UpdateUserHead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UpdateUserHead() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateUserHead(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_UpdateUserHead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateUserHead(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserHeadReq* /*request*/, ::MC::Data::MCDataUserHeadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateUserHead(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -544,9 +804,63 @@ class MCData final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetUserFriends(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::MC::Data::MCDataUserIDRequest,::MC::Data::MCDataUserFriendsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetUserPassword<WithStreamedUnaryMethod_TryRegist<WithStreamedUnaryMethod_GetUserFriends<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UpdateUserInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UpdateUserInfo() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::MC::Data::MCDataUserInfoReq, ::MC::Data::MCDataUserInfoRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::MC::Data::MCDataUserInfoReq, ::MC::Data::MCDataUserInfoRes>* streamer) {
+                       return this->StreamedUpdateUserInfo(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_UpdateUserInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UpdateUserInfo(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserInfoReq* /*request*/, ::MC::Data::MCDataUserInfoRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdateUserInfo(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::MC::Data::MCDataUserInfoReq,::MC::Data::MCDataUserInfoRes>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UpdateUserHead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UpdateUserHead() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::MC::Data::MCDataUserHeadReq, ::MC::Data::MCDataUserHeadRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::MC::Data::MCDataUserHeadReq, ::MC::Data::MCDataUserHeadRes>* streamer) {
+                       return this->StreamedUpdateUserHead(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_UpdateUserHead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UpdateUserHead(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserHeadReq* /*request*/, ::MC::Data::MCDataUserHeadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdateUserHead(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::MC::Data::MCDataUserHeadReq,::MC::Data::MCDataUserHeadRes>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetUserPassword<WithStreamedUnaryMethod_TryRegist<WithStreamedUnaryMethod_GetUserFriends<WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetUserPassword<WithStreamedUnaryMethod_TryRegist<WithStreamedUnaryMethod_GetUserFriends<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetUserPassword<WithStreamedUnaryMethod_TryRegist<WithStreamedUnaryMethod_GetUserFriends<WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<Service > > > > > StreamedService;
 };
 
 }  // namespace Data

@@ -28,6 +28,12 @@ using MC::Data::Friend;
 using MC::Data::MCDataUserFriendsResponse;
 using MC::Data::MCDataUserIDRequest;
 
+using MC::Data::MCDataUserInfoReq;
+using MC::Data::MCDataUserInfoRes;
+
+using MC::Data::MCDataUserHeadReq;
+using MC::Data::MCDataUserHeadRes;
+
 class DataMsgClient {
 public:
     static DataMsgClient& GetInstance() {
@@ -61,6 +67,72 @@ public:
             if (code != MCDataResponseStatusCode::OK) {
                 std::cout << "Error: " << reply.errmsg() << std::endl;
                 return "Error";
+            }
+
+            return "OK";
+        } else {
+            std::cout << status.error_code() << ": " << status.error_message()
+                      << std::endl;
+            return "RPC failed";
+        }
+    }
+
+    std::string UpdateUserInfo(const int& userid, const std::string& field,
+                               const std::string& value) {
+        // Data we are sending to the server.
+        MCDataUserInfoReq request;
+        request.set_userid(userid);
+        request.set_field(field);
+        request.set_value(value);
+
+        // Container for the data we expect from the server.
+
+        // Context for the client. It could be used to convey extra information
+        // to the server and/or tweak certain RPC behaviors.
+        ClientContext context;
+
+        MCDataUserInfoRes reply;
+        // The actual RPC.
+        Status status = stub_->UpdateUserInfo(&context, request, &reply);
+
+        // Act upon its status.
+        if (status.ok()) {
+            auto code = reply.code();
+            if (code != MCDataResponseStatusCode::OK) {
+                std::cout << "Error: " << reply.err_msg() << std::endl;
+                return reply.err_msg();
+            }
+
+            return "OK";
+        } else {
+            std::cout << status.error_code() << ": " << status.error_message()
+                      << std::endl;
+            return "RPC failed";
+        }
+    }
+
+    std::string UpdateUserHead(const int& userid, const std::string& image) {
+        // Data we are sending to the server.
+        MCDataUserHeadReq request;
+        request.set_userid(userid);
+        request.set_image_data(image);
+
+        // Container for the data we expect from the server.
+
+        // Context for the client. It could be used to convey extra information
+        // to the server and/or tweak certain RPC behaviors.
+        ClientContext context;
+
+        MCDataUserHeadRes reply;
+        // The actual RPC.
+        Status status = stub_->UpdateUserHead(&context, request, &reply);
+
+        // Act upon its status.
+        if (status.ok()) {
+            auto code = reply.code();
+            if (code != MCDataResponseStatusCode::OK) {
+                std::cout << "Error: " << reply.err_msg() << std::endl;
+                return reply.err_msg();
             }
 
             return "OK";
