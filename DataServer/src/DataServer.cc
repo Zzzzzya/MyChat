@@ -40,6 +40,7 @@ void DataServer::HandleRpcs() {
     new GetFriendsCallData(&service_, cq_.get(), pool_);
     new UpdateUserInfoCallData(&service_, cq_.get(), pool_);
     new UpdateUserHeadCallData(&service_, cq_.get(), pool_);
+    new AddFriendCallData(&service_, cq_.get(), pool_);
     void* tag;  // uniquely identifies a request.
     bool ok;
     while (true) {

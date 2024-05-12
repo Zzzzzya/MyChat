@@ -44,6 +44,9 @@ using MC::Data::MCDataUserInfoRes;
 using MC::Data::MCDataUserHeadReq;
 using MC::Data::MCDataUserHeadRes;
 
+using MC::Data::MCDataAddFriendReq;
+using MC::Data::MCDataAddFriendRes;
+
 // 异步数据库处理服务端构建
 class DataServer final {
 public:
@@ -291,7 +294,6 @@ private:
 
             while (res->next()) {
                 auto friendid = res->getInt("UserID2");
-                auto friendSign = res->getString("friendSign");
                 auto lastContactTime = res->getString("lastContactTime");
 
                 // 创建一个新的Friend对象
@@ -302,15 +304,18 @@ private:
 
                 // 查询User表获取用户名
                 auto sql_user = absl::StrFormat(
-                    "SELECT nickname FROM User WHERE id = %d;", friendid);
+                    "SELECT nickname,profile_image FROM User WHERE id = %d;",
+                    friendid);
                 auto res_user = conn->ExecuteQuery(sql_user);
                 std::string friendname;
+                std::string friendsign;
                 if (res_user->next()) {
                     friendname = res_user->getString("nickname");
+                    friendsign = res_user->getString("profile_image");
                 }
 
                 new_friend->set_friendname(friendname);
-                new_friend->set_friendsign(friendSign);
+                new_friend->set_friendsign(friendsign);
                 new_friend->set_lastcontacttime(lastContactTime);
 
                 debug(), "friendsid: ", res->getString("UserID2");
@@ -523,6 +528,97 @@ private:
         MCDataUserHeadReq request_;
         MCDataUserHeadRes response_;
         ServerAsyncResponseWriter<MCDataUserHeadRes> responder_;
+        int usrid_ = 0;
+    };
+
+    // Msg业务4 添加好友
+    struct AddFriendCallData : public CallData {
+        AddFriendCallData(MCData::AsyncService* service,
+                          ServerCompletionQueue* cq, MysqlPool* pool)
+            : CallData(service, cq, pool), responder_(&ctx_) {
+            Proceed();
+        }
+
+        void creating() override {
+            debug(), "AddFriendCallData";
+            status_ = PROCESS;
+            service_->RequestAddFriend(&ctx_, &request_, &responder_, cq_, cq_,
+                                       this);
+            debug(), "Creating down";
+        }
+
+        void processing() override {
+            new AddFriendCallData(service_, cq_, pool_);
+
+            auto userid = request_.userid();
+            auto friendname = request_.friendname();
+
+            // 请求一个数据库连接
+            auto conn = pool_->GetConnection(0);
+
+            if (conn == nullptr) {
+                debug(), "!conn";
+                response_.set_code(MCDataResponseStatusCode::DATABASE_ERROR);
+                response_.set_errmsg("数据库连接失败");
+                responder_.Finish(response_, Status::OK, this);
+                status_ = FINISH;
+                return;
+            }
+
+            // 查询数据库
+            auto sql = absl::StrFormat(
+                "SELECT id FROM User WHERE username = '%s';", friendname);
+
+            debug(), "sql = ", sql;
+
+            auto res = conn->ExecuteQuery(sql);
+
+            int res2 = 0;
+            int res3 = 0;
+
+            while (res && res->next()) {
+                auto friendid = res->getInt("id");
+                auto sql2 = absl::StrFormat(
+                    "INSERT INTO Friends (UserID1, UserID2, Status) VALUES "
+                    "(%d, %d, 1) "
+                    "ON DUPLICATE KEY UPDATE status = 1;",
+                    userid, friendid);
+                res2 = conn->ExecuteUpdate(sql2);
+                auto sql3 = absl::StrFormat(
+                    "INSERT INTO Friends (UserID1, UserID2, Status) VALUES "
+                    "(%d, %d, 1) "
+                    "ON DUPLICATE KEY UPDATE status = 1;",
+                    friendid, userid);
+                res3 = conn->ExecuteUpdate(sql3);
+            }
+
+            // 归还一个链接
+            pool_->ReleaseConnection(conn);
+
+            if (!res || res2 == 0 || res3 == 0) {
+                response_.set_code(MCDataResponseStatusCode::ERROR);
+                response_.set_errmsg("添加好友失败");
+            } else {
+                response_.set_code(MCDataResponseStatusCode::OK);
+                response_.set_errmsg("添加好友成功");
+            }
+
+            auto RetStatus = Status::OK;
+
+            responder_.Finish(response_, RetStatus, this);
+            status_ = FINISH;
+        }
+
+        void finishing() override {
+            CHECK_EQ(status_, FINISH);
+            debug(), "finishing";
+            delete this;
+        }
+
+    private:
+        MCDataAddFriendReq request_;
+        MCDataAddFriendRes response_;
+        ServerAsyncResponseWriter<MCDataAddFriendRes> responder_;
         int usrid_ = 0;
     };
 

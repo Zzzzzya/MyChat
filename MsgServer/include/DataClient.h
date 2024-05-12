@@ -34,6 +34,9 @@ using MC::Data::MCDataUserInfoRes;
 using MC::Data::MCDataUserHeadReq;
 using MC::Data::MCDataUserHeadRes;
 
+using MC::Data::MCDataAddFriendReq;
+using MC::Data::MCDataAddFriendRes;
+
 class DataMsgClient {
 public:
     static DataMsgClient& GetInstance() {
@@ -133,6 +136,37 @@ public:
             if (code != MCDataResponseStatusCode::OK) {
                 std::cout << "Error: " << reply.err_msg() << std::endl;
                 return reply.err_msg();
+            }
+
+            return "OK";
+        } else {
+            std::cout << status.error_code() << ": " << status.error_message()
+                      << std::endl;
+            return "RPC failed";
+        }
+    }
+
+    std::string AddFriend(const int& userid, const std::string& friendname) {
+        // Data we are sending to the server.
+        MCDataAddFriendReq request;
+        MCDataAddFriendRes reply;
+        request.set_userid(userid);
+        request.set_friendname(friendname);
+
+        // Container for the data we expect from the server.
+
+        // Context for the client. It could be used to convey extra information
+        // to the server and/or tweak certain RPC behaviors.
+        ClientContext context;
+        // The actual RPC.
+        Status status = stub_->AddFriend(&context, request, &reply);
+
+        // Act upon its status.
+        if (status.ok()) {
+            auto code = reply.code();
+            if (code != MCDataResponseStatusCode::OK) {
+                std::cout << "Error: " << reply.errmsg() << std::endl;
+                return reply.errmsg();
             }
 
             return "OK";

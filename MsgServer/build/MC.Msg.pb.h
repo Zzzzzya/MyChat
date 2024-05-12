@@ -58,6 +58,9 @@ extern GetUserInfoReqDefaultTypeInternal _GetUserInfoReq_default_instance_;
 class GetUserInfoRes;
 struct GetUserInfoResDefaultTypeInternal;
 extern GetUserInfoResDefaultTypeInternal _GetUserInfoRes_default_instance_;
+class Message;
+struct MessageDefaultTypeInternal;
+extern MessageDefaultTypeInternal _Message_default_instance_;
 class MsgFriend;
 struct MsgFriendDefaultTypeInternal;
 extern MsgFriendDefaultTypeInternal _MsgFriend_default_instance_;
@@ -189,7 +192,7 @@ class UserID final : public ::google::protobuf::Message
     return reinterpret_cast<const UserID*>(
         &_UserID_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(UserID& a, UserID& b) { a.Swap(&b); }
   inline void Swap(UserID* other) {
     if (other == this) return;
@@ -356,7 +359,7 @@ class UpdateUserInfoRes final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateUserInfoRes*>(
         &_UpdateUserInfoRes_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(UpdateUserInfoRes& a, UpdateUserInfoRes& b) { a.Swap(&b); }
   inline void Swap(UpdateUserInfoRes* other) {
     if (other == this) return;
@@ -559,7 +562,7 @@ class UpdateUserInfoReq final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateUserInfoReq*>(
         &_UpdateUserInfoReq_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(UpdateUserInfoReq& a, UpdateUserInfoReq& b) { a.Swap(&b); }
   inline void Swap(UpdateUserInfoReq* other) {
     if (other == this) return;
@@ -762,7 +765,7 @@ class UpdateUserHeadRes final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateUserHeadRes*>(
         &_UpdateUserHeadRes_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(UpdateUserHeadRes& a, UpdateUserHeadRes& b) { a.Swap(&b); }
   inline void Swap(UpdateUserHeadRes* other) {
     if (other == this) return;
@@ -947,7 +950,7 @@ class UpdateUserHeadReq final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateUserHeadReq*>(
         &_UpdateUserHeadReq_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(UpdateUserHeadReq& a, UpdateUserHeadReq& b) { a.Swap(&b); }
   inline void Swap(UpdateUserHeadReq* other) {
     if (other == this) return;
@@ -1132,7 +1135,7 @@ class SendMessageRes final : public ::google::protobuf::Message
     return reinterpret_cast<const SendMessageRes*>(
         &_SendMessageRes_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(SendMessageRes& a, SendMessageRes& b) { a.Swap(&b); }
   inline void Swap(SendMessageRes* other) {
     if (other == this) return;
@@ -1299,7 +1302,7 @@ class SendMessageReq final : public ::google::protobuf::Message
     return reinterpret_cast<const SendMessageReq*>(
         &_SendMessageReq_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(SendMessageReq& a, SendMessageReq& b) { a.Swap(&b); }
   inline void Swap(SendMessageReq* other) {
     if (other == this) return;
@@ -1496,7 +1499,7 @@ class MsgFriend final : public ::google::protobuf::Message
     return reinterpret_cast<const MsgFriend*>(
         &_MsgFriend_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(MsgFriend& a, MsgFriend& b) { a.Swap(&b); }
   inline void Swap(MsgFriend* other) {
     if (other == this) return;
@@ -1662,6 +1665,329 @@ class MsgFriend final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class Message final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:MC.Msg.Message) */ {
+ public:
+  inline Message() : Message(nullptr) {}
+  ~Message() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Message(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Message(const Message& from) : Message(nullptr, from) {}
+  inline Message(Message&& from) noexcept
+      : Message(nullptr, std::move(from)) {}
+  inline Message& operator=(const Message& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Message& operator=(Message&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Message& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Message* internal_default_instance() {
+    return reinterpret_cast<const Message*>(
+        &_Message_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(Message& a, Message& b) { a.Swap(&b); }
+  inline void Swap(Message* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Message* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Message* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<Message>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Message& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Message& from) { Message::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(Message* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "MC.Msg.Message"; }
+
+ protected:
+  explicit Message(::google::protobuf::Arena* arena);
+  Message(::google::protobuf::Arena* arena, const Message& from);
+  Message(::google::protobuf::Arena* arena, Message&& from) noexcept
+      : Message(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kTypeFieldNumber = 1,
+    kSendertypeFieldNumber = 3,
+    kRecievertypeFieldNumber = 5,
+    kMsgFieldNumber = 6,
+    kTimeFieldNumber = 7,
+    kMsgidFieldNumber = 8,
+    kRecievernameFieldNumber = 9,
+    kSendernameFieldNumber = 10,
+    kSenderFieldNumber = 2,
+    kRecieverFieldNumber = 4,
+  };
+  // string type = 1;
+  void clear_type() ;
+  const std::string& type() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_type(Arg_&& arg, Args_... args);
+  std::string* mutable_type();
+  PROTOBUF_NODISCARD std::string* release_type();
+  void set_allocated_type(std::string* value);
+
+  private:
+  const std::string& _internal_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
+      const std::string& value);
+  std::string* _internal_mutable_type();
+
+  public:
+  // string sendertype = 3;
+  void clear_sendertype() ;
+  const std::string& sendertype() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_sendertype(Arg_&& arg, Args_... args);
+  std::string* mutable_sendertype();
+  PROTOBUF_NODISCARD std::string* release_sendertype();
+  void set_allocated_sendertype(std::string* value);
+
+  private:
+  const std::string& _internal_sendertype() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_sendertype(
+      const std::string& value);
+  std::string* _internal_mutable_sendertype();
+
+  public:
+  // string recievertype = 5;
+  void clear_recievertype() ;
+  const std::string& recievertype() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_recievertype(Arg_&& arg, Args_... args);
+  std::string* mutable_recievertype();
+  PROTOBUF_NODISCARD std::string* release_recievertype();
+  void set_allocated_recievertype(std::string* value);
+
+  private:
+  const std::string& _internal_recievertype() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_recievertype(
+      const std::string& value);
+  std::string* _internal_mutable_recievertype();
+
+  public:
+  // string msg = 6;
+  void clear_msg() ;
+  const std::string& msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_msg();
+  PROTOBUF_NODISCARD std::string* release_msg();
+  void set_allocated_msg(std::string* value);
+
+  private:
+  const std::string& _internal_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msg(
+      const std::string& value);
+  std::string* _internal_mutable_msg();
+
+  public:
+  // string time = 7;
+  void clear_time() ;
+  const std::string& time() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_time(Arg_&& arg, Args_... args);
+  std::string* mutable_time();
+  PROTOBUF_NODISCARD std::string* release_time();
+  void set_allocated_time(std::string* value);
+
+  private:
+  const std::string& _internal_time() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_time(
+      const std::string& value);
+  std::string* _internal_mutable_time();
+
+  public:
+  // string msgid = 8;
+  void clear_msgid() ;
+  const std::string& msgid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_msgid(Arg_&& arg, Args_... args);
+  std::string* mutable_msgid();
+  PROTOBUF_NODISCARD std::string* release_msgid();
+  void set_allocated_msgid(std::string* value);
+
+  private:
+  const std::string& _internal_msgid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msgid(
+      const std::string& value);
+  std::string* _internal_mutable_msgid();
+
+  public:
+  // string recievername = 9;
+  void clear_recievername() ;
+  const std::string& recievername() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_recievername(Arg_&& arg, Args_... args);
+  std::string* mutable_recievername();
+  PROTOBUF_NODISCARD std::string* release_recievername();
+  void set_allocated_recievername(std::string* value);
+
+  private:
+  const std::string& _internal_recievername() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_recievername(
+      const std::string& value);
+  std::string* _internal_mutable_recievername();
+
+  public:
+  // string sendername = 10;
+  void clear_sendername() ;
+  const std::string& sendername() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_sendername(Arg_&& arg, Args_... args);
+  std::string* mutable_sendername();
+  PROTOBUF_NODISCARD std::string* release_sendername();
+  void set_allocated_sendername(std::string* value);
+
+  private:
+  const std::string& _internal_sendername() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_sendername(
+      const std::string& value);
+  std::string* _internal_mutable_sendername();
+
+  public:
+  // uint32 sender = 2;
+  void clear_sender() ;
+  ::uint32_t sender() const;
+  void set_sender(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_sender() const;
+  void _internal_set_sender(::uint32_t value);
+
+  public:
+  // uint32 reciever = 4;
+  void clear_reciever() ;
+  ::uint32_t reciever() const;
+  void set_reciever(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_reciever() const;
+  void _internal_set_reciever(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:MC.Msg.Message)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      4, 10, 0,
+      91, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr type_;
+    ::google::protobuf::internal::ArenaStringPtr sendertype_;
+    ::google::protobuf::internal::ArenaStringPtr recievertype_;
+    ::google::protobuf::internal::ArenaStringPtr msg_;
+    ::google::protobuf::internal::ArenaStringPtr time_;
+    ::google::protobuf::internal::ArenaStringPtr msgid_;
+    ::google::protobuf::internal::ArenaStringPtr recievername_;
+    ::google::protobuf::internal::ArenaStringPtr sendername_;
+    ::uint32_t sender_;
+    ::uint32_t reciever_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_MC_2eMsg_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetUserInfoRes final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:MC.Msg.GetUserInfoRes) */ {
  public:
@@ -1717,7 +2043,7 @@ class GetUserInfoRes final : public ::google::protobuf::Message
     return reinterpret_cast<const GetUserInfoRes*>(
         &_GetUserInfoRes_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(GetUserInfoRes& a, GetUserInfoRes& b) { a.Swap(&b); }
   inline void Swap(GetUserInfoRes* other) {
     if (other == this) return;
@@ -1977,7 +2303,7 @@ class GetUserInfoReq final : public ::google::protobuf::Message
     return reinterpret_cast<const GetUserInfoReq*>(
         &_GetUserInfoReq_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(GetUserInfoReq& a, GetUserInfoReq& b) { a.Swap(&b); }
   inline void Swap(GetUserInfoReq* other) {
     if (other == this) return;
@@ -2144,7 +2470,7 @@ class UserIDList final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIDList*>(
         &_UserIDList_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(UserIDList& a, UserIDList& b) { a.Swap(&b); }
   inline void Swap(UserIDList* other) {
     if (other == this) return;
@@ -2304,6 +2630,454 @@ class UserIDList final : public ::google::protobuf::Message
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// Message
+
+// string type = 1;
+inline void Message::clear_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.type_.ClearToEmpty();
+}
+inline const std::string& Message::type() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.type)
+  return _internal_type();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Message::set_type(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.type)
+}
+inline std::string* Message::mutable_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_type();
+  // @@protoc_insertion_point(field_mutable:MC.Msg.Message.type)
+  return _s;
+}
+inline const std::string& Message::_internal_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.type_.Get();
+}
+inline void Message::_internal_set_type(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.type_.Set(value, GetArena());
+}
+inline std::string* Message::_internal_mutable_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.type_.Mutable( GetArena());
+}
+inline std::string* Message::release_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Msg.Message.type)
+  return _impl_.type_.Release();
+}
+inline void Message::set_allocated_type(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.type_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.type_.IsDefault()) {
+          _impl_.type_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Msg.Message.type)
+}
+
+// uint32 sender = 2;
+inline void Message::clear_sender() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sender_ = 0u;
+}
+inline ::uint32_t Message::sender() const {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.sender)
+  return _internal_sender();
+}
+inline void Message::set_sender(::uint32_t value) {
+  _internal_set_sender(value);
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.sender)
+}
+inline ::uint32_t Message::_internal_sender() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.sender_;
+}
+inline void Message::_internal_set_sender(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sender_ = value;
+}
+
+// string sendertype = 3;
+inline void Message::clear_sendertype() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sendertype_.ClearToEmpty();
+}
+inline const std::string& Message::sendertype() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.sendertype)
+  return _internal_sendertype();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Message::set_sendertype(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sendertype_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.sendertype)
+}
+inline std::string* Message::mutable_sendertype() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_sendertype();
+  // @@protoc_insertion_point(field_mutable:MC.Msg.Message.sendertype)
+  return _s;
+}
+inline const std::string& Message::_internal_sendertype() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.sendertype_.Get();
+}
+inline void Message::_internal_set_sendertype(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sendertype_.Set(value, GetArena());
+}
+inline std::string* Message::_internal_mutable_sendertype() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.sendertype_.Mutable( GetArena());
+}
+inline std::string* Message::release_sendertype() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Msg.Message.sendertype)
+  return _impl_.sendertype_.Release();
+}
+inline void Message::set_allocated_sendertype(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sendertype_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.sendertype_.IsDefault()) {
+          _impl_.sendertype_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Msg.Message.sendertype)
+}
+
+// uint32 reciever = 4;
+inline void Message::clear_reciever() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.reciever_ = 0u;
+}
+inline ::uint32_t Message::reciever() const {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.reciever)
+  return _internal_reciever();
+}
+inline void Message::set_reciever(::uint32_t value) {
+  _internal_set_reciever(value);
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.reciever)
+}
+inline ::uint32_t Message::_internal_reciever() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.reciever_;
+}
+inline void Message::_internal_set_reciever(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.reciever_ = value;
+}
+
+// string recievertype = 5;
+inline void Message::clear_recievertype() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.recievertype_.ClearToEmpty();
+}
+inline const std::string& Message::recievertype() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.recievertype)
+  return _internal_recievertype();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Message::set_recievertype(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.recievertype_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.recievertype)
+}
+inline std::string* Message::mutable_recievertype() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_recievertype();
+  // @@protoc_insertion_point(field_mutable:MC.Msg.Message.recievertype)
+  return _s;
+}
+inline const std::string& Message::_internal_recievertype() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.recievertype_.Get();
+}
+inline void Message::_internal_set_recievertype(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.recievertype_.Set(value, GetArena());
+}
+inline std::string* Message::_internal_mutable_recievertype() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.recievertype_.Mutable( GetArena());
+}
+inline std::string* Message::release_recievertype() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Msg.Message.recievertype)
+  return _impl_.recievertype_.Release();
+}
+inline void Message::set_allocated_recievertype(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.recievertype_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.recievertype_.IsDefault()) {
+          _impl_.recievertype_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Msg.Message.recievertype)
+}
+
+// string msg = 6;
+inline void Message::clear_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msg_.ClearToEmpty();
+}
+inline const std::string& Message::msg() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.msg)
+  return _internal_msg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Message::set_msg(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msg_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.msg)
+}
+inline std::string* Message::mutable_msg() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_msg();
+  // @@protoc_insertion_point(field_mutable:MC.Msg.Message.msg)
+  return _s;
+}
+inline const std::string& Message::_internal_msg() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.msg_.Get();
+}
+inline void Message::_internal_set_msg(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msg_.Set(value, GetArena());
+}
+inline std::string* Message::_internal_mutable_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.msg_.Mutable( GetArena());
+}
+inline std::string* Message::release_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Msg.Message.msg)
+  return _impl_.msg_.Release();
+}
+inline void Message::set_allocated_msg(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msg_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.msg_.IsDefault()) {
+          _impl_.msg_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Msg.Message.msg)
+}
+
+// string time = 7;
+inline void Message::clear_time() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.time_.ClearToEmpty();
+}
+inline const std::string& Message::time() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.time)
+  return _internal_time();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Message::set_time(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.time_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.time)
+}
+inline std::string* Message::mutable_time() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_time();
+  // @@protoc_insertion_point(field_mutable:MC.Msg.Message.time)
+  return _s;
+}
+inline const std::string& Message::_internal_time() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.time_.Get();
+}
+inline void Message::_internal_set_time(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.time_.Set(value, GetArena());
+}
+inline std::string* Message::_internal_mutable_time() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.time_.Mutable( GetArena());
+}
+inline std::string* Message::release_time() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Msg.Message.time)
+  return _impl_.time_.Release();
+}
+inline void Message::set_allocated_time(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.time_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.time_.IsDefault()) {
+          _impl_.time_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Msg.Message.time)
+}
+
+// string msgid = 8;
+inline void Message::clear_msgid() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msgid_.ClearToEmpty();
+}
+inline const std::string& Message::msgid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.msgid)
+  return _internal_msgid();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Message::set_msgid(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msgid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.msgid)
+}
+inline std::string* Message::mutable_msgid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_msgid();
+  // @@protoc_insertion_point(field_mutable:MC.Msg.Message.msgid)
+  return _s;
+}
+inline const std::string& Message::_internal_msgid() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.msgid_.Get();
+}
+inline void Message::_internal_set_msgid(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msgid_.Set(value, GetArena());
+}
+inline std::string* Message::_internal_mutable_msgid() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.msgid_.Mutable( GetArena());
+}
+inline std::string* Message::release_msgid() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Msg.Message.msgid)
+  return _impl_.msgid_.Release();
+}
+inline void Message::set_allocated_msgid(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msgid_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.msgid_.IsDefault()) {
+          _impl_.msgid_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Msg.Message.msgid)
+}
+
+// string recievername = 9;
+inline void Message::clear_recievername() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.recievername_.ClearToEmpty();
+}
+inline const std::string& Message::recievername() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.recievername)
+  return _internal_recievername();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Message::set_recievername(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.recievername_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.recievername)
+}
+inline std::string* Message::mutable_recievername() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_recievername();
+  // @@protoc_insertion_point(field_mutable:MC.Msg.Message.recievername)
+  return _s;
+}
+inline const std::string& Message::_internal_recievername() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.recievername_.Get();
+}
+inline void Message::_internal_set_recievername(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.recievername_.Set(value, GetArena());
+}
+inline std::string* Message::_internal_mutable_recievername() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.recievername_.Mutable( GetArena());
+}
+inline std::string* Message::release_recievername() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Msg.Message.recievername)
+  return _impl_.recievername_.Release();
+}
+inline void Message::set_allocated_recievername(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.recievername_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.recievername_.IsDefault()) {
+          _impl_.recievername_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Msg.Message.recievername)
+}
+
+// string sendername = 10;
+inline void Message::clear_sendername() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sendername_.ClearToEmpty();
+}
+inline const std::string& Message::sendername() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Msg.Message.sendername)
+  return _internal_sendername();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Message::set_sendername(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sendername_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Msg.Message.sendername)
+}
+inline std::string* Message::mutable_sendername() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_sendername();
+  // @@protoc_insertion_point(field_mutable:MC.Msg.Message.sendername)
+  return _s;
+}
+inline const std::string& Message::_internal_sendername() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.sendername_.Get();
+}
+inline void Message::_internal_set_sendername(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sendername_.Set(value, GetArena());
+}
+inline std::string* Message::_internal_mutable_sendername() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.sendername_.Mutable( GetArena());
+}
+inline std::string* Message::release_sendername() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Msg.Message.sendername)
+  return _impl_.sendername_.Release();
+}
+inline void Message::set_allocated_sendername(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.sendername_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.sendername_.IsDefault()) {
+          _impl_.sendername_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Msg.Message.sendername)
+}
+
 // -------------------------------------------------------------------
 
 // UserID

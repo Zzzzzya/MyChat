@@ -55,6 +55,12 @@ namespace Data {
 class Friend;
 struct FriendDefaultTypeInternal;
 extern FriendDefaultTypeInternal _Friend_default_instance_;
+class MCDataAddFriendReq;
+struct MCDataAddFriendReqDefaultTypeInternal;
+extern MCDataAddFriendReqDefaultTypeInternal _MCDataAddFriendReq_default_instance_;
+class MCDataAddFriendRes;
+struct MCDataAddFriendResDefaultTypeInternal;
+extern MCDataAddFriendResDefaultTypeInternal _MCDataAddFriendRes_default_instance_;
 class MCDataRegistRequest;
 struct MCDataRegistRequestDefaultTypeInternal;
 extern MCDataRegistRequestDefaultTypeInternal _MCDataRegistRequest_default_instance_;
@@ -190,7 +196,7 @@ class MCDataUserResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataUserResponse*>(
         &_MCDataUserResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(MCDataUserResponse& a, MCDataUserResponse& b) { a.Swap(&b); }
   inline void Swap(MCDataUserResponse* other) {
     if (other == this) return;
@@ -268,6 +274,7 @@ class MCDataUserResponse final : public ::google::protobuf::Message
     kEmailFieldNumber = 8,
     kPhoneFieldNumber = 9,
     kBirthdayFieldNumber = 10,
+    kImgFieldNumber = 12,
     kCodeFieldNumber = 1,
     kGenderFieldNumber = 6,
     kUseridFieldNumber = 11,
@@ -400,6 +407,22 @@ class MCDataUserResponse final : public ::google::protobuf::Message
   std::string* _internal_mutable_birthday();
 
   public:
+  // string img = 12;
+  void clear_img() ;
+  const std::string& img() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_img(Arg_&& arg, Args_... args);
+  std::string* mutable_img();
+  PROTOBUF_NODISCARD std::string* release_img();
+  void set_allocated_img(std::string* value);
+
+  private:
+  const std::string& _internal_img() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_img(
+      const std::string& value);
+  std::string* _internal_mutable_img();
+
+  public:
   // .MC.Data.MCDataResponseStatusCode code = 1;
   void clear_code() ;
   ::MC::Data::MCDataResponseStatusCode code() const;
@@ -435,8 +458,8 @@ class MCDataUserResponse final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 11, 0,
-      95, 2>
+      4, 12, 0,
+      98, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -459,6 +482,7 @@ class MCDataUserResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr email_;
     ::google::protobuf::internal::ArenaStringPtr phone_;
     ::google::protobuf::internal::ArenaStringPtr birthday_;
+    ::google::protobuf::internal::ArenaStringPtr img_;
     int code_;
     bool gender_;
     ::int32_t userid_;
@@ -525,7 +549,7 @@ class MCDataUserRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataUserRequest*>(
         &_MCDataUserRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(MCDataUserRequest& a, MCDataUserRequest& b) { a.Swap(&b); }
   inline void Swap(MCDataUserRequest* other) {
     if (other == this) return;
@@ -698,7 +722,7 @@ class MCDataUserInfoRes final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataUserInfoRes*>(
         &_MCDataUserInfoRes_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(MCDataUserInfoRes& a, MCDataUserInfoRes& b) { a.Swap(&b); }
   inline void Swap(MCDataUserInfoRes* other) {
     if (other == this) return;
@@ -901,7 +925,7 @@ class MCDataUserInfoReq final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataUserInfoReq*>(
         &_MCDataUserInfoReq_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(MCDataUserInfoReq& a, MCDataUserInfoReq& b) { a.Swap(&b); }
   inline void Swap(MCDataUserInfoReq* other) {
     if (other == this) return;
@@ -1104,7 +1128,7 @@ class MCDataUserIDRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataUserIDRequest*>(
         &_MCDataUserIDRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(MCDataUserIDRequest& a, MCDataUserIDRequest& b) { a.Swap(&b); }
   inline void Swap(MCDataUserIDRequest* other) {
     if (other == this) return;
@@ -1271,7 +1295,7 @@ class MCDataUserHeadRes final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataUserHeadRes*>(
         &_MCDataUserHeadRes_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(MCDataUserHeadRes& a, MCDataUserHeadRes& b) { a.Swap(&b); }
   inline void Swap(MCDataUserHeadRes* other) {
     if (other == this) return;
@@ -1456,7 +1480,7 @@ class MCDataUserHeadReq final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataUserHeadReq*>(
         &_MCDataUserHeadReq_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(MCDataUserHeadReq& a, MCDataUserHeadReq& b) { a.Swap(&b); }
   inline void Swap(MCDataUserHeadReq* other) {
     if (other == this) return;
@@ -1641,7 +1665,7 @@ class MCDataRegistResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataRegistResponse*>(
         &_MCDataRegistResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(MCDataRegistResponse& a, MCDataRegistResponse& b) { a.Swap(&b); }
   inline void Swap(MCDataRegistResponse* other) {
     if (other == this) return;
@@ -1826,7 +1850,7 @@ class MCDataRegistRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataRegistRequest*>(
         &_MCDataRegistRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(MCDataRegistRequest& a, MCDataRegistRequest& b) { a.Swap(&b); }
   inline void Swap(MCDataRegistRequest* other) {
     if (other == this) return;
@@ -1998,6 +2022,376 @@ class MCDataRegistRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class MCDataAddFriendRes final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:MC.Data.MCDataAddFriendRes) */ {
+ public:
+  inline MCDataAddFriendRes() : MCDataAddFriendRes(nullptr) {}
+  ~MCDataAddFriendRes() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MCDataAddFriendRes(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MCDataAddFriendRes(const MCDataAddFriendRes& from) : MCDataAddFriendRes(nullptr, from) {}
+  inline MCDataAddFriendRes(MCDataAddFriendRes&& from) noexcept
+      : MCDataAddFriendRes(nullptr, std::move(from)) {}
+  inline MCDataAddFriendRes& operator=(const MCDataAddFriendRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MCDataAddFriendRes& operator=(MCDataAddFriendRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MCDataAddFriendRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MCDataAddFriendRes* internal_default_instance() {
+    return reinterpret_cast<const MCDataAddFriendRes*>(
+        &_MCDataAddFriendRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 1;
+  friend void swap(MCDataAddFriendRes& a, MCDataAddFriendRes& b) { a.Swap(&b); }
+  inline void Swap(MCDataAddFriendRes* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MCDataAddFriendRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MCDataAddFriendRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<MCDataAddFriendRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MCDataAddFriendRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MCDataAddFriendRes& from) { MCDataAddFriendRes::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MCDataAddFriendRes* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "MC.Data.MCDataAddFriendRes"; }
+
+ protected:
+  explicit MCDataAddFriendRes(::google::protobuf::Arena* arena);
+  MCDataAddFriendRes(::google::protobuf::Arena* arena, const MCDataAddFriendRes& from);
+  MCDataAddFriendRes(::google::protobuf::Arena* arena, MCDataAddFriendRes&& from) noexcept
+      : MCDataAddFriendRes(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kErrmsgFieldNumber = 2,
+    kCodeFieldNumber = 1,
+  };
+  // string errmsg = 2;
+  void clear_errmsg() ;
+  const std::string& errmsg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_errmsg(Arg_&& arg, Args_... args);
+  std::string* mutable_errmsg();
+  PROTOBUF_NODISCARD std::string* release_errmsg();
+  void set_allocated_errmsg(std::string* value);
+
+  private:
+  const std::string& _internal_errmsg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_errmsg(
+      const std::string& value);
+  std::string* _internal_mutable_errmsg();
+
+  public:
+  // .MC.Data.MCDataResponseStatusCode code = 1;
+  void clear_code() ;
+  ::MC::Data::MCDataResponseStatusCode code() const;
+  void set_code(::MC::Data::MCDataResponseStatusCode value);
+
+  private:
+  ::MC::Data::MCDataResponseStatusCode _internal_code() const;
+  void _internal_set_code(::MC::Data::MCDataResponseStatusCode value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:MC.Data.MCDataAddFriendRes)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      41, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr errmsg_;
+    int code_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_MC_2eData_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MCDataAddFriendReq final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:MC.Data.MCDataAddFriendReq) */ {
+ public:
+  inline MCDataAddFriendReq() : MCDataAddFriendReq(nullptr) {}
+  ~MCDataAddFriendReq() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MCDataAddFriendReq(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MCDataAddFriendReq(const MCDataAddFriendReq& from) : MCDataAddFriendReq(nullptr, from) {}
+  inline MCDataAddFriendReq(MCDataAddFriendReq&& from) noexcept
+      : MCDataAddFriendReq(nullptr, std::move(from)) {}
+  inline MCDataAddFriendReq& operator=(const MCDataAddFriendReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MCDataAddFriendReq& operator=(MCDataAddFriendReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MCDataAddFriendReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MCDataAddFriendReq* internal_default_instance() {
+    return reinterpret_cast<const MCDataAddFriendReq*>(
+        &_MCDataAddFriendReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(MCDataAddFriendReq& a, MCDataAddFriendReq& b) { a.Swap(&b); }
+  inline void Swap(MCDataAddFriendReq* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MCDataAddFriendReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MCDataAddFriendReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<MCDataAddFriendReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MCDataAddFriendReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MCDataAddFriendReq& from) { MCDataAddFriendReq::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MCDataAddFriendReq* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "MC.Data.MCDataAddFriendReq"; }
+
+ protected:
+  explicit MCDataAddFriendReq(::google::protobuf::Arena* arena);
+  MCDataAddFriendReq(::google::protobuf::Arena* arena, const MCDataAddFriendReq& from);
+  MCDataAddFriendReq(::google::protobuf::Arena* arena, MCDataAddFriendReq&& from) noexcept
+      : MCDataAddFriendReq(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFriendnameFieldNumber = 2,
+    kUseridFieldNumber = 1,
+  };
+  // string friendname = 2;
+  void clear_friendname() ;
+  const std::string& friendname() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_friendname(Arg_&& arg, Args_... args);
+  std::string* mutable_friendname();
+  PROTOBUF_NODISCARD std::string* release_friendname();
+  void set_allocated_friendname(std::string* value);
+
+  private:
+  const std::string& _internal_friendname() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_friendname(
+      const std::string& value);
+  std::string* _internal_mutable_friendname();
+
+  public:
+  // int32 userid = 1;
+  void clear_userid() ;
+  ::int32_t userid() const;
+  void set_userid(::int32_t value);
+
+  private:
+  ::int32_t _internal_userid() const;
+  void _internal_set_userid(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:MC.Data.MCDataAddFriendReq)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      45, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr friendname_;
+    ::int32_t userid_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_MC_2eData_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Friend final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:MC.Data.Friend) */ {
  public:
@@ -2053,7 +2447,7 @@ class Friend final : public ::google::protobuf::Message
     return reinterpret_cast<const Friend*>(
         &_Friend_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(Friend& a, Friend& b) { a.Swap(&b); }
   inline void Swap(Friend* other) {
     if (other == this) return;
@@ -2274,7 +2668,7 @@ class MCDataUserFriendsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const MCDataUserFriendsResponse*>(
         &_MCDataUserFriendsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(MCDataUserFriendsResponse& a, MCDataUserFriendsResponse& b) { a.Swap(&b); }
   inline void Swap(MCDataUserFriendsResponse* other) {
     if (other == this) return;
@@ -2434,6 +2828,158 @@ class MCDataUserFriendsResponse final : public ::google::protobuf::Message
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// MCDataAddFriendReq
+
+// int32 userid = 1;
+inline void MCDataAddFriendReq::clear_userid() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.userid_ = 0;
+}
+inline ::int32_t MCDataAddFriendReq::userid() const {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataAddFriendReq.userid)
+  return _internal_userid();
+}
+inline void MCDataAddFriendReq::set_userid(::int32_t value) {
+  _internal_set_userid(value);
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataAddFriendReq.userid)
+}
+inline ::int32_t MCDataAddFriendReq::_internal_userid() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.userid_;
+}
+inline void MCDataAddFriendReq::_internal_set_userid(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.userid_ = value;
+}
+
+// string friendname = 2;
+inline void MCDataAddFriendReq::clear_friendname() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.friendname_.ClearToEmpty();
+}
+inline const std::string& MCDataAddFriendReq::friendname() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataAddFriendReq.friendname)
+  return _internal_friendname();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MCDataAddFriendReq::set_friendname(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.friendname_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataAddFriendReq.friendname)
+}
+inline std::string* MCDataAddFriendReq::mutable_friendname() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_friendname();
+  // @@protoc_insertion_point(field_mutable:MC.Data.MCDataAddFriendReq.friendname)
+  return _s;
+}
+inline const std::string& MCDataAddFriendReq::_internal_friendname() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.friendname_.Get();
+}
+inline void MCDataAddFriendReq::_internal_set_friendname(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.friendname_.Set(value, GetArena());
+}
+inline std::string* MCDataAddFriendReq::_internal_mutable_friendname() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.friendname_.Mutable( GetArena());
+}
+inline std::string* MCDataAddFriendReq::release_friendname() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Data.MCDataAddFriendReq.friendname)
+  return _impl_.friendname_.Release();
+}
+inline void MCDataAddFriendReq::set_allocated_friendname(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.friendname_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.friendname_.IsDefault()) {
+          _impl_.friendname_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataAddFriendReq.friendname)
+}
+
+// -------------------------------------------------------------------
+
+// MCDataAddFriendRes
+
+// .MC.Data.MCDataResponseStatusCode code = 1;
+inline void MCDataAddFriendRes::clear_code() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.code_ = 0;
+}
+inline ::MC::Data::MCDataResponseStatusCode MCDataAddFriendRes::code() const {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataAddFriendRes.code)
+  return _internal_code();
+}
+inline void MCDataAddFriendRes::set_code(::MC::Data::MCDataResponseStatusCode value) {
+  _internal_set_code(value);
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataAddFriendRes.code)
+}
+inline ::MC::Data::MCDataResponseStatusCode MCDataAddFriendRes::_internal_code() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::MC::Data::MCDataResponseStatusCode>(_impl_.code_);
+}
+inline void MCDataAddFriendRes::_internal_set_code(::MC::Data::MCDataResponseStatusCode value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.code_ = value;
+}
+
+// string errmsg = 2;
+inline void MCDataAddFriendRes::clear_errmsg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.errmsg_.ClearToEmpty();
+}
+inline const std::string& MCDataAddFriendRes::errmsg() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataAddFriendRes.errmsg)
+  return _internal_errmsg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MCDataAddFriendRes::set_errmsg(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.errmsg_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataAddFriendRes.errmsg)
+}
+inline std::string* MCDataAddFriendRes::mutable_errmsg() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_errmsg();
+  // @@protoc_insertion_point(field_mutable:MC.Data.MCDataAddFriendRes.errmsg)
+  return _s;
+}
+inline const std::string& MCDataAddFriendRes::_internal_errmsg() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.errmsg_.Get();
+}
+inline void MCDataAddFriendRes::_internal_set_errmsg(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.errmsg_.Set(value, GetArena());
+}
+inline std::string* MCDataAddFriendRes::_internal_mutable_errmsg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.errmsg_.Mutable( GetArena());
+}
+inline std::string* MCDataAddFriendRes::release_errmsg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Data.MCDataAddFriendRes.errmsg)
+  return _impl_.errmsg_.Release();
+}
+inline void MCDataAddFriendRes::set_allocated_errmsg(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.errmsg_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.errmsg_.IsDefault()) {
+          _impl_.errmsg_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataAddFriendRes.errmsg)
+}
+
 // -------------------------------------------------------------------
 
 // MCDataUserIDRequest
@@ -3283,6 +3829,56 @@ inline ::int32_t MCDataUserResponse::_internal_userid() const {
 inline void MCDataUserResponse::_internal_set_userid(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.userid_ = value;
+}
+
+// string img = 12;
+inline void MCDataUserResponse::clear_img() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.img_.ClearToEmpty();
+}
+inline const std::string& MCDataUserResponse::img() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MC.Data.MCDataUserResponse.img)
+  return _internal_img();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MCDataUserResponse::set_img(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.img_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MC.Data.MCDataUserResponse.img)
+}
+inline std::string* MCDataUserResponse::mutable_img() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_img();
+  // @@protoc_insertion_point(field_mutable:MC.Data.MCDataUserResponse.img)
+  return _s;
+}
+inline const std::string& MCDataUserResponse::_internal_img() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.img_.Get();
+}
+inline void MCDataUserResponse::_internal_set_img(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.img_.Set(value, GetArena());
+}
+inline std::string* MCDataUserResponse::_internal_mutable_img() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.img_.Mutable( GetArena());
+}
+inline std::string* MCDataUserResponse::release_img() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:MC.Data.MCDataUserResponse.img)
+  return _impl_.img_.Release();
+}
+inline void MCDataUserResponse::set_allocated_img(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.img_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.img_.IsDefault()) {
+          _impl_.img_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:MC.Data.MCDataUserResponse.img)
 }
 
 // -------------------------------------------------------------------

@@ -8,6 +8,8 @@ service MCData{
     rpc GetUserFriends(MCDataUserIDRequest) returns(MCDataUserFriendsResponse) {}
     rpc UpdateUserInfo(MCDataUserInfoReq) returns(MCDataUserInfoRes) {}
     rpc UpdateUserHead (MCDataUserHeadReq) returns (MCDataUserHeadRes) {}
+
+    rpc AddFriend(MCDataAddFriendReq) returns (MCDataAddFriendRes) {}
 }
 
 enum MCDataResponseStatusCode {
@@ -15,6 +17,16 @@ enum MCDataResponseStatusCode {
     FAILED = 1;
     ERROR = 2;
     DATABASE_ERROR = 3;
+}
+
+message MCDataAddFriendReq{
+    int32 userid = 1;
+    string friendname = 2;
+}
+
+message MCDataAddFriendRes{
+    MCDataResponseStatusCode code = 1;
+    string errmsg = 2;
 }
 
 message MCDataUserIDRequest{

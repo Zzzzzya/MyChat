@@ -25,9 +25,9 @@ namespace Msg {
 static const char* MSG_method_names[] = {
   "/MC.Msg.MSG/UpdateUserInfo",
   "/MC.Msg.MSG/UpdateUserHead",
-  "/MC.Msg.MSG/SendMessageToServer",
   "/MC.Msg.MSG/GetUserInfo",
   "/MC.Msg.MSG/GetFriends",
+  "/MC.Msg.MSG/Chat",
 };
 
 std::unique_ptr< MSG::Stub> MSG::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -39,9 +39,9 @@ std::unique_ptr< MSG::Stub> MSG::NewStub(const std::shared_ptr< ::grpc::ChannelI
 MSG::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_UpdateUserInfo_(MSG_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_UpdateUserHead_(MSG_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SendMessageToServer_(MSG_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetUserInfo_(MSG_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFriends_(MSG_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetUserInfo_(MSG_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFriends_(MSG_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Chat_(MSG_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   {}
 
 ::grpc::Status MSG::Stub::UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserInfoReq& request, ::MC::Msg::UpdateUserInfoRes* response) {
@@ -86,29 +86,6 @@ void MSG::Stub::async::UpdateUserHead(::grpc::ClientContext* context, const ::MC
 ::grpc::ClientAsyncResponseReader< ::MC::Msg::UpdateUserHeadRes>* MSG::Stub::AsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncUpdateUserHeadRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status MSG::Stub::SendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::MC::Msg::SendMessageRes* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SendMessageToServer_, context, request, response);
-}
-
-void MSG::Stub::async::SendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendMessageToServer_, context, request, response, std::move(f));
-}
-
-void MSG::Stub::async::SendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendMessageToServer_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>* MSG::Stub::PrepareAsyncSendMessageToServerRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::MC::Msg::SendMessageRes, ::MC::Msg::SendMessageReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SendMessageToServer_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>* MSG::Stub::AsyncSendMessageToServerRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSendMessageToServerRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -159,6 +136,22 @@ void MSG::Stub::async::GetFriends(::grpc::ClientContext* context, const ::MC::Ms
   return result;
 }
 
+::grpc::ClientReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* MSG::Stub::ChatRaw(::grpc::ClientContext* context) {
+  return ::grpc::internal::ClientReaderWriterFactory< ::MC::Msg::Message, ::MC::Msg::Message>::Create(channel_.get(), rpcmethod_Chat_, context);
+}
+
+void MSG::Stub::async::Chat(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::MC::Msg::Message,::MC::Msg::Message>* reactor) {
+  ::grpc::internal::ClientCallbackReaderWriterFactory< ::MC::Msg::Message,::MC::Msg::Message>::Create(stub_->channel_.get(), stub_->rpcmethod_Chat_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* MSG::Stub::AsyncChatRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::MC::Msg::Message, ::MC::Msg::Message>::Create(channel_.get(), cq, rpcmethod_Chat_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* MSG::Stub::PrepareAsyncChatRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::MC::Msg::Message, ::MC::Msg::Message>::Create(channel_.get(), cq, rpcmethod_Chat_, context, false, nullptr);
+}
+
 MSG::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MSG_method_names[0],
@@ -183,16 +176,6 @@ MSG::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MSG_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MSG::Service, ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](MSG::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::MC::Msg::SendMessageReq* req,
-             ::MC::Msg::SendMessageRes* resp) {
-               return service->SendMessageToServer(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      MSG_method_names[3],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MSG::Service, ::MC::Msg::GetUserInfoReq, ::MC::Msg::GetUserInfoRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MSG::Service* service,
              ::grpc::ServerContext* ctx,
@@ -201,7 +184,7 @@ MSG::Service::Service() {
                return service->GetUserInfo(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      MSG_method_names[4],
+      MSG_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MSG::Service, ::MC::Msg::UserID, ::MC::Msg::UserIDList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MSG::Service* service,
@@ -209,6 +192,16 @@ MSG::Service::Service() {
              const ::MC::Msg::UserID* req,
              ::MC::Msg::UserIDList* resp) {
                return service->GetFriends(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MSG_method_names[4],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< MSG::Service, ::MC::Msg::Message, ::MC::Msg::Message>(
+          [](MSG::Service* service,
+             ::grpc::ServerContext* ctx,
+             ::grpc::ServerReaderWriter<::MC::Msg::Message,
+             ::MC::Msg::Message>* stream) {
+               return service->Chat(ctx, stream);
              }, this)));
 }
 
@@ -229,13 +222,6 @@ MSG::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status MSG::Service::SendMessageToServer(::grpc::ServerContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
 ::grpc::Status MSG::Service::GetUserInfo(::grpc::ServerContext* context, const ::MC::Msg::GetUserInfoReq* request, ::MC::Msg::GetUserInfoRes* response) {
   (void) context;
   (void) request;
@@ -250,64 +236,9 @@ MSG::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-
-static const char* Client_method_names[] = {
-  "/MC.Msg.Client/SendMessageToClient",
-};
-
-std::unique_ptr< Client::Stub> Client::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
-  (void)options;
-  std::unique_ptr< Client::Stub> stub(new Client::Stub(channel, options));
-  return stub;
-}
-
-Client::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_SendMessageToClient_(Client_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  {}
-
-::grpc::Status Client::Stub::SendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::MC::Msg::SendMessageRes* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SendMessageToClient_, context, request, response);
-}
-
-void Client::Stub::async::SendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendMessageToClient_, context, request, response, std::move(f));
-}
-
-void Client::Stub::async::SendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendMessageToClient_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>* Client::Stub::PrepareAsyncSendMessageToClientRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::MC::Msg::SendMessageRes, ::MC::Msg::SendMessageReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SendMessageToClient_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>* Client::Stub::AsyncSendMessageToClientRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSendMessageToClientRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-Client::Service::Service() {
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Client_method_names[0],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Client::Service, ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Client::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::MC::Msg::SendMessageReq* req,
-             ::MC::Msg::SendMessageRes* resp) {
-               return service->SendMessageToClient(ctx, req, resp);
-             }, this)));
-}
-
-Client::Service::~Service() {
-}
-
-::grpc::Status Client::Service::SendMessageToClient(::grpc::ServerContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response) {
+::grpc::Status MSG::Service::Chat(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* stream) {
   (void) context;
-  (void) request;
-  (void) response;
+  (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

@@ -51,14 +51,6 @@ class MSG final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::UpdateUserHeadRes>> PrepareAsyncUpdateUserHead(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::UpdateUserHeadRes>>(PrepareAsyncUpdateUserHeadRaw(context, request, cq));
     }
-    // SEND
-    virtual ::grpc::Status SendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::MC::Msg::SendMessageRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>> AsyncSendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>>(AsyncSendMessageToServerRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>> PrepareAsyncSendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>>(PrepareAsyncSendMessageToServerRaw(context, request, cq));
-    }
     // GET
     virtual ::grpc::Status GetUserInfo(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq& request, ::MC::Msg::GetUserInfoRes* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::GetUserInfoRes>> AsyncGetUserInfo(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq& request, ::grpc::CompletionQueue* cq) {
@@ -74,6 +66,16 @@ class MSG final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::UserIDList>> PrepareAsyncGetFriends(::grpc::ClientContext* context, const ::MC::Msg::UserID& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::UserIDList>>(PrepareAsyncGetFriendsRaw(context, request, cq));
     }
+    // Chat
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::MC::Msg::Message, ::MC::Msg::Message>> Chat(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::MC::Msg::Message, ::MC::Msg::Message>>(ChatRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::MC::Msg::Message, ::MC::Msg::Message>> AsyncChat(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::MC::Msg::Message, ::MC::Msg::Message>>(AsyncChatRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::MC::Msg::Message, ::MC::Msg::Message>> PrepareAsyncChat(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::MC::Msg::Message, ::MC::Msg::Message>>(PrepareAsyncChatRaw(context, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -82,14 +84,13 @@ class MSG final {
       virtual void UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserInfoReq* request, ::MC::Msg::UpdateUserInfoRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq* request, ::MC::Msg::UpdateUserHeadRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq* request, ::MC::Msg::UpdateUserHeadRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // SEND
-      virtual void SendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GET
       virtual void GetUserInfo(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq* request, ::MC::Msg::GetUserInfoRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetUserInfo(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq* request, ::MC::Msg::GetUserInfoRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetFriends(::grpc::ClientContext* context, const ::MC::Msg::UserID* request, ::MC::Msg::UserIDList* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetFriends(::grpc::ClientContext* context, const ::MC::Msg::UserID* request, ::MC::Msg::UserIDList* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Chat
+      virtual void Chat(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::MC::Msg::Message,::MC::Msg::Message>* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -99,12 +100,13 @@ class MSG final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::UpdateUserInfoRes>* PrepareAsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserInfoReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::UpdateUserHeadRes>* AsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::UpdateUserHeadRes>* PrepareAsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>* AsyncSendMessageToServerRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>* PrepareAsyncSendMessageToServerRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::GetUserInfoRes>* AsyncGetUserInfoRaw(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::GetUserInfoRes>* PrepareAsyncGetUserInfoRaw(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::UserIDList>* AsyncGetFriendsRaw(::grpc::ClientContext* context, const ::MC::Msg::UserID& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::UserIDList>* PrepareAsyncGetFriendsRaw(::grpc::ClientContext* context, const ::MC::Msg::UserID& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::MC::Msg::Message, ::MC::Msg::Message>* ChatRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::MC::Msg::Message, ::MC::Msg::Message>* AsyncChatRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::MC::Msg::Message, ::MC::Msg::Message>* PrepareAsyncChatRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -123,13 +125,6 @@ class MSG final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::UpdateUserHeadRes>> PrepareAsyncUpdateUserHead(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::UpdateUserHeadRes>>(PrepareAsyncUpdateUserHeadRaw(context, request, cq));
     }
-    ::grpc::Status SendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::MC::Msg::SendMessageRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>> AsyncSendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>>(AsyncSendMessageToServerRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>> PrepareAsyncSendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>>(PrepareAsyncSendMessageToServerRaw(context, request, cq));
-    }
     ::grpc::Status GetUserInfo(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq& request, ::MC::Msg::GetUserInfoRes* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::GetUserInfoRes>> AsyncGetUserInfo(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::GetUserInfoRes>>(AsyncGetUserInfoRaw(context, request, cq));
@@ -144,6 +139,15 @@ class MSG final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::UserIDList>> PrepareAsyncGetFriends(::grpc::ClientContext* context, const ::MC::Msg::UserID& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::UserIDList>>(PrepareAsyncGetFriendsRaw(context, request, cq));
     }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>> Chat(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>>(ChatRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>> AsyncChat(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>>(AsyncChatRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>> PrepareAsyncChat(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>>(PrepareAsyncChatRaw(context, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -151,12 +155,11 @@ class MSG final {
       void UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserInfoReq* request, ::MC::Msg::UpdateUserInfoRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq* request, ::MC::Msg::UpdateUserHeadRes* response, std::function<void(::grpc::Status)>) override;
       void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq* request, ::MC::Msg::UpdateUserHeadRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void SendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, std::function<void(::grpc::Status)>) override;
-      void SendMessageToServer(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetUserInfo(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq* request, ::MC::Msg::GetUserInfoRes* response, std::function<void(::grpc::Status)>) override;
       void GetUserInfo(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq* request, ::MC::Msg::GetUserInfoRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetFriends(::grpc::ClientContext* context, const ::MC::Msg::UserID* request, ::MC::Msg::UserIDList* response, std::function<void(::grpc::Status)>) override;
       void GetFriends(::grpc::ClientContext* context, const ::MC::Msg::UserID* request, ::MC::Msg::UserIDList* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Chat(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::MC::Msg::Message,::MC::Msg::Message>* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -172,17 +175,18 @@ class MSG final {
     ::grpc::ClientAsyncResponseReader< ::MC::Msg::UpdateUserInfoRes>* PrepareAsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserInfoReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Msg::UpdateUserHeadRes>* AsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Msg::UpdateUserHeadRes>* PrepareAsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Msg::UpdateUserHeadReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>* AsyncSendMessageToServerRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>* PrepareAsyncSendMessageToServerRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Msg::GetUserInfoRes>* AsyncGetUserInfoRaw(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Msg::GetUserInfoRes>* PrepareAsyncGetUserInfoRaw(::grpc::ClientContext* context, const ::MC::Msg::GetUserInfoReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Msg::UserIDList>* AsyncGetFriendsRaw(::grpc::ClientContext* context, const ::MC::Msg::UserID& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Msg::UserIDList>* PrepareAsyncGetFriendsRaw(::grpc::ClientContext* context, const ::MC::Msg::UserID& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* ChatRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* AsyncChatRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* PrepareAsyncChatRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateUserInfo_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateUserHead_;
-    const ::grpc::internal::RpcMethod rpcmethod_SendMessageToServer_;
     const ::grpc::internal::RpcMethod rpcmethod_GetUserInfo_;
     const ::grpc::internal::RpcMethod rpcmethod_GetFriends_;
+    const ::grpc::internal::RpcMethod rpcmethod_Chat_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -193,11 +197,11 @@ class MSG final {
     // UPLOAD
     virtual ::grpc::Status UpdateUserInfo(::grpc::ServerContext* context, const ::MC::Msg::UpdateUserInfoReq* request, ::MC::Msg::UpdateUserInfoRes* response);
     virtual ::grpc::Status UpdateUserHead(::grpc::ServerContext* context, const ::MC::Msg::UpdateUserHeadReq* request, ::MC::Msg::UpdateUserHeadRes* response);
-    // SEND
-    virtual ::grpc::Status SendMessageToServer(::grpc::ServerContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response);
     // GET
     virtual ::grpc::Status GetUserInfo(::grpc::ServerContext* context, const ::MC::Msg::GetUserInfoReq* request, ::MC::Msg::GetUserInfoRes* response);
     virtual ::grpc::Status GetFriends(::grpc::ServerContext* context, const ::MC::Msg::UserID* request, ::MC::Msg::UserIDList* response);
+    // Chat
+    virtual ::grpc::Status Chat(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* stream);
   };
   template <class BaseClass>
   class WithAsyncMethod_UpdateUserInfo : public BaseClass {
@@ -240,32 +244,12 @@ class MSG final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_SendMessageToServer : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_SendMessageToServer() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_SendMessageToServer() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToServer(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSendMessageToServer(::grpc::ServerContext* context, ::MC::Msg::SendMessageReq* request, ::grpc::ServerAsyncResponseWriter< ::MC::Msg::SendMessageRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithAsyncMethod_GetUserInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetUserInfo() {
-      ::grpc::Service::MarkMethodAsync(3);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_GetUserInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -276,7 +260,7 @@ class MSG final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetUserInfo(::grpc::ServerContext* context, ::MC::Msg::GetUserInfoReq* request, ::grpc::ServerAsyncResponseWriter< ::MC::Msg::GetUserInfoRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -285,7 +269,7 @@ class MSG final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetFriends() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_GetFriends() override {
       BaseClassMustBeDerivedFromService(this);
@@ -296,10 +280,30 @@ class MSG final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFriends(::grpc::ServerContext* context, ::MC::Msg::UserID* request, ::grpc::ServerAsyncResponseWriter< ::MC::Msg::UserIDList>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_UpdateUserInfo<WithAsyncMethod_UpdateUserHead<WithAsyncMethod_SendMessageToServer<WithAsyncMethod_GetUserInfo<WithAsyncMethod_GetFriends<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Chat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Chat() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_Chat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Chat(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestChat(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(4, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_UpdateUserInfo<WithAsyncMethod_UpdateUserHead<WithAsyncMethod_GetUserInfo<WithAsyncMethod_GetFriends<WithAsyncMethod_Chat<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_UpdateUserInfo : public BaseClass {
    private:
@@ -355,45 +359,18 @@ class MSG final {
       ::grpc::CallbackServerContext* /*context*/, const ::MC::Msg::UpdateUserHeadReq* /*request*/, ::MC::Msg::UpdateUserHeadRes* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SendMessageToServer : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_SendMessageToServer() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response) { return this->SendMessageToServer(context, request, response); }));}
-    void SetMessageAllocatorFor_SendMessageToServer(
-        ::grpc::MessageAllocator< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_SendMessageToServer() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToServer(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SendMessageToServer(
-      ::grpc::CallbackServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithCallbackMethod_GetUserInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetUserInfo() {
-      ::grpc::Service::MarkMethodCallback(3,
+      ::grpc::Service::MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::MC::Msg::GetUserInfoReq, ::MC::Msg::GetUserInfoRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::MC::Msg::GetUserInfoReq* request, ::MC::Msg::GetUserInfoRes* response) { return this->GetUserInfo(context, request, response); }));}
     void SetMessageAllocatorFor_GetUserInfo(
         ::grpc::MessageAllocator< ::MC::Msg::GetUserInfoReq, ::MC::Msg::GetUserInfoRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::MC::Msg::GetUserInfoReq, ::MC::Msg::GetUserInfoRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -414,13 +391,13 @@ class MSG final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetFriends() {
-      ::grpc::Service::MarkMethodCallback(4,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::MC::Msg::UserID, ::MC::Msg::UserIDList>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::MC::Msg::UserID* request, ::MC::Msg::UserIDList* response) { return this->GetFriends(context, request, response); }));}
     void SetMessageAllocatorFor_GetFriends(
         ::grpc::MessageAllocator< ::MC::Msg::UserID, ::MC::Msg::UserIDList>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::MC::Msg::UserID, ::MC::Msg::UserIDList>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -435,7 +412,30 @@ class MSG final {
     virtual ::grpc::ServerUnaryReactor* GetFriends(
       ::grpc::CallbackServerContext* /*context*/, const ::MC::Msg::UserID* /*request*/, ::MC::Msg::UserIDList* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_UpdateUserInfo<WithCallbackMethod_UpdateUserHead<WithCallbackMethod_SendMessageToServer<WithCallbackMethod_GetUserInfo<WithCallbackMethod_GetFriends<Service > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Chat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Chat() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackBidiHandler< ::MC::Msg::Message, ::MC::Msg::Message>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->Chat(context); }));
+    }
+    ~WithCallbackMethod_Chat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Chat(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::MC::Msg::Message, ::MC::Msg::Message>* Chat(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
+  };
+  typedef WithCallbackMethod_UpdateUserInfo<WithCallbackMethod_UpdateUserHead<WithCallbackMethod_GetUserInfo<WithCallbackMethod_GetFriends<WithCallbackMethod_Chat<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_UpdateUserInfo : public BaseClass {
@@ -472,29 +472,12 @@ class MSG final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_SendMessageToServer : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_SendMessageToServer() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_SendMessageToServer() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToServer(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
   class WithGenericMethod_GetUserInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetUserInfo() {
-      ::grpc::Service::MarkMethodGeneric(3);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_GetUserInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -511,13 +494,30 @@ class MSG final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetFriends() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_GetFriends() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status GetFriends(::grpc::ServerContext* /*context*/, const ::MC::Msg::UserID* /*request*/, ::MC::Msg::UserIDList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Chat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Chat() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_Chat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Chat(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -563,32 +563,12 @@ class MSG final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_SendMessageToServer : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_SendMessageToServer() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_SendMessageToServer() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToServer(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSendMessageToServer(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_GetUserInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetUserInfo() {
-      ::grpc::Service::MarkMethodRaw(3);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_GetUserInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -599,7 +579,7 @@ class MSG final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetUserInfo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -608,7 +588,7 @@ class MSG final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetFriends() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_GetFriends() override {
       BaseClassMustBeDerivedFromService(this);
@@ -619,7 +599,27 @@ class MSG final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFriends(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Chat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Chat() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_Chat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Chat(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestChat(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(4, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -667,34 +667,12 @@ class MSG final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SendMessageToServer : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_SendMessageToServer() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendMessageToServer(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_SendMessageToServer() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToServer(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SendMessageToServer(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithRawCallbackMethod_GetUserInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetUserInfo() {
-      ::grpc::Service::MarkMethodRawCallback(3,
+      ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetUserInfo(context, request, response); }));
@@ -716,7 +694,7 @@ class MSG final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetFriends() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetFriends(context, request, response); }));
@@ -731,6 +709,29 @@ class MSG final {
     }
     virtual ::grpc::ServerUnaryReactor* GetFriends(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Chat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Chat() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->Chat(context); }));
+    }
+    ~WithRawCallbackMethod_Chat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Chat(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::MC::Msg::Message, ::MC::Msg::Message>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Chat(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_UpdateUserInfo : public BaseClass {
@@ -787,39 +788,12 @@ class MSG final {
     virtual ::grpc::Status StreamedUpdateUserHead(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::MC::Msg::UpdateUserHeadReq,::MC::Msg::UpdateUserHeadRes>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_SendMessageToServer : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_SendMessageToServer() {
-      ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>* streamer) {
-                       return this->StreamedSendMessageToServer(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_SendMessageToServer() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status SendMessageToServer(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSendMessageToServer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::MC::Msg::SendMessageReq,::MC::Msg::SendMessageRes>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_GetUserInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetUserInfo() {
-      ::grpc::Service::MarkMethodStreamed(3,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::MC::Msg::GetUserInfoReq, ::MC::Msg::GetUserInfoRes>(
             [this](::grpc::ServerContext* context,
@@ -846,7 +820,7 @@ class MSG final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetFriends() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::MC::Msg::UserID, ::MC::Msg::UserIDList>(
             [this](::grpc::ServerContext* context,
@@ -867,216 +841,9 @@ class MSG final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetFriends(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::MC::Msg::UserID,::MC::Msg::UserIDList>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<WithStreamedUnaryMethod_SendMessageToServer<WithStreamedUnaryMethod_GetUserInfo<WithStreamedUnaryMethod_GetFriends<Service > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<WithStreamedUnaryMethod_GetUserInfo<WithStreamedUnaryMethod_GetFriends<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<WithStreamedUnaryMethod_SendMessageToServer<WithStreamedUnaryMethod_GetUserInfo<WithStreamedUnaryMethod_GetFriends<Service > > > > > StreamedService;
-};
-
-class Client final {
- public:
-  static constexpr char const* service_full_name() {
-    return "MC.Msg.Client";
-  }
-  class StubInterface {
-   public:
-    virtual ~StubInterface() {}
-    virtual ::grpc::Status SendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::MC::Msg::SendMessageRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>> AsyncSendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>>(AsyncSendMessageToClientRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>> PrepareAsyncSendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>>(PrepareAsyncSendMessageToClientRaw(context, request, cq));
-    }
-    class async_interface {
-     public:
-      virtual ~async_interface() {}
-      virtual void SendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-    };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>* AsyncSendMessageToClientRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Msg::SendMessageRes>* PrepareAsyncSendMessageToClientRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) = 0;
-  };
-  class Stub final : public StubInterface {
-   public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status SendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::MC::Msg::SendMessageRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>> AsyncSendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>>(AsyncSendMessageToClientRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>> PrepareAsyncSendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>>(PrepareAsyncSendMessageToClientRaw(context, request, cq));
-    }
-    class async final :
-      public StubInterface::async_interface {
-     public:
-      void SendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, std::function<void(::grpc::Status)>) override;
-      void SendMessageToClient(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-     private:
-      friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
-      Stub* stub() { return stub_; }
-      Stub* stub_;
-    };
-    class async* async() override { return &async_stub_; }
-
-   private:
-    std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>* AsyncSendMessageToClientRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::MC::Msg::SendMessageRes>* PrepareAsyncSendMessageToClientRaw(::grpc::ClientContext* context, const ::MC::Msg::SendMessageReq& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_SendMessageToClient_;
-  };
-  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-
-  class Service : public ::grpc::Service {
-   public:
-    Service();
-    virtual ~Service();
-    virtual ::grpc::Status SendMessageToClient(::grpc::ServerContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response);
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_SendMessageToClient : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_SendMessageToClient() {
-      ::grpc::Service::MarkMethodAsync(0);
-    }
-    ~WithAsyncMethod_SendMessageToClient() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToClient(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSendMessageToClient(::grpc::ServerContext* context, ::MC::Msg::SendMessageReq* request, ::grpc::ServerAsyncResponseWriter< ::MC::Msg::SendMessageRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_SendMessageToClient<Service > AsyncService;
-  template <class BaseClass>
-  class WithCallbackMethod_SendMessageToClient : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_SendMessageToClient() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::MC::Msg::SendMessageReq* request, ::MC::Msg::SendMessageRes* response) { return this->SendMessageToClient(context, request, response); }));}
-    void SetMessageAllocatorFor_SendMessageToClient(
-        ::grpc::MessageAllocator< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_SendMessageToClient() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToClient(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SendMessageToClient(
-      ::grpc::CallbackServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/)  { return nullptr; }
-  };
-  typedef WithCallbackMethod_SendMessageToClient<Service > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
-  template <class BaseClass>
-  class WithGenericMethod_SendMessageToClient : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_SendMessageToClient() {
-      ::grpc::Service::MarkMethodGeneric(0);
-    }
-    ~WithGenericMethod_SendMessageToClient() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToClient(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_SendMessageToClient : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_SendMessageToClient() {
-      ::grpc::Service::MarkMethodRaw(0);
-    }
-    ~WithRawMethod_SendMessageToClient() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToClient(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSendMessageToClient(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_SendMessageToClient : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_SendMessageToClient() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendMessageToClient(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_SendMessageToClient() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SendMessageToClient(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SendMessageToClient(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_SendMessageToClient : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_SendMessageToClient() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::MC::Msg::SendMessageReq, ::MC::Msg::SendMessageRes>* streamer) {
-                       return this->StreamedSendMessageToClient(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_SendMessageToClient() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status SendMessageToClient(::grpc::ServerContext* /*context*/, const ::MC::Msg::SendMessageReq* /*request*/, ::MC::Msg::SendMessageRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSendMessageToClient(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::MC::Msg::SendMessageReq,::MC::Msg::SendMessageRes>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_SendMessageToClient<Service > StreamedUnaryService;
-  typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SendMessageToClient<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<WithStreamedUnaryMethod_GetUserInfo<WithStreamedUnaryMethod_GetFriends<Service > > > > StreamedService;
 };
 
 }  // namespace Msg

@@ -13,17 +13,27 @@ service MSG{
     /*UPLOAD*/
     rpc UpdateUserInfo (UpdateUserInfoReq) returns (UpdateUserInfoRes);
     rpc UpdateUserHead (UpdateUserHeadReq) returns (UpdateUserHeadRes);
-    
-    /*SEND*/
-    rpc SendMessageToServer (SendMessageReq) returns (SendMessageRes);
 
     /*GET*/
     rpc GetUserInfo (GetUserInfoReq) returns (GetUserInfoRes);
     rpc GetFriends (UserID) returns (UserIDList);
+
+    /*Chat*/
+    rpc Chat(stream Message) returns (stream Message);
 }
 
-service Client{
-    rpc SendMessageToClient (SendMessageReq) returns (SendMessageRes);
+message Message{
+    string type = 1;
+    uint32 sender = 2;
+    string sendertype = 3;
+    uint32 reciever = 4;
+    string recievertype = 5;
+    string msg = 6;
+    string time = 7;
+    string msgid = 8;
+    string recievername = 9;
+    string sendername = 10;
+    
 }
 
 message UserID {

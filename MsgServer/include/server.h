@@ -23,6 +23,7 @@
 // namespace
 //  grpc
 using grpc::Server;
+using grpc::ServerAsyncReaderWriter;
 using grpc::ServerAsyncResponseWriter;
 using grpc::ServerBuilder;
 using grpc::ServerCompletionQueue;
@@ -31,14 +32,15 @@ using grpc::Status;
 
 //  MC::Msg
 using MC::Msg::MCResponseStatusCode;
+using MC::Msg::Message;
 using MC::Msg::MSG;
 using MC::Msg::MsgFriend;
+using MC::Msg::UpdateUserHeadReq;
+using MC::Msg::UpdateUserHeadRes;
 using MC::Msg::UpdateUserInfoReq;
 using MC::Msg::UpdateUserInfoRes;
 using MC::Msg::UserID;
 using MC::Msg::UserIDList;
-using MC::Msg::UpdateUserHeadReq;
-using MC::Msg::UpdateUserHeadRes;
 
 class MsgServer final {
 public:
@@ -109,8 +111,6 @@ private:
                     f->set_friendname(friend_.friendname());
                     f->set_friendsign(friend_.friendsign());
                     f->set_lastcontacttime(friend_.lastcontacttime());
-                    debug(), friend_.friendid(), friend_.friendname(),
-                        friend_.friendsign(), friend_.lastcontacttime();
                 }
 
                 RetStatus = Status::OK;
@@ -222,8 +222,8 @@ private:
 
             auto RetStatus = Status::OK;
 
-            auto ret = DataMsgClient::GetInstance().UpdateUserHead(
-                userid, image_data);
+            auto ret =
+                DataMsgClient::GetInstance().UpdateUserHead(userid, image_data);
 
             // 2. Check password
             if (ret == "OK") {
@@ -255,6 +255,72 @@ private:
         UpdateUserHeadReq request_;
         UpdateUserHeadRes response_;
         ServerAsyncResponseWriter<UpdateUserHeadRes> responder_;
+    };
+
+    // 核心业务 : Chat
+    struct ChatCallData : public CallData {
+        ChatCallData(MSG::AsyncService* service, ServerCompletionQueue* cq)
+            : CallData(service, cq), responder_(&ctx_) {
+            Proceed();
+        }
+
+        void creating() override {
+            debug(), "ChatCallData creating";
+            status_ = PROCESS;
+
+            service_->RequestChat(&ctx_, &responder_, cq_, cq_, this);
+        }
+
+        void processing() override {
+            if (rw == BEGIN) {
+                new ChatCallData(service_, cq_);
+                responder_.Read(&request_, this);
+
+                rw = READ;
+            } else if (rw == READ) {
+                // 处理客户端的消息
+
+                auto type = request_.type();
+                if (type == "Friend:Req") {
+                    debug(), "Msg: Friend:Req From:", request_.sender(),
+                        " To:", request_.recievername();
+
+                    auto ret = DataMsgClient::GetInstance().AddFriend(
+                        request_.sender(), request_.recievername());
+
+                    if (ret == "OK") {
+                        response_.set_msg("FriendADD:OK");
+                    } else if (ret == "RPC failed") {
+                        response_.set_msg("ChatError:RPC failed");
+                    } else {
+                        response_.set_msg(ret);
+                    }
+                    responder_.Write(response_, this);
+
+                } else {
+                    debug(), "Msg: Unknown";
+                    response_.set_msg("ChatError:Unknown Msg");
+                    responder_.Write(response_, this);
+                }
+                rw = WRITE;
+
+            } else if (rw = WRITE) {
+                rw = READ;
+                responder_.Read(&request_, this);
+            }
+        }
+
+        void finishing() override {
+            debug(), "ChatCallData finishing";
+            delete this;
+        }
+
+    private:
+        Message request_;
+        Message response_;
+        ServerAsyncReaderWriter<Message, Message> responder_;
+        enum streamStatus { BEGIN, READ, WRITE };
+        streamStatus rw = BEGIN;
     };
 
     void HandleRpcs();

@@ -50,6 +50,9 @@ inline constexpr MCDataUserResponse::Impl_::Impl_(
         birthday_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        img_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         code_{static_cast< ::MC::Data::MCDataResponseStatusCode >(0)},
         gender_{false},
         userid_{0},
@@ -255,6 +258,50 @@ struct MCDataRegistRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataRegistRequestDefaultTypeInternal _MCDataRegistRequest_default_instance_;
 
+inline constexpr MCDataAddFriendRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : errmsg_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        code_{static_cast< ::MC::Data::MCDataResponseStatusCode >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MCDataAddFriendRes::MCDataAddFriendRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MCDataAddFriendResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MCDataAddFriendResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MCDataAddFriendResDefaultTypeInternal() {}
+  union {
+    MCDataAddFriendRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataAddFriendResDefaultTypeInternal _MCDataAddFriendRes_default_instance_;
+
+inline constexpr MCDataAddFriendReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : friendname_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        userid_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MCDataAddFriendReq::MCDataAddFriendReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MCDataAddFriendReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MCDataAddFriendReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MCDataAddFriendReqDefaultTypeInternal() {}
+  union {
+    MCDataAddFriendReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataAddFriendReqDefaultTypeInternal _MCDataAddFriendReq_default_instance_;
+
 inline constexpr Friend::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : friendname_(
@@ -307,13 +354,33 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MCDataUserFriendsResponseDefaultTypeInternal _MCDataUserFriendsResponse_default_instance_;
 }  // namespace Data
 }  // namespace MC
-static ::_pb::Metadata file_level_metadata_MC_2eData_2eproto[11];
+static ::_pb::Metadata file_level_metadata_MC_2eData_2eproto[13];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_MC_2eData_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_MC_2eData_2eproto = nullptr;
 const ::uint32_t
     TableStruct_MC_2eData_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataAddFriendReq, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataAddFriendReq, _impl_.userid_),
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataAddFriendReq, _impl_.friendname_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataAddFriendRes, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataAddFriendRes, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataAddFriendRes, _impl_.errmsg_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserIDRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -374,6 +441,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserResponse, _impl_.phone_),
         PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserResponse, _impl_.birthday_),
         PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserResponse, _impl_.userid_),
+        PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataUserResponse, _impl_.img_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::MC::Data::MCDataRegistRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -442,19 +510,23 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::MC::Data::MCDataUserIDRequest)},
-        {9, -1, -1, sizeof(::MC::Data::Friend)},
-        {21, -1, -1, sizeof(::MC::Data::MCDataUserFriendsResponse)},
-        {32, -1, -1, sizeof(::MC::Data::MCDataUserRequest)},
-        {41, -1, -1, sizeof(::MC::Data::MCDataUserResponse)},
-        {60, -1, -1, sizeof(::MC::Data::MCDataRegistRequest)},
-        {72, -1, -1, sizeof(::MC::Data::MCDataRegistResponse)},
-        {82, -1, -1, sizeof(::MC::Data::MCDataUserInfoReq)},
-        {93, -1, -1, sizeof(::MC::Data::MCDataUserInfoRes)},
-        {104, -1, -1, sizeof(::MC::Data::MCDataUserHeadReq)},
-        {114, -1, -1, sizeof(::MC::Data::MCDataUserHeadRes)},
+        {0, -1, -1, sizeof(::MC::Data::MCDataAddFriendReq)},
+        {10, -1, -1, sizeof(::MC::Data::MCDataAddFriendRes)},
+        {20, -1, -1, sizeof(::MC::Data::MCDataUserIDRequest)},
+        {29, -1, -1, sizeof(::MC::Data::Friend)},
+        {41, -1, -1, sizeof(::MC::Data::MCDataUserFriendsResponse)},
+        {52, -1, -1, sizeof(::MC::Data::MCDataUserRequest)},
+        {61, -1, -1, sizeof(::MC::Data::MCDataUserResponse)},
+        {81, -1, -1, sizeof(::MC::Data::MCDataRegistRequest)},
+        {93, -1, -1, sizeof(::MC::Data::MCDataRegistResponse)},
+        {103, -1, -1, sizeof(::MC::Data::MCDataUserInfoReq)},
+        {114, -1, -1, sizeof(::MC::Data::MCDataUserInfoRes)},
+        {125, -1, -1, sizeof(::MC::Data::MCDataUserHeadReq)},
+        {135, -1, -1, sizeof(::MC::Data::MCDataUserHeadRes)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
+    &::MC::Data::_MCDataAddFriendReq_default_instance_._instance,
+    &::MC::Data::_MCDataAddFriendRes_default_instance_._instance,
     &::MC::Data::_MCDataUserIDRequest_default_instance_._instance,
     &::MC::Data::_Friend_default_instance_._instance,
     &::MC::Data::_MCDataUserFriendsResponse_default_instance_._instance,
@@ -469,57 +541,63 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_MC_2eData_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\rMC.Data.proto\022\007MC.Data\"%\n\023MCDataUserID"
-    "Request\022\016\n\006userid\030\001 \001(\005\"[\n\006Friend\022\020\n\010fri"
-    "endid\030\001 \001(\r\022\022\n\nfriendname\030\002 \001(\t\022\022\n\nfrien"
-    "dsign\030\003 \001(\t\022\027\n\017lastcontacttime\030\004 \001(\t\"~\n\031"
-    "MCDataUserFriendsResponse\022/\n\004code\030\001 \001(\0162"
-    "!.MC.Data.MCDataResponseStatusCode\022\016\n\006er"
-    "rmsg\030\002 \001(\t\022 \n\007friends\030\003 \003(\0132\017.MC.Data.Fr"
-    "iend\"%\n\021MCDataUserRequest\022\020\n\010username\030\001 "
-    "\001(\t\"\351\001\n\022MCDataUserResponse\022/\n\004code\030\001 \001(\016"
-    "2!.MC.Data.MCDataResponseStatusCode\022\020\n\010p"
-    "assword\030\002 \001(\t\022\013\n\003hxm\030\003 \001(\t\022\016\n\006errmsg\030\004 \001"
-    "(\t\022\020\n\010nickname\030\005 \001(\t\022\016\n\006gender\030\006 \001(\010\022\021\n\t"
-    "signature\030\007 \001(\t\022\r\n\005email\030\010 \001(\t\022\r\n\005phone\030"
-    "\t \001(\t\022\020\n\010birthday\030\n \001(\t\022\016\n\006userid\030\013 \001(\005\""
-    "Z\n\023MCDataRegistRequest\022\020\n\010username\030\001 \001(\t"
-    "\022\020\n\010password\030\002 \001(\t\022\020\n\010nickname\030\003 \001(\t\022\r\n\005"
-    "email\030\004 \001(\t\"W\n\024MCDataRegistResponse\022/\n\004c"
-    "ode\030\001 \001(\0162!.MC.Data.MCDataResponseStatus"
-    "Code\022\016\n\006errmsg\030\002 \001(\t\"A\n\021MCDataUserInfoRe"
-    "q\022\016\n\006userid\030\001 \001(\r\022\r\n\005field\030\002 \001(\t\022\r\n\005valu"
-    "e\030\003 \001(\t\"h\n\021MCDataUserInfoRes\022/\n\004code\030\001 \001"
-    "(\0162!.MC.Data.MCDataResponseStatusCode\022\017\n"
-    "\007err_msg\030\002 \001(\t\022\021\n\tnew_value\030\003 \001(\t\"7\n\021MCD"
-    "ataUserHeadReq\022\016\n\006userid\030\001 \001(\r\022\022\n\nimage_"
-    "data\030\002 \001(\t\"U\n\021MCDataUserHeadRes\022/\n\004code\030"
-    "\001 \001(\0162!.MC.Data.MCDataResponseStatusCode"
-    "\022\017\n\007err_msg\030\002 \001(\t*M\n\030MCDataResponseStatu"
-    "sCode\022\006\n\002OK\020\000\022\n\n\006FAILED\020\001\022\t\n\005ERROR\020\002\022\022\n\016"
-    "DATABASE_ERROR\020\0032\220\003\n\006MCData\022L\n\017GetUserPa"
-    "ssword\022\032.MC.Data.MCDataUserRequest\032\033.MC."
-    "Data.MCDataUserResponse\"\000\022J\n\tTryRegist\022\034"
-    ".MC.Data.MCDataRegistRequest\032\035.MC.Data.M"
-    "CDataRegistResponse\"\000\022T\n\016GetUserFriends\022"
-    "\034.MC.Data.MCDataUserIDRequest\032\".MC.Data."
-    "MCDataUserFriendsResponse\"\000\022J\n\016UpdateUse"
-    "rInfo\022\032.MC.Data.MCDataUserInfoReq\032\032.MC.D"
-    "ata.MCDataUserInfoRes\"\000\022J\n\016UpdateUserHea"
-    "d\022\032.MC.Data.MCDataUserHeadReq\032\032.MC.Data."
-    "MCDataUserHeadRes\"\000b\006proto3"
+    "\n\rMC.Data.proto\022\007MC.Data\"8\n\022MCDataAddFri"
+    "endReq\022\016\n\006userid\030\001 \001(\005\022\022\n\nfriendname\030\002 \001"
+    "(\t\"U\n\022MCDataAddFriendRes\022/\n\004code\030\001 \001(\0162!"
+    ".MC.Data.MCDataResponseStatusCode\022\016\n\006err"
+    "msg\030\002 \001(\t\"%\n\023MCDataUserIDRequest\022\016\n\006user"
+    "id\030\001 \001(\005\"[\n\006Friend\022\020\n\010friendid\030\001 \001(\r\022\022\n\n"
+    "friendname\030\002 \001(\t\022\022\n\nfriendsign\030\003 \001(\t\022\027\n\017"
+    "lastcontacttime\030\004 \001(\t\"~\n\031MCDataUserFrien"
+    "dsResponse\022/\n\004code\030\001 \001(\0162!.MC.Data.MCDat"
+    "aResponseStatusCode\022\016\n\006errmsg\030\002 \001(\t\022 \n\007f"
+    "riends\030\003 \003(\0132\017.MC.Data.Friend\"%\n\021MCDataU"
+    "serRequest\022\020\n\010username\030\001 \001(\t\"\366\001\n\022MCDataU"
+    "serResponse\022/\n\004code\030\001 \001(\0162!.MC.Data.MCDa"
+    "taResponseStatusCode\022\020\n\010password\030\002 \001(\t\022\013"
+    "\n\003hxm\030\003 \001(\t\022\016\n\006errmsg\030\004 \001(\t\022\020\n\010nickname\030"
+    "\005 \001(\t\022\016\n\006gender\030\006 \001(\010\022\021\n\tsignature\030\007 \001(\t"
+    "\022\r\n\005email\030\010 \001(\t\022\r\n\005phone\030\t \001(\t\022\020\n\010birthd"
+    "ay\030\n \001(\t\022\016\n\006userid\030\013 \001(\005\022\013\n\003img\030\014 \001(\t\"Z\n"
+    "\023MCDataRegistRequest\022\020\n\010username\030\001 \001(\t\022\020"
+    "\n\010password\030\002 \001(\t\022\020\n\010nickname\030\003 \001(\t\022\r\n\005em"
+    "ail\030\004 \001(\t\"W\n\024MCDataRegistResponse\022/\n\004cod"
+    "e\030\001 \001(\0162!.MC.Data.MCDataResponseStatusCo"
+    "de\022\016\n\006errmsg\030\002 \001(\t\"A\n\021MCDataUserInfoReq\022"
+    "\016\n\006userid\030\001 \001(\r\022\r\n\005field\030\002 \001(\t\022\r\n\005value\030"
+    "\003 \001(\t\"h\n\021MCDataUserInfoRes\022/\n\004code\030\001 \001(\016"
+    "2!.MC.Data.MCDataResponseStatusCode\022\017\n\007e"
+    "rr_msg\030\002 \001(\t\022\021\n\tnew_value\030\003 \001(\t\"7\n\021MCDat"
+    "aUserHeadReq\022\016\n\006userid\030\001 \001(\r\022\022\n\nimage_da"
+    "ta\030\002 \001(\t\"U\n\021MCDataUserHeadRes\022/\n\004code\030\001 "
+    "\001(\0162!.MC.Data.MCDataResponseStatusCode\022\017"
+    "\n\007err_msg\030\002 \001(\t*M\n\030MCDataResponseStatusC"
+    "ode\022\006\n\002OK\020\000\022\n\n\006FAILED\020\001\022\t\n\005ERROR\020\002\022\022\n\016DA"
+    "TABASE_ERROR\020\0032\331\003\n\006MCData\022L\n\017GetUserPass"
+    "word\022\032.MC.Data.MCDataUserRequest\032\033.MC.Da"
+    "ta.MCDataUserResponse\"\000\022J\n\tTryRegist\022\034.M"
+    "C.Data.MCDataRegistRequest\032\035.MC.Data.MCD"
+    "ataRegistResponse\"\000\022T\n\016GetUserFriends\022\034."
+    "MC.Data.MCDataUserIDRequest\032\".MC.Data.MC"
+    "DataUserFriendsResponse\"\000\022J\n\016UpdateUserI"
+    "nfo\022\032.MC.Data.MCDataUserInfoReq\032\032.MC.Dat"
+    "a.MCDataUserInfoRes\"\000\022J\n\016UpdateUserHead\022"
+    "\032.MC.Data.MCDataUserHeadReq\032\032.MC.Data.MC"
+    "DataUserHeadRes\"\000\022G\n\tAddFriend\022\033.MC.Data"
+    ".MCDataAddFriendReq\032\033.MC.Data.MCDataAddF"
+    "riendRes\"\000b\006proto3"
 };
 static ::absl::once_flag descriptor_table_MC_2eData_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_MC_2eData_2eproto = {
     false,
     false,
-    1547,
+    1778,
     descriptor_table_protodef_MC_2eData_2eproto,
     "MC.Data.proto",
     &descriptor_table_MC_2eData_2eproto_once,
     nullptr,
     0,
-    11,
+    13,
     schemas,
     file_default_instances,
     TableStruct_MC_2eData_2eproto::offsets,
@@ -552,6 +630,452 @@ PROTOBUF_CONSTINIT const uint32_t MCDataResponseStatusCode_internal_data_[] = {
     262144u, 0u, };
 bool MCDataResponseStatusCode_IsValid(int value) {
   return 0 <= value && value <= 3;
+}
+// ===================================================================
+
+class MCDataAddFriendReq::_Internal {
+ public:
+};
+
+MCDataAddFriendReq::MCDataAddFriendReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:MC.Data.MCDataAddFriendReq)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataAddFriendReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : friendname_(arena, from.friendname_),
+        _cached_size_{0} {}
+
+MCDataAddFriendReq::MCDataAddFriendReq(
+    ::google::protobuf::Arena* arena,
+    const MCDataAddFriendReq& from)
+    : ::google::protobuf::Message(arena) {
+  MCDataAddFriendReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.userid_ = from._impl_.userid_;
+
+  // @@protoc_insertion_point(copy_constructor:MC.Data.MCDataAddFriendReq)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataAddFriendReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : friendname_(arena),
+        _cached_size_{0} {}
+
+inline void MCDataAddFriendReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.userid_ = {};
+}
+MCDataAddFriendReq::~MCDataAddFriendReq() {
+  // @@protoc_insertion_point(destructor:MC.Data.MCDataAddFriendReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MCDataAddFriendReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.friendname_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+MCDataAddFriendReq::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(MCDataAddFriendReq, _impl_._cached_size_),
+              false,
+          },
+          &MCDataAddFriendReq::MergeImpl,
+          &MCDataAddFriendReq::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void MCDataAddFriendReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:MC.Data.MCDataAddFriendReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.friendname_.ClearToEmpty();
+  _impl_.userid_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MCDataAddFriendReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 45, 2> MCDataAddFriendReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MCDataAddFriendReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::MC::Data::MCDataAddFriendReq>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string friendname = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataAddFriendReq, _impl_.friendname_)}},
+    // int32 userid = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MCDataAddFriendReq, _impl_.userid_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataAddFriendReq, _impl_.userid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 userid = 1;
+    {PROTOBUF_FIELD_OFFSET(MCDataAddFriendReq, _impl_.userid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // string friendname = 2;
+    {PROTOBUF_FIELD_OFFSET(MCDataAddFriendReq, _impl_.friendname_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\32\0\12\0\0\0\0\0"
+    "MC.Data.MCDataAddFriendReq"
+    "friendname"
+  }},
+};
+
+::uint8_t* MCDataAddFriendReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MC.Data.MCDataAddFriendReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 userid = 1;
+  if (this->_internal_userid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_userid(), target);
+  }
+
+  // string friendname = 2;
+  if (!this->_internal_friendname().empty()) {
+    const std::string& _s = this->_internal_friendname();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Data.MCDataAddFriendReq.friendname");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MC.Data.MCDataAddFriendReq)
+  return target;
+}
+
+::size_t MCDataAddFriendReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MC.Data.MCDataAddFriendReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string friendname = 2;
+  if (!this->_internal_friendname().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_friendname());
+  }
+
+  // int32 userid = 1;
+  if (this->_internal_userid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_userid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void MCDataAddFriendReq::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MCDataAddFriendReq*>(&to_msg);
+  auto& from = static_cast<const MCDataAddFriendReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:MC.Data.MCDataAddFriendReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_friendname().empty()) {
+    _this->_internal_set_friendname(from._internal_friendname());
+  }
+  if (from._internal_userid() != 0) {
+    _this->_impl_.userid_ = from._impl_.userid_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MCDataAddFriendReq::CopyFrom(const MCDataAddFriendReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MC.Data.MCDataAddFriendReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MCDataAddFriendReq::IsInitialized() const {
+  return true;
+}
+
+void MCDataAddFriendReq::InternalSwap(MCDataAddFriendReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.friendname_, &other->_impl_.friendname_, arena);
+        swap(_impl_.userid_, other->_impl_.userid_);
+}
+
+::google::protobuf::Metadata MCDataAddFriendReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
+                                   &descriptor_table_MC_2eData_2eproto_once,
+                                   file_level_metadata_MC_2eData_2eproto[0]);
+}
+// ===================================================================
+
+class MCDataAddFriendRes::_Internal {
+ public:
+};
+
+MCDataAddFriendRes::MCDataAddFriendRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:MC.Data.MCDataAddFriendRes)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataAddFriendRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : errmsg_(arena, from.errmsg_),
+        _cached_size_{0} {}
+
+MCDataAddFriendRes::MCDataAddFriendRes(
+    ::google::protobuf::Arena* arena,
+    const MCDataAddFriendRes& from)
+    : ::google::protobuf::Message(arena) {
+  MCDataAddFriendRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.code_ = from._impl_.code_;
+
+  // @@protoc_insertion_point(copy_constructor:MC.Data.MCDataAddFriendRes)
+}
+inline PROTOBUF_NDEBUG_INLINE MCDataAddFriendRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : errmsg_(arena),
+        _cached_size_{0} {}
+
+inline void MCDataAddFriendRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.code_ = {};
+}
+MCDataAddFriendRes::~MCDataAddFriendRes() {
+  // @@protoc_insertion_point(destructor:MC.Data.MCDataAddFriendRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MCDataAddFriendRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.errmsg_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+MCDataAddFriendRes::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(MCDataAddFriendRes, _impl_._cached_size_),
+              false,
+          },
+          &MCDataAddFriendRes::MergeImpl,
+          &MCDataAddFriendRes::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void MCDataAddFriendRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:MC.Data.MCDataAddFriendRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.errmsg_.ClearToEmpty();
+  _impl_.code_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MCDataAddFriendRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 41, 2> MCDataAddFriendRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MCDataAddFriendRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::MC::Data::MCDataAddFriendRes>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string errmsg = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataAddFriendRes, _impl_.errmsg_)}},
+    // .MC.Data.MCDataResponseStatusCode code = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MCDataAddFriendRes, _impl_.code_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataAddFriendRes, _impl_.code_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .MC.Data.MCDataResponseStatusCode code = 1;
+    {PROTOBUF_FIELD_OFFSET(MCDataAddFriendRes, _impl_.code_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string errmsg = 2;
+    {PROTOBUF_FIELD_OFFSET(MCDataAddFriendRes, _impl_.errmsg_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\32\0\6\0\0\0\0\0"
+    "MC.Data.MCDataAddFriendRes"
+    "errmsg"
+  }},
+};
+
+::uint8_t* MCDataAddFriendRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MC.Data.MCDataAddFriendRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .MC.Data.MCDataResponseStatusCode code = 1;
+  if (this->_internal_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_code(), target);
+  }
+
+  // string errmsg = 2;
+  if (!this->_internal_errmsg().empty()) {
+    const std::string& _s = this->_internal_errmsg();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Data.MCDataAddFriendRes.errmsg");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MC.Data.MCDataAddFriendRes)
+  return target;
+}
+
+::size_t MCDataAddFriendRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MC.Data.MCDataAddFriendRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string errmsg = 2;
+  if (!this->_internal_errmsg().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_errmsg());
+  }
+
+  // .MC.Data.MCDataResponseStatusCode code = 1;
+  if (this->_internal_code() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void MCDataAddFriendRes::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MCDataAddFriendRes*>(&to_msg);
+  auto& from = static_cast<const MCDataAddFriendRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:MC.Data.MCDataAddFriendRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_errmsg().empty()) {
+    _this->_internal_set_errmsg(from._internal_errmsg());
+  }
+  if (from._internal_code() != 0) {
+    _this->_impl_.code_ = from._impl_.code_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MCDataAddFriendRes::CopyFrom(const MCDataAddFriendRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MC.Data.MCDataAddFriendRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MCDataAddFriendRes::IsInitialized() const {
+  return true;
+}
+
+void MCDataAddFriendRes::InternalSwap(MCDataAddFriendRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.errmsg_, &other->_impl_.errmsg_, arena);
+  swap(_impl_.code_, other->_impl_.code_);
+}
+
+::google::protobuf::Metadata MCDataAddFriendRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
+                                   &descriptor_table_MC_2eData_2eproto_once,
+                                   file_level_metadata_MC_2eData_2eproto[1]);
 }
 // ===================================================================
 
@@ -728,7 +1252,7 @@ void MCDataUserIDRequest::InternalSwap(MCDataUserIDRequest* PROTOBUF_RESTRICT ot
 ::google::protobuf::Metadata MCDataUserIDRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[0]);
+                                   file_level_metadata_MC_2eData_2eproto[2]);
 }
 // ===================================================================
 
@@ -1009,7 +1533,7 @@ void Friend::InternalSwap(Friend* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Friend::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[1]);
+                                   file_level_metadata_MC_2eData_2eproto[3]);
 }
 // ===================================================================
 
@@ -1261,7 +1785,7 @@ void MCDataUserFriendsResponse::InternalSwap(MCDataUserFriendsResponse* PROTOBUF
 ::google::protobuf::Metadata MCDataUserFriendsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[2]);
+                                   file_level_metadata_MC_2eData_2eproto[4]);
 }
 // ===================================================================
 
@@ -1458,7 +1982,7 @@ void MCDataUserRequest::InternalSwap(MCDataUserRequest* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata MCDataUserRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[3]);
+                                   file_level_metadata_MC_2eData_2eproto[5]);
 }
 // ===================================================================
 
@@ -1482,6 +2006,7 @@ inline PROTOBUF_NDEBUG_INLINE MCDataUserResponse::Impl_::Impl_(
         email_(arena, from.email_),
         phone_(arena, from.phone_),
         birthday_(arena, from.birthday_),
+        img_(arena, from.img_),
         _cached_size_{0} {}
 
 MCDataUserResponse::MCDataUserResponse(
@@ -1514,6 +2039,7 @@ inline PROTOBUF_NDEBUG_INLINE MCDataUserResponse::Impl_::Impl_(
         email_(arena),
         phone_(arena),
         birthday_(arena),
+        img_(arena),
         _cached_size_{0} {}
 
 inline void MCDataUserResponse::SharedCtor(::_pb::Arena* arena) {
@@ -1540,6 +2066,7 @@ inline void MCDataUserResponse::SharedDtor() {
   _impl_.email_.Destroy();
   _impl_.phone_.Destroy();
   _impl_.birthday_.Destroy();
+  _impl_.img_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -1572,6 +2099,7 @@ PROTOBUF_NOINLINE void MCDataUserResponse::Clear() {
   _impl_.email_.ClearToEmpty();
   _impl_.phone_.ClearToEmpty();
   _impl_.birthday_.ClearToEmpty();
+  _impl_.img_.ClearToEmpty();
   ::memset(&_impl_.code_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.userid_) -
       reinterpret_cast<char*>(&_impl_.code_)) + sizeof(_impl_.userid_));
@@ -1586,15 +2114,15 @@ const char* MCDataUserResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 11, 0, 95, 2> MCDataUserResponse::_table_ = {
+const ::_pbi::TcParseTable<4, 12, 0, 98, 2> MCDataUserResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    11, 120,  // max_field_number, fast_idx_mask
+    12, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294965248,  // skipmap
+    4294963200,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    11,  // num_field_entries
+    12,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_MCDataUserResponse_default_instance_._instance,
@@ -1637,7 +2165,9 @@ const ::_pbi::TcParseTable<4, 11, 0, 95, 2> MCDataUserResponse::_table_ = {
     // int32 userid = 11;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MCDataUserResponse, _impl_.userid_), 63>(),
      {88, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserResponse, _impl_.userid_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // string img = 12;
+    {::_pbi::TcParser::FastUS1,
+     {98, 63, 0, PROTOBUF_FIELD_OFFSET(MCDataUserResponse, _impl_.img_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -1677,10 +2207,13 @@ const ::_pbi::TcParseTable<4, 11, 0, 95, 2> MCDataUserResponse::_table_ = {
     // int32 userid = 11;
     {PROTOBUF_FIELD_OFFSET(MCDataUserResponse, _impl_.userid_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // string img = 12;
+    {PROTOBUF_FIELD_OFFSET(MCDataUserResponse, _impl_.img_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\32\0\10\3\6\10\0\11\5\5\10\0\0\0\0\0"
+    "\32\0\10\3\6\10\0\11\5\5\10\0\3\0\0\0"
     "MC.Data.MCDataUserResponse"
     "password"
     "hxm"
@@ -1690,6 +2223,7 @@ const ::_pbi::TcParseTable<4, 11, 0, 95, 2> MCDataUserResponse::_table_ = {
     "email"
     "phone"
     "birthday"
+    "img"
   }},
 };
 
@@ -1785,6 +2319,14 @@ const ::_pbi::TcParseTable<4, 11, 0, 95, 2> MCDataUserResponse::_table_ = {
             stream, this->_internal_userid(), target);
   }
 
+  // string img = 12;
+  if (!this->_internal_img().empty()) {
+    const std::string& _s = this->_internal_img();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Data.MCDataUserResponse.img");
+    target = stream->WriteStringMaybeAliased(12, _s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -1850,6 +2392,12 @@ const ::_pbi::TcParseTable<4, 11, 0, 95, 2> MCDataUserResponse::_table_ = {
                                     this->_internal_birthday());
   }
 
+  // string img = 12;
+  if (!this->_internal_img().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_img());
+  }
+
   // .MC.Data.MCDataResponseStatusCode code = 1;
   if (this->_internal_code() != 0) {
     total_size += 1 +
@@ -1903,6 +2451,9 @@ void MCDataUserResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, cons
   if (!from._internal_birthday().empty()) {
     _this->_internal_set_birthday(from._internal_birthday());
   }
+  if (!from._internal_img().empty()) {
+    _this->_internal_set_img(from._internal_img());
+  }
   if (from._internal_code() != 0) {
     _this->_impl_.code_ = from._impl_.code_;
   }
@@ -1939,6 +2490,7 @@ void MCDataUserResponse::InternalSwap(MCDataUserResponse* PROTOBUF_RESTRICT othe
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.email_, &other->_impl_.email_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.phone_, &other->_impl_.phone_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.birthday_, &other->_impl_.birthday_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.img_, &other->_impl_.img_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(MCDataUserResponse, _impl_.userid_)
       + sizeof(MCDataUserResponse::_impl_.userid_)
@@ -1950,7 +2502,7 @@ void MCDataUserResponse::InternalSwap(MCDataUserResponse* PROTOBUF_RESTRICT othe
 ::google::protobuf::Metadata MCDataUserResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[4]);
+                                   file_level_metadata_MC_2eData_2eproto[6]);
 }
 // ===================================================================
 
@@ -2234,7 +2786,7 @@ void MCDataRegistRequest::InternalSwap(MCDataRegistRequest* PROTOBUF_RESTRICT ot
 ::google::protobuf::Metadata MCDataRegistRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[5]);
+                                   file_level_metadata_MC_2eData_2eproto[7]);
 }
 // ===================================================================
 
@@ -2457,7 +3009,7 @@ void MCDataRegistResponse::InternalSwap(MCDataRegistResponse* PROTOBUF_RESTRICT 
 ::google::protobuf::Metadata MCDataRegistResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[6]);
+                                   file_level_metadata_MC_2eData_2eproto[8]);
 }
 // ===================================================================
 
@@ -2710,7 +3262,7 @@ void MCDataUserInfoReq::InternalSwap(MCDataUserInfoReq* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata MCDataUserInfoReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[7]);
+                                   file_level_metadata_MC_2eData_2eproto[9]);
 }
 // ===================================================================
 
@@ -2963,7 +3515,7 @@ void MCDataUserInfoRes::InternalSwap(MCDataUserInfoRes* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata MCDataUserInfoRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[8]);
+                                   file_level_metadata_MC_2eData_2eproto[10]);
 }
 // ===================================================================
 
@@ -3186,7 +3738,7 @@ void MCDataUserHeadReq::InternalSwap(MCDataUserHeadReq* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata MCDataUserHeadReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[9]);
+                                   file_level_metadata_MC_2eData_2eproto[11]);
 }
 // ===================================================================
 
@@ -3409,7 +3961,7 @@ void MCDataUserHeadRes::InternalSwap(MCDataUserHeadRes* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata MCDataUserHeadRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eData_2eproto_getter,
                                    &descriptor_table_MC_2eData_2eproto_once,
-                                   file_level_metadata_MC_2eData_2eproto[10]);
+                                   file_level_metadata_MC_2eData_2eproto[12]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace Data

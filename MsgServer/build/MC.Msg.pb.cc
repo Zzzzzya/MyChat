@@ -207,6 +207,50 @@ struct MsgFriendDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MsgFriendDefaultTypeInternal _MsgFriend_default_instance_;
 
+inline constexpr Message::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        sendertype_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        recievertype_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        msg_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        time_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        msgid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        recievername_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        sendername_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        sender_{0u},
+        reciever_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Message::Message(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MessageDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MessageDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MessageDefaultTypeInternal() {}
+  union {
+    Message _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
+
 inline constexpr GetUserInfoRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : friends_{},
@@ -283,13 +327,31 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIDListDefaultTypeInternal _UserIDList_default_instance_;
 }  // namespace Msg
 }  // namespace MC
-static ::_pb::Metadata file_level_metadata_MC_2eMsg_2eproto[11];
+static ::_pb::Metadata file_level_metadata_MC_2eMsg_2eproto[12];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_MC_2eMsg_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_MC_2eMsg_2eproto = nullptr;
 const ::uint32_t
     TableStruct_MC_2eMsg_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.sender_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.sendertype_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.reciever_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.recievertype_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.msg_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.time_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.msgid_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.recievername_),
+        PROTOBUF_FIELD_OFFSET(::MC::Msg::Message, _impl_.sendername_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::MC::Msg::UserID, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -411,19 +473,21 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::MC::Msg::UserID)},
-        {9, -1, -1, sizeof(::MC::Msg::MsgFriend)},
-        {21, -1, -1, sizeof(::MC::Msg::UserIDList)},
-        {32, -1, -1, sizeof(::MC::Msg::SendMessageRes)},
-        {41, -1, -1, sizeof(::MC::Msg::SendMessageReq)},
-        {52, -1, -1, sizeof(::MC::Msg::UpdateUserInfoReq)},
-        {63, -1, -1, sizeof(::MC::Msg::UpdateUserInfoRes)},
-        {74, -1, -1, sizeof(::MC::Msg::UpdateUserHeadReq)},
-        {84, -1, -1, sizeof(::MC::Msg::UpdateUserHeadRes)},
-        {94, -1, -1, sizeof(::MC::Msg::GetUserInfoReq)},
-        {103, -1, -1, sizeof(::MC::Msg::GetUserInfoRes)},
+        {0, -1, -1, sizeof(::MC::Msg::Message)},
+        {18, -1, -1, sizeof(::MC::Msg::UserID)},
+        {27, -1, -1, sizeof(::MC::Msg::MsgFriend)},
+        {39, -1, -1, sizeof(::MC::Msg::UserIDList)},
+        {50, -1, -1, sizeof(::MC::Msg::SendMessageRes)},
+        {59, -1, -1, sizeof(::MC::Msg::SendMessageReq)},
+        {70, -1, -1, sizeof(::MC::Msg::UpdateUserInfoReq)},
+        {81, -1, -1, sizeof(::MC::Msg::UpdateUserInfoRes)},
+        {92, -1, -1, sizeof(::MC::Msg::UpdateUserHeadReq)},
+        {102, -1, -1, sizeof(::MC::Msg::UpdateUserHeadRes)},
+        {112, -1, -1, sizeof(::MC::Msg::GetUserInfoReq)},
+        {121, -1, -1, sizeof(::MC::Msg::GetUserInfoRes)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
+    &::MC::Msg::_Message_default_instance_._instance,
     &::MC::Msg::_UserID_default_instance_._instance,
     &::MC::Msg::_MsgFriend_default_instance_._instance,
     &::MC::Msg::_UserIDList_default_instance_._instance,
@@ -438,52 +502,54 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_MC_2eMsg_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\014MC.Msg.proto\022\006MC.Msg\"\030\n\006UserID\022\016\n\006user"
-    "id\030\001 \001(\r\"^\n\tMsgFriend\022\020\n\010friendid\030\001 \001(\r\022"
-    "\022\n\nfriendname\030\002 \001(\t\022\022\n\nfriendsign\030\003 \001(\t\022"
-    "\027\n\017lastcontacttime\030\004 \001(\t\"l\n\nUserIDList\022*"
-    "\n\004code\030\001 \001(\0162\034.MC.Msg.MCResponseStatusCo"
-    "de\022\016\n\006errmsg\030\002 \001(\t\022\"\n\007friends\030\003 \003(\0132\021.MC"
-    ".Msg.MsgFriend\"<\n\016SendMessageRes\022*\n\004code"
-    "\030\001 \001(\0162\034.MC.Msg.MCResponseStatusCode\"\?\n\016"
-    "SendMessageReq\022\016\n\006sender\030\001 \001(\r\022\020\n\010reciev"
-    "er\030\002 \001(\r\022\013\n\003msg\030\003 \001(\t\"A\n\021UpdateUserInfoR"
-    "eq\022\016\n\006userid\030\001 \001(\r\022\r\n\005field\030\002 \001(\t\022\r\n\005val"
-    "ue\030\003 \001(\t\"c\n\021UpdateUserInfoRes\022*\n\004code\030\001 "
-    "\001(\0162\034.MC.Msg.MCResponseStatusCode\022\017\n\007err"
-    "_msg\030\002 \001(\t\022\021\n\tnew_value\030\003 \001(\t\"7\n\021UpdateU"
-    "serHeadReq\022\016\n\006userid\030\001 \001(\r\022\022\n\nimage_data"
-    "\030\002 \001(\t\"P\n\021UpdateUserHeadRes\022*\n\004code\030\001 \001("
-    "\0162\034.MC.Msg.MCResponseStatusCode\022\017\n\007err_m"
-    "sg\030\002 \001(\t\" \n\016GetUserInfoReq\022\016\n\006userid\030\001 \001"
-    "(\r\"\207\001\n\016GetUserInfoRes\022*\n\004code\030\001 \001(\0162\034.MC"
-    ".Msg.MCResponseStatusCode\022\017\n\007err_msg\030\002 \001"
-    "(\t\022\014\n\004name\030\003 \001(\t\022\013\n\003pic\030\004 \001(\t\022\014\n\004sign\030\005 "
-    "\001(\t\022\017\n\007friends\030\006 \003(\r*5\n\024MCResponseStatus"
-    "Code\022\006\n\002OK\020\000\022\n\n\006FAILED\020\001\022\t\n\005ERROR\020\0022\315\002\n\003"
-    "MSG\022F\n\016UpdateUserInfo\022\031.MC.Msg.UpdateUse"
-    "rInfoReq\032\031.MC.Msg.UpdateUserInfoRes\022F\n\016U"
-    "pdateUserHead\022\031.MC.Msg.UpdateUserHeadReq"
-    "\032\031.MC.Msg.UpdateUserHeadRes\022E\n\023SendMessa"
-    "geToServer\022\026.MC.Msg.SendMessageReq\032\026.MC."
-    "Msg.SendMessageRes\022=\n\013GetUserInfo\022\026.MC.M"
-    "sg.GetUserInfoReq\032\026.MC.Msg.GetUserInfoRe"
-    "s\0220\n\nGetFriends\022\016.MC.Msg.UserID\032\022.MC.Msg"
-    ".UserIDList2O\n\006Client\022E\n\023SendMessageToCl"
-    "ient\022\026.MC.Msg.SendMessageReq\032\026.MC.Msg.Se"
-    "ndMessageResb\006proto3"
+    "\n\014MC.Msg.proto\022\006MC.Msg\"\267\001\n\007Message\022\014\n\004ty"
+    "pe\030\001 \001(\t\022\016\n\006sender\030\002 \001(\r\022\022\n\nsendertype\030\003"
+    " \001(\t\022\020\n\010reciever\030\004 \001(\r\022\024\n\014recievertype\030\005"
+    " \001(\t\022\013\n\003msg\030\006 \001(\t\022\014\n\004time\030\007 \001(\t\022\r\n\005msgid"
+    "\030\010 \001(\t\022\024\n\014recievername\030\t \001(\t\022\022\n\nsenderna"
+    "me\030\n \001(\t\"\030\n\006UserID\022\016\n\006userid\030\001 \001(\r\"^\n\tMs"
+    "gFriend\022\020\n\010friendid\030\001 \001(\r\022\022\n\nfriendname\030"
+    "\002 \001(\t\022\022\n\nfriendsign\030\003 \001(\t\022\027\n\017lastcontact"
+    "time\030\004 \001(\t\"l\n\nUserIDList\022*\n\004code\030\001 \001(\0162\034"
+    ".MC.Msg.MCResponseStatusCode\022\016\n\006errmsg\030\002"
+    " \001(\t\022\"\n\007friends\030\003 \003(\0132\021.MC.Msg.MsgFriend"
+    "\"<\n\016SendMessageRes\022*\n\004code\030\001 \001(\0162\034.MC.Ms"
+    "g.MCResponseStatusCode\"\?\n\016SendMessageReq"
+    "\022\016\n\006sender\030\001 \001(\r\022\020\n\010reciever\030\002 \001(\r\022\013\n\003ms"
+    "g\030\003 \001(\t\"A\n\021UpdateUserInfoReq\022\016\n\006userid\030\001"
+    " \001(\r\022\r\n\005field\030\002 \001(\t\022\r\n\005value\030\003 \001(\t\"c\n\021Up"
+    "dateUserInfoRes\022*\n\004code\030\001 \001(\0162\034.MC.Msg.M"
+    "CResponseStatusCode\022\017\n\007err_msg\030\002 \001(\t\022\021\n\t"
+    "new_value\030\003 \001(\t\"7\n\021UpdateUserHeadReq\022\016\n\006"
+    "userid\030\001 \001(\r\022\022\n\nimage_data\030\002 \001(\t\"P\n\021Upda"
+    "teUserHeadRes\022*\n\004code\030\001 \001(\0162\034.MC.Msg.MCR"
+    "esponseStatusCode\022\017\n\007err_msg\030\002 \001(\t\" \n\016Ge"
+    "tUserInfoReq\022\016\n\006userid\030\001 \001(\r\"\207\001\n\016GetUser"
+    "InfoRes\022*\n\004code\030\001 \001(\0162\034.MC.Msg.MCRespons"
+    "eStatusCode\022\017\n\007err_msg\030\002 \001(\t\022\014\n\004name\030\003 \001"
+    "(\t\022\013\n\003pic\030\004 \001(\t\022\014\n\004sign\030\005 \001(\t\022\017\n\007friends"
+    "\030\006 \003(\r*5\n\024MCResponseStatusCode\022\006\n\002OK\020\000\022\n"
+    "\n\006FAILED\020\001\022\t\n\005ERROR\020\0022\264\002\n\003MSG\022F\n\016UpdateU"
+    "serInfo\022\031.MC.Msg.UpdateUserInfoReq\032\031.MC."
+    "Msg.UpdateUserInfoRes\022F\n\016UpdateUserHead\022"
+    "\031.MC.Msg.UpdateUserHeadReq\032\031.MC.Msg.Upda"
+    "teUserHeadRes\022=\n\013GetUserInfo\022\026.MC.Msg.Ge"
+    "tUserInfoReq\032\026.MC.Msg.GetUserInfoRes\0220\n\n"
+    "GetFriends\022\016.MC.Msg.UserID\032\022.MC.Msg.User"
+    "IDList\022,\n\004Chat\022\017.MC.Msg.Message\032\017.MC.Msg"
+    ".Message(\0010\001b\006proto3"
 };
 static ::absl::once_flag descriptor_table_MC_2eMsg_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_MC_2eMsg_2eproto = {
     false,
     false,
-    1340,
+    1420,
     descriptor_table_protodef_MC_2eMsg_2eproto,
     "MC.Msg.proto",
     &descriptor_table_MC_2eMsg_2eproto_once,
     nullptr,
     0,
-    11,
+    12,
     schemas,
     file_default_instances,
     TableStruct_MC_2eMsg_2eproto::offsets,
@@ -516,6 +582,478 @@ PROTOBUF_CONSTINIT const uint32_t MCResponseStatusCode_internal_data_[] = {
     196608u, 0u, };
 bool MCResponseStatusCode_IsValid(int value) {
   return 0 <= value && value <= 2;
+}
+// ===================================================================
+
+class Message::_Internal {
+ public:
+};
+
+Message::Message(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:MC.Msg.Message)
+}
+inline PROTOBUF_NDEBUG_INLINE Message::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : type_(arena, from.type_),
+        sendertype_(arena, from.sendertype_),
+        recievertype_(arena, from.recievertype_),
+        msg_(arena, from.msg_),
+        time_(arena, from.time_),
+        msgid_(arena, from.msgid_),
+        recievername_(arena, from.recievername_),
+        sendername_(arena, from.sendername_),
+        _cached_size_{0} {}
+
+Message::Message(
+    ::google::protobuf::Arena* arena,
+    const Message& from)
+    : ::google::protobuf::Message(arena) {
+  Message* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, sender_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, sender_),
+           offsetof(Impl_, reciever_) -
+               offsetof(Impl_, sender_) +
+               sizeof(Impl_::reciever_));
+
+  // @@protoc_insertion_point(copy_constructor:MC.Msg.Message)
+}
+inline PROTOBUF_NDEBUG_INLINE Message::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : type_(arena),
+        sendertype_(arena),
+        recievertype_(arena),
+        msg_(arena),
+        time_(arena),
+        msgid_(arena),
+        recievername_(arena),
+        sendername_(arena),
+        _cached_size_{0} {}
+
+inline void Message::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, sender_),
+           0,
+           offsetof(Impl_, reciever_) -
+               offsetof(Impl_, sender_) +
+               sizeof(Impl_::reciever_));
+}
+Message::~Message() {
+  // @@protoc_insertion_point(destructor:MC.Msg.Message)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void Message::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.type_.Destroy();
+  _impl_.sendertype_.Destroy();
+  _impl_.recievertype_.Destroy();
+  _impl_.msg_.Destroy();
+  _impl_.time_.Destroy();
+  _impl_.msgid_.Destroy();
+  _impl_.recievername_.Destroy();
+  _impl_.sendername_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+Message::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(Message, _impl_._cached_size_),
+              false,
+          },
+          &Message::MergeImpl,
+          &Message::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void Message::Clear() {
+// @@protoc_insertion_point(message_clear_start:MC.Msg.Message)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.type_.ClearToEmpty();
+  _impl_.sendertype_.ClearToEmpty();
+  _impl_.recievertype_.ClearToEmpty();
+  _impl_.msg_.ClearToEmpty();
+  _impl_.time_.ClearToEmpty();
+  _impl_.msgid_.ClearToEmpty();
+  _impl_.recievername_.ClearToEmpty();
+  _impl_.sendername_.ClearToEmpty();
+  ::memset(&_impl_.sender_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.reciever_) -
+      reinterpret_cast<char*>(&_impl_.sender_)) + sizeof(_impl_.reciever_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* Message::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 10, 0, 91, 2> Message::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    10, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294966272,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    10,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_Message_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::MC::Msg::Message>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string type = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.type_)}},
+    // uint32 sender = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Message, _impl_.sender_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.sender_)}},
+    // string sendertype = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.sendertype_)}},
+    // uint32 reciever = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Message, _impl_.reciever_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.reciever_)}},
+    // string recievertype = 5;
+    {::_pbi::TcParser::FastUS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.recievertype_)}},
+    // string msg = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.msg_)}},
+    // string time = 7;
+    {::_pbi::TcParser::FastUS1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.time_)}},
+    // string msgid = 8;
+    {::_pbi::TcParser::FastUS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.msgid_)}},
+    // string recievername = 9;
+    {::_pbi::TcParser::FastUS1,
+     {74, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.recievername_)}},
+    // string sendername = 10;
+    {::_pbi::TcParser::FastUS1,
+     {82, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.sendername_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string type = 1;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 sender = 2;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.sender_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string sendertype = 3;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.sendertype_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 reciever = 4;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.reciever_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string recievertype = 5;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.recievertype_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string msg = 6;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.msg_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string time = 7;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.time_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string msgid = 8;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.msgid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string recievername = 9;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.recievername_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string sendername = 10;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.sendername_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\16\4\0\12\0\14\3\4\5\14\12\0\0\0\0\0"
+    "MC.Msg.Message"
+    "type"
+    "sendertype"
+    "recievertype"
+    "msg"
+    "time"
+    "msgid"
+    "recievername"
+    "sendername"
+  }},
+};
+
+::uint8_t* Message::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MC.Msg.Message)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string type = 1;
+  if (!this->_internal_type().empty()) {
+    const std::string& _s = this->_internal_type();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.Message.type");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // uint32 sender = 2;
+  if (this->_internal_sender() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_sender(), target);
+  }
+
+  // string sendertype = 3;
+  if (!this->_internal_sendertype().empty()) {
+    const std::string& _s = this->_internal_sendertype();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.Message.sendertype");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  // uint32 reciever = 4;
+  if (this->_internal_reciever() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        4, this->_internal_reciever(), target);
+  }
+
+  // string recievertype = 5;
+  if (!this->_internal_recievertype().empty()) {
+    const std::string& _s = this->_internal_recievertype();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.Message.recievertype");
+    target = stream->WriteStringMaybeAliased(5, _s, target);
+  }
+
+  // string msg = 6;
+  if (!this->_internal_msg().empty()) {
+    const std::string& _s = this->_internal_msg();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.Message.msg");
+    target = stream->WriteStringMaybeAliased(6, _s, target);
+  }
+
+  // string time = 7;
+  if (!this->_internal_time().empty()) {
+    const std::string& _s = this->_internal_time();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.Message.time");
+    target = stream->WriteStringMaybeAliased(7, _s, target);
+  }
+
+  // string msgid = 8;
+  if (!this->_internal_msgid().empty()) {
+    const std::string& _s = this->_internal_msgid();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.Message.msgid");
+    target = stream->WriteStringMaybeAliased(8, _s, target);
+  }
+
+  // string recievername = 9;
+  if (!this->_internal_recievername().empty()) {
+    const std::string& _s = this->_internal_recievername();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.Message.recievername");
+    target = stream->WriteStringMaybeAliased(9, _s, target);
+  }
+
+  // string sendername = 10;
+  if (!this->_internal_sendername().empty()) {
+    const std::string& _s = this->_internal_sendername();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MC.Msg.Message.sendername");
+    target = stream->WriteStringMaybeAliased(10, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MC.Msg.Message)
+  return target;
+}
+
+::size_t Message::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MC.Msg.Message)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string type = 1;
+  if (!this->_internal_type().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_type());
+  }
+
+  // string sendertype = 3;
+  if (!this->_internal_sendertype().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_sendertype());
+  }
+
+  // string recievertype = 5;
+  if (!this->_internal_recievertype().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_recievertype());
+  }
+
+  // string msg = 6;
+  if (!this->_internal_msg().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_msg());
+  }
+
+  // string time = 7;
+  if (!this->_internal_time().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_time());
+  }
+
+  // string msgid = 8;
+  if (!this->_internal_msgid().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_msgid());
+  }
+
+  // string recievername = 9;
+  if (!this->_internal_recievername().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_recievername());
+  }
+
+  // string sendername = 10;
+  if (!this->_internal_sendername().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_sendername());
+  }
+
+  // uint32 sender = 2;
+  if (this->_internal_sender() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_sender());
+  }
+
+  // uint32 reciever = 4;
+  if (this->_internal_reciever() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_reciever());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void Message::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Message*>(&to_msg);
+  auto& from = static_cast<const Message&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:MC.Msg.Message)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_type().empty()) {
+    _this->_internal_set_type(from._internal_type());
+  }
+  if (!from._internal_sendertype().empty()) {
+    _this->_internal_set_sendertype(from._internal_sendertype());
+  }
+  if (!from._internal_recievertype().empty()) {
+    _this->_internal_set_recievertype(from._internal_recievertype());
+  }
+  if (!from._internal_msg().empty()) {
+    _this->_internal_set_msg(from._internal_msg());
+  }
+  if (!from._internal_time().empty()) {
+    _this->_internal_set_time(from._internal_time());
+  }
+  if (!from._internal_msgid().empty()) {
+    _this->_internal_set_msgid(from._internal_msgid());
+  }
+  if (!from._internal_recievername().empty()) {
+    _this->_internal_set_recievername(from._internal_recievername());
+  }
+  if (!from._internal_sendername().empty()) {
+    _this->_internal_set_sendername(from._internal_sendername());
+  }
+  if (from._internal_sender() != 0) {
+    _this->_impl_.sender_ = from._impl_.sender_;
+  }
+  if (from._internal_reciever() != 0) {
+    _this->_impl_.reciever_ = from._impl_.reciever_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Message::CopyFrom(const Message& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MC.Msg.Message)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool Message::IsInitialized() const {
+  return true;
+}
+
+void Message::InternalSwap(Message* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.sendertype_, &other->_impl_.sendertype_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.recievertype_, &other->_impl_.recievertype_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.msg_, &other->_impl_.msg_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.time_, &other->_impl_.time_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.msgid_, &other->_impl_.msgid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.recievername_, &other->_impl_.recievername_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.sendername_, &other->_impl_.sendername_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Message, _impl_.reciever_)
+      + sizeof(Message::_impl_.reciever_)
+      - PROTOBUF_FIELD_OFFSET(Message, _impl_.sender_)>(
+          reinterpret_cast<char*>(&_impl_.sender_),
+          reinterpret_cast<char*>(&other->_impl_.sender_));
+}
+
+::google::protobuf::Metadata Message::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
+                                   &descriptor_table_MC_2eMsg_2eproto_once,
+                                   file_level_metadata_MC_2eMsg_2eproto[0]);
 }
 // ===================================================================
 
@@ -692,7 +1230,7 @@ void UserID::InternalSwap(UserID* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata UserID::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[0]);
+                                   file_level_metadata_MC_2eMsg_2eproto[1]);
 }
 // ===================================================================
 
@@ -973,7 +1511,7 @@ void MsgFriend::InternalSwap(MsgFriend* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata MsgFriend::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[1]);
+                                   file_level_metadata_MC_2eMsg_2eproto[2]);
 }
 // ===================================================================
 
@@ -1225,7 +1763,7 @@ void UserIDList::InternalSwap(UserIDList* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata UserIDList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[2]);
+                                   file_level_metadata_MC_2eMsg_2eproto[3]);
 }
 // ===================================================================
 
@@ -1402,7 +1940,7 @@ void SendMessageRes::InternalSwap(SendMessageRes* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata SendMessageRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[3]);
+                                   file_level_metadata_MC_2eMsg_2eproto[4]);
 }
 // ===================================================================
 
@@ -1666,7 +2204,7 @@ void SendMessageReq::InternalSwap(SendMessageReq* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata SendMessageReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[4]);
+                                   file_level_metadata_MC_2eMsg_2eproto[5]);
 }
 // ===================================================================
 
@@ -1919,7 +2457,7 @@ void UpdateUserInfoReq::InternalSwap(UpdateUserInfoReq* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata UpdateUserInfoReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[5]);
+                                   file_level_metadata_MC_2eMsg_2eproto[6]);
 }
 // ===================================================================
 
@@ -2172,7 +2710,7 @@ void UpdateUserInfoRes::InternalSwap(UpdateUserInfoRes* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata UpdateUserInfoRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[6]);
+                                   file_level_metadata_MC_2eMsg_2eproto[7]);
 }
 // ===================================================================
 
@@ -2395,7 +2933,7 @@ void UpdateUserHeadReq::InternalSwap(UpdateUserHeadReq* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata UpdateUserHeadReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[7]);
+                                   file_level_metadata_MC_2eMsg_2eproto[8]);
 }
 // ===================================================================
 
@@ -2618,7 +3156,7 @@ void UpdateUserHeadRes::InternalSwap(UpdateUserHeadRes* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata UpdateUserHeadRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[8]);
+                                   file_level_metadata_MC_2eMsg_2eproto[9]);
 }
 // ===================================================================
 
@@ -2795,7 +3333,7 @@ void GetUserInfoReq::InternalSwap(GetUserInfoReq* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata GetUserInfoReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[9]);
+                                   file_level_metadata_MC_2eMsg_2eproto[10]);
 }
 // ===================================================================
 
@@ -3142,7 +3680,7 @@ void GetUserInfoRes::InternalSwap(GetUserInfoRes* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata GetUserInfoRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_MC_2eMsg_2eproto_getter,
                                    &descriptor_table_MC_2eMsg_2eproto_once,
-                                   file_level_metadata_MC_2eMsg_2eproto[10]);
+                                   file_level_metadata_MC_2eMsg_2eproto[11]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace Msg

@@ -27,11 +27,36 @@ void MsgServer::Run(uint16_t port) {
     HandleRpcs();
 }
 
+// void MsgServer::HandleRpcs() {
+//     // Spawn a new CallData instance to serve new clients.
+//     new GetFriendsCallData(&service_, cq_.get());
+//     new UpdateUserInfoCallData(&service_, cq_.get());
+//     new UpdateUserHeadCallData(&service_, cq_.get());
+
+//     void* tag;  // uniquely identifies a request.
+//     bool ok;
+//     while (true) {
+//         // Block waiting to read the next event from the completion queue.
+//         The
+//         // event is uniquely identified by its tag, which in this case is the
+//         // memory address of a CallData instance.
+//         // The return value of Next should always be checked. This return
+//         value
+//         // tells us whether there is any kind of event or the completion
+//         queue
+//         // has been shut down.
+//         CHECK(cq_->Next(&tag, &ok));
+//         CHECK(ok);
+//         static_cast<CallData*>(tag)->Proceed();
+//     }
+// }
+
 void MsgServer::HandleRpcs() {
     // Spawn a new CallData instance to serve new clients.
     new GetFriendsCallData(&service_, cq_.get());
     new UpdateUserInfoCallData(&service_, cq_.get());
     new UpdateUserHeadCallData(&service_, cq_.get());
+    new ChatCallData(&service_, cq_.get());
 
     void* tag;  // uniquely identifies a request.
     bool ok;
@@ -43,8 +68,24 @@ void MsgServer::HandleRpcs() {
         // tells us whether there is any kind of event or the completion queue
         // has been shut down.
         CHECK(cq_->Next(&tag, &ok));
-        CHECK(ok);
-        static_cast<CallData*>(tag)->Proceed();
+
+        CallData* call_data = static_cast<CallData*>(tag);
+
+        ChatCallData* chat_call_data = dynamic_cast<ChatCallData*>(call_data);
+
+        if (chat_call_data) {
+            // If the call_data is a ChatCallData, handle it separately
+            if (ok) {
+                chat_call_data->processing();
+            } else {
+                chat_call_data->finishing();
+            }
+        } else {
+            // For other types of CallData, use the old behavior
+            debug(), 8;
+            CHECK(ok);
+            call_data->Proceed();
+        }
     }
 }
 

@@ -28,6 +28,7 @@ static const char* MCData_method_names[] = {
   "/MC.Data.MCData/GetUserFriends",
   "/MC.Data.MCData/UpdateUserInfo",
   "/MC.Data.MCData/UpdateUserHead",
+  "/MC.Data.MCData/AddFriend",
 };
 
 std::unique_ptr< MCData::Stub> MCData::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -42,6 +43,7 @@ MCData::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, co
   , rpcmethod_GetUserFriends_(MCData_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_UpdateUserInfo_(MCData_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_UpdateUserHead_(MCData_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddFriend_(MCData_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MCData::Stub::GetUserPassword(::grpc::ClientContext* context, const ::MC::Data::MCDataUserRequest& request, ::MC::Data::MCDataUserResponse* response) {
@@ -159,6 +161,29 @@ void MCData::Stub::async::UpdateUserHead(::grpc::ClientContext* context, const :
   return result;
 }
 
+::grpc::Status MCData::Stub::AddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::MC::Data::MCDataAddFriendRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::MC::Data::MCDataAddFriendReq, ::MC::Data::MCDataAddFriendRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddFriend_, context, request, response);
+}
+
+void MCData::Stub::async::AddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq* request, ::MC::Data::MCDataAddFriendRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::MC::Data::MCDataAddFriendReq, ::MC::Data::MCDataAddFriendRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddFriend_, context, request, response, std::move(f));
+}
+
+void MCData::Stub::async::AddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq* request, ::MC::Data::MCDataAddFriendRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddFriend_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataAddFriendRes>* MCData::Stub::PrepareAsyncAddFriendRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::MC::Data::MCDataAddFriendRes, ::MC::Data::MCDataAddFriendReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddFriend_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataAddFriendRes>* MCData::Stub::AsyncAddFriendRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAddFriendRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MCData::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MCData_method_names[0],
@@ -210,6 +235,16 @@ MCData::Service::Service() {
              ::MC::Data::MCDataUserHeadRes* resp) {
                return service->UpdateUserHead(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MCData_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MCData::Service, ::MC::Data::MCDataAddFriendReq, ::MC::Data::MCDataAddFriendRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MCData::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::MC::Data::MCDataAddFriendReq* req,
+             ::MC::Data::MCDataAddFriendRes* resp) {
+               return service->AddFriend(ctx, req, resp);
+             }, this)));
 }
 
 MCData::Service::~Service() {
@@ -244,6 +279,13 @@ MCData::Service::~Service() {
 }
 
 ::grpc::Status MCData::Service::UpdateUserHead(::grpc::ServerContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MCData::Service::AddFriend(::grpc::ServerContext* context, const ::MC::Data::MCDataAddFriendReq* request, ::MC::Data::MCDataAddFriendRes* response) {
   (void) context;
   (void) request;
   (void) response;

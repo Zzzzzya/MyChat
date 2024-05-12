@@ -71,6 +71,13 @@ class MCData final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>> PrepareAsyncUpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>>(PrepareAsyncUpdateUserHeadRaw(context, request, cq));
     }
+    virtual ::grpc::Status AddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::MC::Data::MCDataAddFriendRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataAddFriendRes>> AsyncAddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataAddFriendRes>>(AsyncAddFriendRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataAddFriendRes>> PrepareAsyncAddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataAddFriendRes>>(PrepareAsyncAddFriendRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -84,6 +91,8 @@ class MCData final {
       virtual void UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void AddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq* request, ::MC::Data::MCDataAddFriendRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq* request, ::MC::Data::MCDataAddFriendRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -99,6 +108,8 @@ class MCData final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserInfoRes>* PrepareAsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>* AsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataUserHeadRes>* PrepareAsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataAddFriendRes>* AsyncAddFriendRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::MC::Data::MCDataAddFriendRes>* PrepareAsyncAddFriendRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -138,6 +149,13 @@ class MCData final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>> PrepareAsyncUpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>>(PrepareAsyncUpdateUserHeadRaw(context, request, cq));
     }
+    ::grpc::Status AddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::MC::Data::MCDataAddFriendRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataAddFriendRes>> AsyncAddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataAddFriendRes>>(AsyncAddFriendRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataAddFriendRes>> PrepareAsyncAddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataAddFriendRes>>(PrepareAsyncAddFriendRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -151,6 +169,8 @@ class MCData final {
       void UpdateUserInfo(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, std::function<void(::grpc::Status)>) override;
       void UpdateUserHead(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void AddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq* request, ::MC::Data::MCDataAddFriendRes* response, std::function<void(::grpc::Status)>) override;
+      void AddFriend(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq* request, ::MC::Data::MCDataAddFriendRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -172,11 +192,14 @@ class MCData final {
     ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserInfoRes>* PrepareAsyncUpdateUserInfoRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserInfoReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>* AsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataUserHeadRes>* PrepareAsyncUpdateUserHeadRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataUserHeadReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataAddFriendRes>* AsyncAddFriendRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::MC::Data::MCDataAddFriendRes>* PrepareAsyncAddFriendRaw(::grpc::ClientContext* context, const ::MC::Data::MCDataAddFriendReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetUserPassword_;
     const ::grpc::internal::RpcMethod rpcmethod_TryRegist_;
     const ::grpc::internal::RpcMethod rpcmethod_GetUserFriends_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateUserInfo_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateUserHead_;
+    const ::grpc::internal::RpcMethod rpcmethod_AddFriend_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -189,6 +212,7 @@ class MCData final {
     virtual ::grpc::Status GetUserFriends(::grpc::ServerContext* context, const ::MC::Data::MCDataUserIDRequest* request, ::MC::Data::MCDataUserFriendsResponse* response);
     virtual ::grpc::Status UpdateUserInfo(::grpc::ServerContext* context, const ::MC::Data::MCDataUserInfoReq* request, ::MC::Data::MCDataUserInfoRes* response);
     virtual ::grpc::Status UpdateUserHead(::grpc::ServerContext* context, const ::MC::Data::MCDataUserHeadReq* request, ::MC::Data::MCDataUserHeadRes* response);
+    virtual ::grpc::Status AddFriend(::grpc::ServerContext* context, const ::MC::Data::MCDataAddFriendReq* request, ::MC::Data::MCDataAddFriendRes* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetUserPassword : public BaseClass {
@@ -290,7 +314,27 @@ class MCData final {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetUserPassword<WithAsyncMethod_TryRegist<WithAsyncMethod_GetUserFriends<WithAsyncMethod_UpdateUserInfo<WithAsyncMethod_UpdateUserHead<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_AddFriend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AddFriend() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_AddFriend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddFriend(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataAddFriendReq* /*request*/, ::MC::Data::MCDataAddFriendRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddFriend(::grpc::ServerContext* context, ::MC::Data::MCDataAddFriendReq* request, ::grpc::ServerAsyncResponseWriter< ::MC::Data::MCDataAddFriendRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetUserPassword<WithAsyncMethod_TryRegist<WithAsyncMethod_GetUserFriends<WithAsyncMethod_UpdateUserInfo<WithAsyncMethod_UpdateUserHead<WithAsyncMethod_AddFriend<Service > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetUserPassword : public BaseClass {
    private:
@@ -426,7 +470,34 @@ class MCData final {
     virtual ::grpc::ServerUnaryReactor* UpdateUserHead(
       ::grpc::CallbackServerContext* /*context*/, const ::MC::Data::MCDataUserHeadReq* /*request*/, ::MC::Data::MCDataUserHeadRes* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetUserPassword<WithCallbackMethod_TryRegist<WithCallbackMethod_GetUserFriends<WithCallbackMethod_UpdateUserInfo<WithCallbackMethod_UpdateUserHead<Service > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_AddFriend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_AddFriend() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::MC::Data::MCDataAddFriendReq, ::MC::Data::MCDataAddFriendRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::MC::Data::MCDataAddFriendReq* request, ::MC::Data::MCDataAddFriendRes* response) { return this->AddFriend(context, request, response); }));}
+    void SetMessageAllocatorFor_AddFriend(
+        ::grpc::MessageAllocator< ::MC::Data::MCDataAddFriendReq, ::MC::Data::MCDataAddFriendRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::MC::Data::MCDataAddFriendReq, ::MC::Data::MCDataAddFriendRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_AddFriend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddFriend(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataAddFriendReq* /*request*/, ::MC::Data::MCDataAddFriendRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddFriend(
+      ::grpc::CallbackServerContext* /*context*/, const ::MC::Data::MCDataAddFriendReq* /*request*/, ::MC::Data::MCDataAddFriendRes* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetUserPassword<WithCallbackMethod_TryRegist<WithCallbackMethod_GetUserFriends<WithCallbackMethod_UpdateUserInfo<WithCallbackMethod_UpdateUserHead<WithCallbackMethod_AddFriend<Service > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetUserPassword : public BaseClass {
@@ -509,6 +580,23 @@ class MCData final {
     }
     // disable synchronous version of this method
     ::grpc::Status UpdateUserHead(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataUserHeadReq* /*request*/, ::MC::Data::MCDataUserHeadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_AddFriend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AddFriend() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_AddFriend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddFriend(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataAddFriendReq* /*request*/, ::MC::Data::MCDataAddFriendRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -611,6 +699,26 @@ class MCData final {
     }
     void RequestUpdateUserHead(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_AddFriend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AddFriend() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_AddFriend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddFriend(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataAddFriendReq* /*request*/, ::MC::Data::MCDataAddFriendRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddFriend(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -721,6 +829,28 @@ class MCData final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* UpdateUserHead(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_AddFriend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_AddFriend() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddFriend(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_AddFriend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddFriend(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataAddFriendReq* /*request*/, ::MC::Data::MCDataAddFriendRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddFriend(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -858,9 +988,36 @@ class MCData final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedUpdateUserHead(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::MC::Data::MCDataUserHeadReq,::MC::Data::MCDataUserHeadRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetUserPassword<WithStreamedUnaryMethod_TryRegist<WithStreamedUnaryMethod_GetUserFriends<WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<Service > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_AddFriend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_AddFriend() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::MC::Data::MCDataAddFriendReq, ::MC::Data::MCDataAddFriendRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::MC::Data::MCDataAddFriendReq, ::MC::Data::MCDataAddFriendRes>* streamer) {
+                       return this->StreamedAddFriend(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_AddFriend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status AddFriend(::grpc::ServerContext* /*context*/, const ::MC::Data::MCDataAddFriendReq* /*request*/, ::MC::Data::MCDataAddFriendRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAddFriend(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::MC::Data::MCDataAddFriendReq,::MC::Data::MCDataAddFriendRes>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetUserPassword<WithStreamedUnaryMethod_TryRegist<WithStreamedUnaryMethod_GetUserFriends<WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<WithStreamedUnaryMethod_AddFriend<Service > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetUserPassword<WithStreamedUnaryMethod_TryRegist<WithStreamedUnaryMethod_GetUserFriends<WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<Service > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetUserPassword<WithStreamedUnaryMethod_TryRegist<WithStreamedUnaryMethod_GetUserFriends<WithStreamedUnaryMethod_UpdateUserInfo<WithStreamedUnaryMethod_UpdateUserHead<WithStreamedUnaryMethod_AddFriend<Service > > > > > > StreamedService;
 };
 
 }  // namespace Data
