@@ -1,8 +1,9 @@
 # MyChat
-尝试编写一个即时通讯项目。
+一个即时通讯项目。
+[bilibili演示](https://www.bilibili.com/video/BV1ny411Y7DJ/?spm_id_from=333.999.0.0&vd_source=f9105755833a175d6cfb9429d860f415)
 
 # 开发环境 
-基于grpc-cpp，服务器在linux下;客户端在windows下，采用QT开发。
+基于grpc-cpp，服务器在linux下;客户端在windows下，采用electron开发。
 
 # 架构
 ![MyChat-Format]()
