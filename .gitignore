@@ -3,3 +3,5 @@
 /DataServer/build/
 /DataServer/log/
 /.tours/
+/MsgServer/build/
+/MsgServer/log/
